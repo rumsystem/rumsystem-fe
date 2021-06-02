@@ -8,10 +8,10 @@ REMOTE_IMAGE_NAME="dockerhub.qingcloud.com/pressone_private/rumsystem-fe:$BITBUC
 
 ./build/scripts/build.sh
 
-sudo docker login -u prs-admin -p 57e348ab37aa5b55f68b7642ac584a41 dockerhub.qingcloud.com
+docker login -u prs-admin -p 57e348ab37aa5b55f68b7642ac584a41 dockerhub.qingcloud.com
 echo "building image..."
-sudo docker build -f Dockerfile -t "$IMAGE_NAME" .
+docker build -f Dockerfile -t "$IMAGE_NAME" .
 echo "pushing image..."
-sudo docker tag "$IMAGE_NAME" "$REMOTE_IMAGE_NAME"
-sudo docker push "$REMOTE_IMAGE_NAME"
+docker tag "$IMAGE_NAME" "$REMOTE_IMAGE_NAME"
+docker push "$REMOTE_IMAGE_NAME"
 echo "pushing image done!"
