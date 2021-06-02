@@ -8,5 +8,5 @@ pipelines:
           caches:
             - node
           script:
-            - ./scripts/build.sh
-            - ./scripts/build_image.sh
+            - ./build/scripts/build.sh
+            - ./build/scripts/build_image.sh
