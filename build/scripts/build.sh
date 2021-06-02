@@ -13,7 +13,7 @@ echo 'type checking...'
 yarn tsc -p ./tsconfig.json --noEmit
 echo 'type checking done!'
 echo 'webpack building...'
-/usr/bin/time -f "Done in %e seconds." node --max-old-space-size=4096 node_modules/webpack/bin/webpack.js --config ./build/config/webpack.prod.conf.js
+node --max-old-space-size=4096 node_modules/webpack/bin/webpack.js --config ./build/config/webpack.prod.conf.js
 echo 'webpack building done!'
 
 echo "build done!"

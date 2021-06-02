@@ -7,6 +7,9 @@ pipelines:
           name: deploy
           caches:
             - node
+            - docker
+          services:
+            - docker
           script:
             - yarn
             - ./build/scripts/build.sh
