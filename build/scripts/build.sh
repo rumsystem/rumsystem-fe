@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")"
+cd ../..
+
+export API_ENV="production"
+
+rm -rf ./dist
+echo 'generate routes...'
+yarn genroutes
+echo 'generate routes done!'
+echo 'type checking...'
+yarn tsc -p ./tsconfig.json --noEmit
+echo 'type checking done!'
+echo 'webpack building...'
+/usr/bin/time -f "Done in %e seconds." node --max-old-space-size=4096 node_modules/webpack/bin/webpack.js --config ./build/config/webpack.prod.conf.js
+echo 'webpack building done!'
+
+echo "build done!"

@@ -1,0 +1,12 @@
+image: node:14
+
+pipelines:
+  branches:
+    release:
+      - step:
+          name: deploy
+          caches:
+            - node
+          script:
+            - ./scripts/build.sh
+            - ./scripts/build_image.sh
