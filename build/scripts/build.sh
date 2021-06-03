@@ -19,5 +19,3 @@ echo 'webpack building done!'
 echo 'copy public files...'
 cp -r ./public/* ./dist/
 echo "build done!"
-
-echo "build done!"
