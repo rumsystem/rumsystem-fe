@@ -1,7 +1,7 @@
 import { action, observable, reaction, runInAction } from 'mobx';
 
 const serviceState = observable({
-  lang: 'en',
+  lang: 'cn',
 });
 
 const createLangLoader = <T extends unknown>(langData: Record<string, () => Promise<{ content: T }>>) => {
