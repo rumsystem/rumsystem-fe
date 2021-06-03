@@ -16,4 +16,8 @@ echo 'webpack building...'
 node --max-old-space-size=4096 node_modules/webpack/bin/webpack.js --config ./build/config/webpack.prod.conf.js
 echo 'webpack building done!'
 
+echo 'copy public files...'
+cp -r ./public/* ./dist/
+echo "build done!"
+
 echo "build done!"
