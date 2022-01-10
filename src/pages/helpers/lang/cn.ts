@@ -1,4 +1,5 @@
 export const content = {
+  ready: '123',
   p: [
     {
       heading: '1. Quorum是什麽？',

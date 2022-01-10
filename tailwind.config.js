@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors');
-
 module.exports = {
   mode: 'jit',
   purge: {
@@ -16,7 +14,7 @@ module.exports = {
       },
       ...Object.fromEntries(
         [960].reverse().map(
-          (v) => [`lt-${v}`, {
+          (v) => [`s${v}`, {
             max: `${v - 1}px`,
           }],
         ),
@@ -24,10 +22,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        orange: {
-          ...colors.orange,
-          DEFAULT: '#996c52',
-        },
+        'main': '#ff931e',
         'gray': {
           'f9': '#f9f9f9',
           'f7': '#f7f7f7',
@@ -39,22 +34,26 @@ module.exports = {
           'd1': '#d1d1d1',
           'bf': '#bfbfbf',
           'bd': '#bdbdbd',
+          'b0': '#b0b0b0',
           'af': '#afafaf',
           '9b': '#9b9b9b',
           '99': '#999999',
           '88': '#888888',
+          '83': '#838383',
           '80': '#808080',
           '70': '#707070',
           '6d': '#6d6d6d',
           '55': '#555555',
           '4a': '#4a4a4a',
+          '3a': '#3a3a3a',
           '37': '#373737',
           '1e': '#1e1e1e',
           '1a': '#1a1a1a',
           '1b': '#1b1b1b',
-          '3a': '#3a3a3a',
+          '0c': '#0c0c0c',
         },
         'link': '#006fff',
+        'link-soft': '#5fc0e9',
       },
       boxShadow: {
         '0': '0px 0px 0px 0px rgba(0,0,0,.2),0px 0px 0px 0px rgba(0,0,0,.14),0px 0px 0px 0px rgba(0,0,0,.12)',

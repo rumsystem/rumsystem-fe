@@ -4,9 +4,15 @@ import routes from './routes';
 
 interface RouteItem {
   noExact?: boolean
-  path: string
+  path: string | Array<string>
   component: any
   children?: Array<RouteItem>
+}
+
+const modifiedRoutes = routes as Array<RouteItem>;
+const root = modifiedRoutes.find((v) => v.path === '/');
+if (root) {
+  root.path = ['/', '/why', '/apps', '/network', '/developers'];
 }
 
 const genRoutes = (list: Array<RouteItem>) => list.map((item, index) => {

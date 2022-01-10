@@ -27,7 +27,7 @@ const generateRouteFileContent = async () => {
           dir: stat.isDirectory(),
         };
       }),
-    )).filter((v) => v.dir || (v.relativePath.endsWith('.tsx') && !/\/helpers?/.test(v.relativePath)));
+    )).filter((v) => v.dir || (v.relativePath.endsWith('.tsx') && !/\/(helpers?|lang)/.test(v.relativePath)));
 
     const hasLayout = fileItems.some(
       (v) => v.relativePath.endsWith('/_layout.tsx')
