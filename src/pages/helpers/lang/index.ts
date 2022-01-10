@@ -1,4 +1,4 @@
-import { langService } from '@/service/lang';
+import { langService } from '~/service/lang';
 
 export const lang = langService.createLangLoader({
   cn: () => import('./cn'),

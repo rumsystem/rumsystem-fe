@@ -11,15 +11,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { generateRoutes, watchRoutes } from './generateRoutes';
 import { config } from './dev-config';
-import { startProxy } from './proxy';
 import webpackConfig from './config/webpack/webpack.dev.conf';
-
-const helpText = `
-Example:
-yarn start          start dev server and proxy api to local jupyterhub
-yarn start prod     start dev server and proxy api to dev.prsdev.club (config.urls.prod)
-yarn start noproxy  start dev server (start proxy manually)
-`;
 
 const run = async () => {
   webpackConfig.plugin('react-fast-refresh').tap((options: any) => {
@@ -33,33 +25,31 @@ const run = async () => {
   const compiler = webpack(webpackConfig.toConfig());
   const devServer = new WebpackDevServer(compiler, {
     https: false,
-    writeToDisk: true,
     host: 'localhost',
-    sockPort: config.urls.fe.port,
-    transportMode: 'ws',
-    disableHostCheck: true,
-    contentBase: path.join(__dirname, '../public'),
+    port: config.urls.fe.port,
+    webSocketServer: 'ws',
+    allowedHosts: 'all',
     hot: true,
-    stats: 'minimal',
+    client: {
+      webSocketURL: {
+        port: config.urls.fe.port,
+      },
+    },
+    devMiddleware: {
+      stats: 'minimal',
+      writeToDisk: true,
+    },
+    static: {
+      directory: path.join(__dirname, '../public'),
+    },
+    historyApiFallback: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
     },
   });
 
-  devServer.listen(config.urls.fe.port);
-  const arg = process.argv[2];
-  if (!arg) {
-    startProxy(false);
-  } else if (arg === 'noproxy') {
-    console.log('\n no proxy started!');
-  } else if (arg === 'prod') {
-    startProxy(true);
-  } else {
-    console.log(helpText);
-    console.error(new Error('invalid arguments'));
-    process.exit(1);
-  }
+  devServer.start();
 };
 
 run();

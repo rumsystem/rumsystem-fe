@@ -20,7 +20,6 @@ module.exports = (api) => {
         useESModules: true,
       }],
       !api.env('production') && 'react-refresh/babel',
-      '@firefox-pro-coding/react-composition-api/babel',
     ].filter(Boolean),
   };
 

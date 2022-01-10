@@ -10,7 +10,7 @@ module.exports = (api) => {
       presetEnv && ['postcss-preset-env', {
         features: {
           'all-property': false,
-          'case-insensitive-attribute': false,
+          'case-insensitive-attributes': false,
           'logical-properties-and-values': false,
         },
       }],
