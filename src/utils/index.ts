@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const isMobile = () => window.innerWidth < 960;
+
 /** 当屏幕宽度大于指定值时 */
 export const useWiderThan = (() => {
   type SetItem = [number, React.Dispatch<React.SetStateAction<boolean>>];

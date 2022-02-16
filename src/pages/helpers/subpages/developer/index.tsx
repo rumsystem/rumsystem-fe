@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
@@ -11,7 +12,7 @@ import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';
 import IconRumApp from './icons/Illustration_RumApp.svg';
 
-export const HomepageDevelopers = () => {
+export const HomepageDevelopers = observer(() => {
   lang.useLang();
 
   if (!lang.ready) {
@@ -21,15 +22,17 @@ export const HomepageDevelopers = () => {
   return (
     <div className="main-box flex-col justify-center items-stretch pb-20">
       <div className="w-full max-w-[1200px] bg-black bg-opacity-70 px-5 mx-auto">
-        <div className="flex items-start gap-x-12 w-full max-w-[1000px] mx-auto py-14 text-kanit">
-          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10">
+        <div className="flex mb:flex-col items-start mb:items-stretch gap-y-8 gap-x-12 w-full max-w-[1000px] mx-auto py-14 text-kanit">
+          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10 mb:px-6">
             <div className="text-23 text-main italic traicking-wide text-center">
-              QuoRum
+              {lang.developers.quorum.title}
             </div>
-            <div className="text-consolas text-gray-d1 leading-tight mt-8">
-              RUM: The internet alternatives
-              <br />
-              An open source peer-to-peer application infrastructure to offer the internet alternatives in a decentralized and privacy oriented way.
+            <div className="text-consolas text-gray-d1 leading-tight mt-7">
+              {lang.developers.quorum.desc.map((v, i) => (
+                <p className="mt-1" key={i}>
+                  {v}
+                </p>
+              ))}
             </div>
             <div className="h-16 mt-4 relative">
               <img className="absolute right-0" src={IconQuorum} alt="" />
@@ -37,29 +40,34 @@ export const HomepageDevelopers = () => {
             <div className="flex-col items-start text-kanit font-light text-18 gap-y-5 relative z-10">
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconGithub} alt="" />
-                Build API Document
+                {lang.developers.quorum.links.api}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconNode} alt="" />
-                Run a RUM peer
+                {lang.developers.quorum.links.runPeer}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconLinkExample} alt="" />
-                Example
+                {lang.developers.quorum.links.example}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconLinkServer} alt="" />
-                Run a RUM peer on server
+                {lang.developers.quorum.links.runOnServer}
               </a>
             </div>
           </div>
 
-          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10">
+          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10 mb:px-6">
             <div className="text-23 text-main italic traicking-wide text-center">
-              RumApp
+              {lang.developers.rumApp.title}
             </div>
             <div className="text-consolas text-gray-d1 leading-tight mt-8">
-              Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+              {lang.developers.rumApp.desc.map((v, i) => (
+                <p className="mt-1" key={i}>
+                  {v}
+                </p>
+              ))}
             </div>
             <div className="h-16 mt-4 relative">
               <img className="absolute right-0" src={IconRumApp} alt="" />
@@ -67,19 +75,19 @@ export const HomepageDevelopers = () => {
             <div className="flex-col items-start text-kanit font-light text-18 gap-y-5 relative z-10">
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconGithub} alt="" />
-                Start
+                {lang.developers.rumApp.links.start}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconLinkDocs} alt="" />
-                Docs
+                {lang.developers.rumApp.links.docs}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconLinkLangauge} alt="" />
-                MultiMate Language i18n
+                {lang.developers.rumApp.links.i18n}
               </a>
               <a className="inline-flex flex-center text-link-soft hover:text-main" href="">
                 <img className="w-[18px] flex-none mr-4" src={IconEslint} alt="" />
-                ESLint
+                {lang.developers.rumApp.links.eslint}
               </a>
             </div>
           </div>
@@ -87,4 +95,4 @@ export const HomepageDevelopers = () => {
       </div>
     </div>
   );
-};
+});

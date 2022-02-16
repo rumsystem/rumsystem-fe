@@ -3,8 +3,6 @@ set -e
 cd "$(dirname "$0")"
 cd ../..
 
-export API_ENV="production"
-
 rm -rf ./dist
 echo 'generate routes...'
 yarn genroutes
