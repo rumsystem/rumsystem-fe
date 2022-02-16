@@ -13,13 +13,6 @@
 # misc
 .DS_Store
 
-# umi
-.umi
-.umi-production
-
 .vscode/
-penny_github_users.csv
-share/jupyterhub/static/app
-src/routes.ts
-!build/
+/src/routes.ts
 /build/dev-config-local.ts

@@ -1,38 +1,187 @@
 export const content = {
-  ready: '123',
-  p: [
-    {
-      heading: '1. Quorum是什麽？',
-      paragraph: [
-        'Quorum（簡稱RUM）是一套全新的開源 P2P SNS 系統。使用區塊鏈技術，徹底解決目前互聯網存在的數據壟斷、算法分發、和侵犯用戶隱私、企業占有用戶數據的問題。在 Quorum 系統中，所有數據均為用戶掌握，完全去中心化。在此基礎上用戶可以通過智能合約為自己創建的內容定價，或出售群組門票等，之後也可以在此基礎上重新分發流量，完成內容交易和獲得分發傭金。',
+  header: {
+    apps: 'Apps & Tools',
+    why: 'Why Rum',
+    network: 'Token & Eco',
+    developers: 'Developers',
+    download: 'Download',
+    language: 'Language',
+  },
+
+  appBox: {
+    title: '下载 Rum App',
+    content: [
+      { type: 'light', text: '加入 ' },
+      { type: '', text: '平行互联世界' },
+      { type: 'light', text: '，参与创建一个 ' },
+      { type: '', text: '新节点' },
+    ],
+    previous: '查看其它历史更新版本',
+  },
+
+  index: {
+    box1: [
+      { type: '', text: 'RumSystem' },
+      { type: 'linebreak', text: '' },
+      { type: 'light-small', text: '开源 P2P 网络及技术底层，' },
+      { type: 'linebreak', text: '' },
+      { type: '', text: '帮助你在“平行互联世界”快速构建应用。' },
+    ],
+    box2: {
+      title: '去中心化',
+      p: [
+        '在Rum 系统网络中，用户可自建 SeedNet 种子网络，每个种子网络通过各自独立的区块链共享数据及通讯。',
+        '种子网络里的数据经加密后在网络成员中进行同步，数据无需交给任何中心化角色处理或存储。',
+      ],
+      link: '加入并成为节点',
+    },
+    box3: {
+      title: '掌控你数据的所有权',
+      p: [
+        '所有数据都存储在其种子网络专属的区块链上并通过节点同步保持一致性，',
+        '每个种子网络里所有数据由该网络内的成员完全拥有并掌控。',
       ],
     },
-    {
-      heading: '2. 為什麽需要它？',
-      paragraph: [
-        '科技壟斷，尤其是社交網絡壟斷已經是世界性問題。在美國和歐盟，科技公司也因為隱私和用戶數據所有權問題引發了大量爭議 ，在各個國家，對傳統互聯網平臺的批評早已是社會主流聲音，人們急需一種不采用“隱私換廣告”模式，由用戶擁有自己的數據，企業不再控製流量如何分布的新型網絡系統。在這樣的基礎上才可以重建內容付費和交易分發的生態。',
+    box4: {
+      title: '隐私保护',
+      p: [
+        'Applications can replay the blockchain locally and render the results on the user interface and interact with users.',
+        'There are no tracking or AD and no telemetry in the official clients.',
       ],
     },
-    {
-      heading: '3. 經濟系統如何運行？',
-      paragraph: [
-        'Quorum 的 token(RUM) 將只能通過一種低能耗，非顯卡算力的挖礦方式獲得。Token 的獲得是根據用戶對整個 SNS 網絡空間的數據生成及分發的貢獻而挖礦產生的，完全由算法決定，代碼也是開源的。當主網運轉開始之後，算法即接管了剩余 Token 的分發。',
+    box5: {
+      title: '数字资产交易和 NFT',
+      p: [
+        '需要填.',
+        '需要填.',
       ],
+      link: '关联钱包，开始挖矿',
     },
-    {
-      heading: '4. Quorum 有主鏈嗎？',
-      paragraph: [
-        '確切地說，Quorum 本身只是一套 P2P 的去中心 SNS 系統。它可以由用戶自主建立一個小型網絡，完全脫離主網和 Token 運行。但如果用戶希望獲得更多功能，尤其是經濟生態功能，Quorum 可以通過智能合約被“接入”到任何支持智能合約共識的網絡中，無論是區塊鏈系統還是中心化系統。',
-        '用戶可以使用 Quorum 提供的 dpos 演示鏈完成這些功能，也可以使用更昂貴的 ETH，或者任何用戶偏好的區塊鏈系統中的智能合約達到目的。但無論使用任何系統支持經濟功能，整個 Quorum 網絡仍然是全聯通的。可以更通俗的理解為 Quorum 是一個“人人都有自己的區塊鏈”的網絡系統。RUM token 通過映射方式在 Quorum 系統內使用和流動，也可以用同樣的方式在相關生態中使用。',
+    box6: {
+      title: '开源',
+      p: [
+        '你可以在 GitHub 上找到我们官方所有软件，包括技术底层、节点及应用程序的开源代码.',
       ],
+      link: '访问我们的 GitHub 及开发文档',
     },
-    {
-      heading: '5. Quorum這個詞是什麽意思？',
-      paragraph: [
-        'Quorum 這個單詞，是指一種基於投票的分布式系統算法，在現實社會中也指一個投票活動所需的最少人數，它包含的隱喻是區塊鏈系統的基本要素。當然，Quorum 項目並不是基於這個算法產生的，而是通過區塊鏈技術解決分布式系統中弱共識和最終一致性問題。',
+
+    howWorks: {
+      title: 'HOW\nRumSystem\nWORKS',
+      p: [
+        '需要填.',
+        '需要填.',
+        '需要填.',
+        '需要填.',
       ],
+      viewLarger: 'View larger network architecture diagram',
     },
-  ],
+
+    terms: [
+      [
+        { name: 'PEER: ', text: 'Rum P2P 网络上的一个节点，每个节点对应一对密钥，每个用户可创建多个节点' },
+        { name: 'GROUP (SEEDNET): ', text: '多个或单个节点可组建种子网络。每个种子网络可以设定为不同的产品形态，呈现为功能各异的在线应用。：如类似 Twitter 的时间线 SNS、类似 Reddit 的论坛社区、甚至一个在自己逐渐的几个设备节点之间同步的私密笔记本。' },
+        { name: 'GROUP (SEEDNET) OWNER: ', text: '每个种子网络的创建者也就是 Group Owner，他负责出块和记录链上所有交易记录。Group Owner 拥有一些管理特权，例如：指定出块人负责出块、屏蔽某成员在该种子网络中的发出的消息。' },
+        { name: 'PRODUCER: ', text: '任何拥有公开IP地址并开放端口（含including port forwarding/UPnP) 都能够成为出块人帮助 Group Owner 生产新块。每个块中包含的消息或事件都是加密的，出块人无法读取。基于共识，出块人可以从其种子网络成员或创建者处获得一定的手续费作为矿工报酬。' },
+      ],
+      [
+        { name: 'EVENT/MESSAGE: ', text: '用户在种子网络里提交的任何操作都被视为一个事件，例如发布新贴、更新头像和留言回复。 每个事件将作为交易广播给 Group Owner 以及所有出块人，等待记录到新块中。 RUM 使用 Activity Vocabulary Core Types 的子集来表示事件类型。区块链：所有事件都将作为交易将被记录到区块中，并连接在一起成为一条区块链。每个种子网络都拥有一条专属的链。' },
+        { name: 'GOSSIP NETWORK: ', text: 'RUM 网络中没有中心化服务器，网络由且仅由节点们 Peers 创建维护。所有的事件或消息都由一个节点传递给它临近的节点们。通过一层层传递，直到消息的收件人（目标节点）最终收到这条消息。' },
+        { name: 'BOOTSTRAP: ', text: 'Bootstrap 自举节点是一个地址簿，用于帮助您的节点通过 DHT-KAD 协议发现其他节点们。 您可以使用 AddPeer api 将您信任的任何普通节点添加为 BootStrape。 但是，自举节点/DHT 并不是唯一的方式，Gossip 网络的对等交换协议也能帮你发现其它节点们。' },
+      ],
+    ],
+  },
+
+  apps: {
+    title: 'What is Rum App?',
+    content: [
+      'A Rum App is the front-end user interface that interact with Rum group blockchains or smart contracts.',
+    ],
+  },
+
+  why: {
+    title: 'Why Rum',
+    subtitle: 'The internet is broken.',
+    content: [
+      'Technology monopoly, especially social network monopoly, has become a worldwide problem.',
+      'Almost all online services are running on Client-Server architecture, which means all users\' activities and data will be stored in centralized servers. User\'s data always be controlled by service providers not themself, this made the internet centralized by nature.',
+      'RUM uses a different approach to rebuild the online service. Users will control their own data and interact with other related users in the peer-to-peer network.',
+    ],
+
+    faq: 'FAQ',
+    faqs: [
+      {
+        q: 'Ut enim ad minim veniam quis nostrud?',
+        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      },
+      {
+        q: 'Ut enim ad minim veniam quis nostrud?',
+        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      },
+      {
+        q: 'Ut enim ad minim veniam quis nostrud?',
+        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      },
+      {
+        q: 'Ut enim ad minim veniam quis nostrud?',
+        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      },
+    ],
+  },
+
+  network: {
+    rumeco: 'Rum Ecosystem',
+    ecoContent: 'RUM token 的挖矿使用的是不通过 GPU 证明的算法，低能耗，绿色低碳。将在主网上线后提供。矿工获得奖励的机会与它对Rum网络的贡献挂钩，比如提供对数据的存储或网络流量。.',
+    box1: {
+      title: '跟生态有关的第一点',
+      content: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris',
+      link: '关联钱包，开始挖矿',
+    },
+    box2: {
+      title: '跟生态有关的第二点',
+      content: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris',
+      link: '关联钱包，开始挖矿',
+    },
+    token: 'Rum Token',
+    tokenQ: '为什么需要 RUM Tokens?',
+    tokenA: [
+      {
+        title: '反spam',
+        content: '去中心化系统上，传统的屏蔽或黑名单很难作用，因此我们决定使用经济措施来阻止滥用和垃圾邮件——在 RUM 网络进行的操作都需支付少量的 RUM token。 这个用途也是 Hashcash、POW 以及比特币被发明的起源。',
+      },
+      {
+        title: '激励资源贡献',
+        content: 'P2P系统需要提供经济激励以减少 “免费搭便车” 的情况。 节点们从 Rum 网络中收获他们应得的代币奖励（挖矿），能够激励共享节点持续稳定地贡献计算和网络资源，以帮助保持 RUM 网络的安全和健壮。',
+      },
+    ],
+  },
+
+  developers: {
+    quorum: {
+      title: 'QuoRum',
+      desc: [
+        'RUM: The internet alternatives',
+        'An open source peer-to-peer application infrastructure to offer the internet alternatives in a decentralized and privacy oriented way.',
+      ],
+      links: {
+        api: 'Build API Document',
+        runPeer: 'Run a RUM peer',
+        example: 'Example',
+        runOnServer: 'Run a RUM peer on server',
+      },
+    },
+    rumApp: {
+      title: 'RumApp',
+      desc: [
+        'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      ],
+      links: {
+        start: 'Start',
+        docs: 'Docs',
+        i18n: 'MultiMate Language i18n',
+        eslint: 'ESLint',
+      },
+    },
+  },
 };
 
 export type Content = typeof content;

@@ -75,27 +75,28 @@ export const HomepageApps = observer(() => {
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
-      <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5">
+      <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb:px-0">
         <div className="max-w-[1200px] flex-1 text-14 text-consolas">
           <AppBox />
         </div>
       </div>
 
-      <div className="flex justify-center bg-black bg-opacity-70 max-w-[1060px] mt-10 mx-auto text-consolas mb-14">
-        <div className="flex py-12 pl-12">
-          <div>
+      <div className="flex mb:flex-col justify-center bg-black bg-opacity-70 max-w-[1060px] w-full mt-10 mx-auto text-consolas mb-14">
+        <div className="flex flex-1 mb:flex-col py-12 mb:pt-8 mb:pb-4 pl-12 mb:px-8">
+          <div className="flex-1">
             <div className="text-kanit text-main text-20">
-              What is Rum App?
+              {lang.apps.title}
             </div>
 
             <div className="mt-2 text-gray-d1 text-consolas leading-tight">
-              <p className="mt-2">Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              <p className="mt-2">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-              <p className="mt-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+              {lang.apps.content.map((v, i) => (
+                <p className="mt-2" key={i}>{v}</p>
+              ))}
             </div>
           </div>
           <div
-            className="flex-col flex-center gap-y-4 px-5"
+            className="flex-col mb:flex-row flex-center gap-y-4 gap-x-4 mb:mt-4 px-5"
             onMouseEnter={handleStopSlide}
             onMouseLeave={handleResumeSlide}
           >
@@ -124,14 +125,14 @@ export const HomepageApps = observer(() => {
           onMouseLeave={handleResumeSlide}
         >
           <img
-            className="flex-none h-[550px] w-auto opacity-0 pointer-events-none"
+            className="flex-none pc:h-[550px] pc:w-auto mb:w-full mb:h-auto opacity-00 pointer-events-none"
             src={IMAGES[0]}
             alt=""
           />
 
           {state.images.map((v) => (
             <img
-              className="absolute h-[550px] w-auto duration-300"
+              className="absolute pc:h-[550px] pc:w-auto mb:w-full mb:h-auto duration-300"
               style={{
                 transform: `translateY(${(v.index - state.imageIndex) * 100}%)`,
               }}

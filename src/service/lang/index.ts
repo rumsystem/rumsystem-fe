@@ -8,7 +8,7 @@ export type AllLanguages = typeof allLang[number];
 type LangData<T> = Record<string, (() => Promise<{ content: T }>) | { content: T }>;
 
 const state = observable({
-  lang: 'cn' as AllLanguages,
+  lang: 'en' as AllLanguages,
 });
 
 const createLangLoader = <T extends unknown>(langData: LangData<T>) => {

@@ -9,6 +9,8 @@ import IconLinux from '~/icons/icon_os_linux.svg';
 import IconMac from '~/icons/icon_os_mac.svg';
 import IconWin from '~/icons/icon_os_win.svg';
 
+import { lang } from '../lang';
+
 import './index.local.sass';
 
 interface Props {
@@ -18,29 +20,38 @@ interface Props {
 export const AppBox = (props: Props) => (
   <div
     className={classNames(
-      'app-box p-14 text-kanit',
+      'app-box p-14 text-kanit mb:px-6',
       props.className,
     )}
   >
-    <div className="flex flex-center gap-x-12">
+    <div className="flex mb:flex-col flex-center gap-x-12">
       <img className="flex-none w-15 h-auto" src={RumLogo} srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`} alt="" />
-      <div className="flex-col flex-center gap-y-1 text-24">
+      <div className="flex-col flex-center gap-y-1 text-24 mb:mt-4">
         <div className="text-main">
-          Download Rum App
+          {lang.appBox.title}
         </div>
-        <div className="font-extralight tracking-wide text-white">
-          Join as a
-          <span className="font-normal">{' '}Node{' '}</span>
-          of an
-          <span className="font-normal">{' '}alternative World{' '}</span>
+        <div className="mb:text-center tracking-wide text-white">
+          {lang.appBox.content.map((v, i) => (
+            <React.Fragment key={i}>
+              {v.type === 'light' && (
+                <span className="font-extralight">
+                  {v.text}
+                </span>
+              )}
+              {v.type === '' && (
+                <span>
+                  {v.text}
+                </span>
+              )}
+            </React.Fragment>))}
         </div>
         <div className="text-16 text-link-soft hover:text-main font-light cursor-pointer mt-2">
-          View previous versions
+          {lang.appBox.previous}
         </div>
       </div>
     </div>
 
-    <div className="flex justify-around mx-auto max-w-[700px] mt-14">
+    <div className="grid grid-cols-4 mb:grid-cols-2 gap-y-8 justify-around mx-auto max-w-[700px] mt-14">
       {[
         { icon: IconWin, text: 'Windows', version: 'v0.0.1' },
         { icon: IconLinux, text: 'Linux', version: 'v0.0.1' },

@@ -3,6 +3,7 @@ import { Router, useLocation } from 'react-router-dom';
 import RouterComponent from './router';
 import Layout from './layouts';
 import history from './history';
+import { ThemeRoot } from './utils/theme';
 
 const LocationChange = () => {
   const location = useLocation();
@@ -15,12 +16,14 @@ const LocationChange = () => {
 };
 
 const App = () => (
-  <Router history={history}>
-    <LocationChange />
-    <Layout>
-      <RouterComponent />
-    </Layout>
-  </Router>
+  <ThemeRoot>
+    <Router history={history}>
+      <LocationChange />
+      <Layout>
+        <RouterComponent />
+      </Layout>
+    </Router>
+  </ThemeRoot>
 );
 
 export default App;

@@ -23,6 +23,12 @@ const HomepageContent = observer(() => {
   lang.useLang();
   const { pathname } = useLocation();
 
+  React.useEffect(() => {
+    // preload app image
+    const img = new Image();
+    img.src = 'https://img-cdn.xue.cn/17-app_screen_1_opt.png';
+  }, []);
+
   if (!lang.ready) {
     return null;
   }
@@ -31,11 +37,11 @@ const HomepageContent = observer(() => {
     {pathname === '/' && (
       <HomepageIndex />
     )}
-    {pathname === '/why' && (
-      <HomepageWhy />
-    )}
     {pathname === '/apps' && (
       <HomepageApps />
+    )}
+    {pathname === '/why' && (
+      <HomepageWhy />
     )}
     {pathname === '/network' && (
       <HomepageNetwork />

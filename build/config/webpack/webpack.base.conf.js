@@ -145,13 +145,6 @@ config.plugin('html-webpack-plugin')
     template: resolve('src/template/template.html'),
   }]);
 
-// config.plugin('define-sentry')
-//   .use(webpack.DefinePlugin, [{
-//     'process.env.ENABLE_SENTRY': process.env.ENABLE_SENTRY
-//       ? JSON.stringify(true)
-//       : JSON.stringify(false),
-//   }]);
-
 config.plugin('define-commit-hash')
   .use(webpack.DefinePlugin, [{
     'process.env.COMMIT_HASH': process.env.ENABLE_SENTRY
@@ -159,17 +152,14 @@ config.plugin('define-commit-hash')
       : JSON.stringify(''),
   }]);
 
-config.plugin('define-api-env')
-  .use(webpack.DefinePlugin, [{
-    'process.env.API_ENV': process.env.API_ENV === 'production'
-      ? JSON.stringify('production')
-      : JSON.stringify('development'),
-  }]);
-
 config.module.rules.values().forEach((v) => {
   if (v.uses.has('thread-loader') && os.cpus().length === 1) {
     v.uses.delete('thread-loader');
   }
 });
+
+// config.set('experiments', {
+//   lazyCompilation: true,
+// });
 
 module.exports = config;

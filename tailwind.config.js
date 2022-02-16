@@ -12,6 +12,9 @@ module.exports = {
       mb: {
         max: `${960 - 1}px`,
       },
+      pc: {
+        min: '960px',
+      },
       ...Object.fromEntries(
         [960].reverse().map(
           (v) => [`s${v}`, {

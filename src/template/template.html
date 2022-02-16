@@ -4,10 +4,10 @@
 <head>
   <base href="/">
   <meta charset="utf-8" />
-  <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.publicPath %>favicon.svg" />
-  <link rel="preload" as="image" href="https://img-cdn.xue.cn/62-bg_web.jpg">
-  <link rel="preload" as="image" href="https://img-cdn.xue.cn/62-bg_mb.jpg">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+  <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.publicPath %>favicon.png" />
+  <link rel="preload" as="image" media="(min-width: 960px)" href="https://img-cdn.xue.cn/62-bg_web.jpg">
+  <link rel="preload" as="image" media="(max-width: 959px)" href="https://img-cdn.xue.cn/62-bg_mb.jpg">
   <title>Rumsystem</title>
 </head>
 

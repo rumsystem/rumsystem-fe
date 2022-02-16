@@ -1,11 +1,5 @@
 /* eslint-disable import/first */
 /* eslint-disable no-console */
-if (process.argv[2] === 'prod') {
-  console.log('start dev server in prod mode');
-  process.env.API_ENV = 'production';
-}
-
-/* eslint-disable no-console */
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
