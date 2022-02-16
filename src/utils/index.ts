@@ -93,3 +93,20 @@ export const cachePromiseHof = <T extends (...args: Array<any>) => unknown>(
     return promise;
   }) as T;
 };
+
+export const setTitle = (title?: string) => {
+  if (!title) {
+    document.title = 'Rumsystem';
+  } else {
+    document.title = `${title} - Rumsystem`;
+  }
+};
+
+export const useSetTitle = (title?: string) => {
+  React.useEffect(() => {
+    setTitle(title);
+    return () => {
+      setTitle();
+    };
+  }, []);
+};

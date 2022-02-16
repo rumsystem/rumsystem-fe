@@ -1,5 +1,7 @@
 import React from 'react';
-import { createTheme, StyledEngineProvider, ThemeProvider } from '@mui/material';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -36,10 +38,19 @@ const theme = createTheme({
   // },
 });
 
+
+const cache = createCache({
+  key: 'css',
+  insertionPoint: Array.from(document.head.childNodes)
+    .filter((v) => v.nodeType === 8)
+    .find((v) => v.textContent?.includes('mui-insertion-point')) as any,
+});
+
 export const ThemeRoot = (props: { children: React.ReactNode }) => (
-  <StyledEngineProvider injectFirst>
+  // replacement for StyledEngineProvider
+  <CacheProvider value={cache}>
     <ThemeProvider theme={theme}>
       {props.children}
     </ThemeProvider>
-  </StyledEngineProvider>
+  </CacheProvider>
 );

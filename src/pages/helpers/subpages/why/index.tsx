@@ -1,6 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
+import { useSetTitle } from '~/utils';
+
 import { lang } from '../../lang';
 
 import WhyRum from './icons/Illustration_why_rum.svg';
@@ -8,6 +10,7 @@ import IconFaq from './icons/icon_faq.svg';
 
 export const HomepageWhy = observer(() => {
   lang.useLang();
+  useSetTitle('Why Rum');
 
   if (!lang.ready) {
     return null;

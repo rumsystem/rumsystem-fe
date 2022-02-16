@@ -86,7 +86,28 @@ createCssRule('sass', /\.(sass|scss)$/)
   .use('sass-loader')
   .loader('sass-loader')
   .end()
-  .exclude.add(/tailwind\.sass$/);
+  .exclude
+  .add(/tailwind\.sass$/)
+  .add(/tailwind-base\.sass$/);
+
+config.module.rule('tailwind-base-css')
+  .test(/tailwind-base\.sass$/)
+  .use('style-loader')
+  .loader('style-loader')
+  .options({ insert: '#preflight-injection-point' })
+  .end()
+  .use('css-loader')
+  .loader('css-loader')
+  .options({ sourceMap: false })
+  .end()
+  .use('postcss-loader')
+  .loader('postcss-loader')
+  .options({ sourceMap: false })
+  .end()
+  .use('sass-loader')
+  .loader('sass-loader')
+  .options({ sourceMap: false })
+  .end();
 
 config.module.rule('tailwind-css')
   .test(/tailwind\.sass$/)

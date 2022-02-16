@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import React from 'react';
+import { useSetTitle } from '~/utils';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
@@ -19,7 +20,6 @@ const IMAGES = [
 ];
 
 export const HomepageApps = observer(() => {
-  lang.useLang();
   const state = useLocalObservable(() => ({
     imageIndex: 0,
     images: IMAGES.map((v, i) => ({ link: v, index: i })),
@@ -27,6 +27,8 @@ export const HomepageApps = observer(() => {
     dialog: false,
     bigImageLink: '',
   }));
+  lang.useLang();
+  useSetTitle('Apps & Tools');
 
   const handleChangeImage = action((index: number) => {
     state.imageIndex = index;
@@ -89,7 +91,6 @@ export const HomepageApps = observer(() => {
             </div>
 
             <div className="mt-2 text-gray-d1 text-consolas leading-tight">
-
               {lang.apps.content.map((v, i) => (
                 <p className="mt-2" key={i}>{v}</p>
               ))}
@@ -120,7 +121,7 @@ export const HomepageApps = observer(() => {
         </div>
 
         <div
-          className="flex flex-center flex-none relative overflow-hidden cursor-pointer"
+          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-w-[600px]"
           onMouseEnter={handleStopSlide}
           onMouseLeave={handleResumeSlide}
         >

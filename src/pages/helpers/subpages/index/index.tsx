@@ -7,6 +7,7 @@ import { Close } from '@mui/icons-material';
 import IconCoin from '~/icons/icon_coin.svg';
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
+import { useSetTitle } from '~/utils';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
@@ -22,6 +23,7 @@ export const HomepageIndex = observer(() => {
     open: false,
   }));
   lang.useLang();
+  useSetTitle('Homepage');
 
   const handleOpenDialog = action(() => {
     state.open = true;
