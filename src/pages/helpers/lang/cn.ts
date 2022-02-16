@@ -22,6 +22,7 @@ export const content = {
   index: {
     box1: [
       { type: '', text: 'RumSystem' },
+      { type: 'light-small', text: '：' },
       { type: 'linebreak', text: '' },
       { type: 'light-small', text: '开源 P2P 网络及技术底层，' },
       { type: 'linebreak', text: '' },
@@ -130,7 +131,7 @@ export const content = {
 
   network: {
     rumeco: 'Rum Ecosystem',
-    ecoContent: 'RUM token 的挖矿使用的是不通过 GPU 证明的算法，低能耗，绿色低碳。将在主网上线后提供。矿工获得奖励的机会与它对Rum网络的贡献挂钩，比如提供对数据的存储或网络流量。.',
+    ecoContent: 'RUM token 的挖矿使用的是不通过 GPU 证明的算法，低能耗，绿色低碳。将在主网上线后提供。矿工获得奖励的机会与它对Rum网络的贡献挂钩，比如提供对数据的存储或网络流量。',
     box1: {
       title: '跟生态有关的第一点',
       content: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris',
