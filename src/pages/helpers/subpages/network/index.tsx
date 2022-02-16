@@ -2,12 +2,15 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 
 import IconCoin from '~/icons/icon_coin.svg';
+import { useSetTitle } from '~/utils';
+
 import { lang } from '../../lang';
 import IconNTF from './icons/Illustration_NFT.svg';
 import IconRumToken from './icons/Illustration_Rum_Token.svg';
 
 export const HomepageNetwork = observer(() => {
   lang.useLang();
+  useSetTitle('Token & Eco');
 
   if (!lang.ready) {
     return null;

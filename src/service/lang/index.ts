@@ -121,11 +121,29 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
 
 const switchLang = action((lang: AllLanguages) => {
   state.lang = lang;
-  localStorage.setItem(LANG_STORAGE_KEY, lang);
+  saveLang();
+});
+
+const saveLang = () => {
+  localStorage.setItem(LANG_STORAGE_KEY, state.lang);
+};
+
+const init = action(() => {
+  const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages;
+  if (!lang) {
+    if (navigator.language.startsWith('zh')) {
+      state.lang = 'cn';
+    }
+  } else if (allLang.includes(lang)) {
+    state.lang = lang;
+  }
+  saveLang();
+  return () => 1;
 });
 
 export const langService = {
   state,
+  init,
   createLangLoader,
   switchLang,
 };

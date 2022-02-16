@@ -1,12 +1,8 @@
 module.exports = {
-  mode: 'jit',
-  purge: {
-    layers: ['utilities'],
-    content: [
-      './src/**/*.ts',
-      './src/**/*.tsx',
-    ],
-  },
+  content: [
+    './src/**/*.ts',
+    './src/**/*.tsx',
+  ],
   theme: {
     screens: {
       mb: {
@@ -26,6 +22,8 @@ module.exports = {
     extend: {
       colors: {
         'main': '#ff931e',
+        'link': '#006fff',
+        'link-soft': '#5fc0e9',
         'gray': {
           'f9': '#f9f9f9',
           'f7': '#f7f7f7',
@@ -55,8 +53,6 @@ module.exports = {
           '1b': '#1b1b1b',
           '0c': '#0c0c0c',
         },
-        'link': '#006fff',
-        'link-soft': '#5fc0e9',
       },
       boxShadow: {
         '0': '0px 0px 0px 0px rgba(0,0,0,.2),0px 0px 0px 0px rgba(0,0,0,.14),0px 0px 0px 0px rgba(0,0,0,.12)',

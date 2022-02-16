@@ -1,6 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
+import { useSetTitle } from '~/utils';
+
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
 import IconLinkServer from '~/icons/icon_link_server.svg';
@@ -8,12 +10,14 @@ import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
 import IconEslint from '~/icons/icon_eslint.svg';
+
 import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';
 import IconRumApp from './icons/Illustration_RumApp.svg';
 
 export const HomepageDevelopers = observer(() => {
   lang.useLang();
+  useSetTitle('Developers');
 
   if (!lang.ready) {
     return null;
