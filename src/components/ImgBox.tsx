@@ -1,20 +1,35 @@
 import React, { ImgHTMLAttributes } from 'react';
 
+type Props = ImgHTMLAttributes<Element> & {
+  mbWidth?: number | string
+  mbHeight?: number | string
+};
+
 /** img with size hint to prevent layout shift */
-export const ImgBox = (props: ImgHTMLAttributes<Element>) => {
-  const { width, height, ...restProps } = props;
+export const ImgBox = (props: Props) => {
+  const {
+    width,
+    height,
+    mbWidth,
+    mbHeight,
+    ...restProps
+  } = props;
+
+  const isPC = window.innerWidth >= 960;
+  const isMobile = !isPC;
 
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   const [size, setSize] = React.useState({
-    ...width ? { width: `${width}px` } : {},
-    ...height ? { height: `${height}px` } : {},
+    ...width && isPC ? { width: `${width}px` } : {},
+    ...height && isPC ? { height: `${height}px` } : {},
+    ...mbWidth && isMobile ? { width: `${mbWidth}px` } : {},
+    ...mbHeight && isMobile ? { height: `${mbHeight}px` } : {},
   });
 
   const handleOnLoad = () => {
     setSize({});
   };
-
 
   return (
     <img
