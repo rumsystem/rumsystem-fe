@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import React from 'react';
+import { ImgBox } from '~/components/ImgBox';
 import { useSetTitle } from '~/utils';
 
 import { AppBox } from '../../AppBox';
@@ -121,14 +122,16 @@ export const HomepageApps = observer(() => {
         </div>
 
         <div
-          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-w-[600px]"
+          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-2w-[600px]"
           onMouseEnter={handleStopSlide}
           onMouseLeave={handleResumeSlide}
         >
-          <img
+          <ImgBox
             className="flex-none pc:h-[550px] pc:w-auto mb:w-full mb:h-auto opacity-00 pointer-events-none"
             src={IMAGES[0]}
             alt=""
+            width="601"
+            height="550"
           />
 
           {state.images.map((v) => (

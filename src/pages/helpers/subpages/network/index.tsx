@@ -7,6 +7,7 @@ import { useSetTitle } from '~/utils';
 import { lang } from '../../lang';
 import IconNTF from './icons/Illustration_NFT.svg';
 import IconRumToken from './icons/Illustration_Rum_Token.svg';
+import { ImgBox } from '~/components/ImgBox';
 
 export const HomepageNetwork = observer(() => {
   lang.useLang();
@@ -30,7 +31,7 @@ export const HomepageNetwork = observer(() => {
           </div>
 
           <div className="flex mb:flex-col gap-y-10 gap-x-8 border border-gray-83 p-8 mt-12">
-            <img className="flex-none self-end mr-4 mb-3 mb:order-2" src={IconNTF} alt="" />
+            <ImgBox className="flex-none self-end mr-4 mb-3 mb:order-2" src={IconNTF} alt="" width={169} height={126} />
             {[lang.network.box1, lang.network.box2].map((v, i) => (
               <div className="mb:order-1 flex-1" key={i}>
                 <div className="text-20 text-kanit text-white tracking-wide">
@@ -56,7 +57,7 @@ export const HomepageNetwork = observer(() => {
           <div className="ml-4 flex-1 text-23 text-main italic">
             {lang.network.token}
           </div>
-          <div className="mt-4 border border-gray-83 py-4 px-5">
+          <div className="mt-4 border border-gray-83 py-6 px-7">
             <div className="text-link-soft font-light text-18 tracking-wide">
               {lang.network.tokenQ}
             </div>
@@ -71,9 +72,8 @@ export const HomepageNetwork = observer(() => {
                   </div>
                 </div>
               ))}
-              <img className="self-start" src={IconRumToken} alt="" />
+              <ImgBox className="self-start" src={IconRumToken} alt="" width={116} height={215} />
             </div>
-
           </div>
         </div>
       </div>

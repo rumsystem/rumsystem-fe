@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 
+import { ImgBox } from '~/components/ImgBox';
 import { useSetTitle } from '~/utils';
 
 import { lang } from '../../lang';
@@ -21,7 +22,13 @@ export const HomepageWhy = observer(() => {
       <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5">
         <div className="flex mb:flex-col gap-x-2 flex-center max-w-[1000px] flex-1 text-14 pt-10 pb-14 text-consolas">
           <div className="flex-col flex-none mb:w-full">
-            <img className="flex-none -translate-x-7 mb:translate-x-0" src={WhyRum} alt="" />
+            <ImgBox
+              className="flex-none -translate-x-7 mb:translate-x-0"
+              src={WhyRum}
+              width="349.602"
+              height="309.172"
+              alt=""
+            />
             <div className="">
               <div className="text-kanit italic text-23 text-main">
                 {lang.why.title}
@@ -45,7 +52,13 @@ export const HomepageWhy = observer(() => {
 
       <div className="flex-col justify-center bg-black bg-opacity-70 max-w-[1000px] w-full mt-10 mb-12 mx-auto px-6 pb-6 text-kanit">
         <div className="flex flex-center italic text-23 text-main mb-1">
-          <img className="mr-6 -translate-y-3" src={IconFaq} alt="" />
+          <ImgBox
+            className="mr-6 -translate-y-3"
+            src={IconFaq}
+            alt=""
+            width={41}
+            height={70}
+          />
           {lang.why.faq}
         </div>
         <div className="border border-gray-83 divide-y divide-gray-83">

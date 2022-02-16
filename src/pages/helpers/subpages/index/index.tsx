@@ -4,6 +4,7 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
+import { ImgBox } from '~/components/ImgBox';
 import IconCoin from '~/icons/icon_coin.svg';
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
@@ -69,7 +70,7 @@ export const HomepageIndex = observer(() => {
 
             <div className="border border-gray-83 px-8 py-6">
               <div className="flex mb:flex-col flex-center gap-x-6">
-                <img className="flex-none mb:mb-4" src={IconDecentralized} alt="" />
+                <ImgBox className="flex-none mb:mb-4" src={IconDecentralized} width={70} height={87} alt="" />
                 <div className="flex-1">
                   <div className="text-20">
                     {lang.index.box2.title}
@@ -114,7 +115,7 @@ export const HomepageIndex = observer(() => {
                   ))}
                 </div>
               </div>
-              <img className="flex-none mb:order-1 mb:mb-4" src={IconPrivacy} alt="" />
+              <ImgBox className="flex-none mb:order-1 mb:mb-4" src={IconPrivacy} alt="" width={43} height={81} />
             </div>
 
             <div className="border border-gray-83 px-8 py-6">
@@ -130,7 +131,7 @@ export const HomepageIndex = observer(() => {
                     ))}
                   </div>
                 </div>
-                <img className="flex-none mb:order-1 mb:mb-4" src={IconToken} alt="" />
+                <ImgBox className="flex-none mb:order-1 mb:mb-4" src={IconToken} alt="" width={65} height={68} />
 
               </div>
               <div className="flex justify-start mt-2">
@@ -178,7 +179,7 @@ export const HomepageIndex = observer(() => {
           </div>
 
           <div className="flex-col flex-center mt-14">
-            <img src={ArchDiagram} alt="" />
+            <ImgBox src={ArchDiagram} alt="" width={640} height={540} />
 
             <span
               className="mb:hidden text-link-soft font-light text-14 mt-1 cursor-pointer"
