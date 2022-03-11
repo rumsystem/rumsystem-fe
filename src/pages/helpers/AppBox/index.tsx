@@ -20,7 +20,7 @@ interface Props {
 export const AppBox = (props: Props) => (
   <div
     className={classNames(
-      'app-box p-14 text-kanit mb:px-6',
+      'app-box p-14 font-kanit mb:px-6',
       props.className,
     )}
   >
@@ -45,20 +45,25 @@ export const AppBox = (props: Props) => (
               )}
             </React.Fragment>))}
         </div>
-        <div className="text-16 text-link-soft hover:text-main font-light cursor-pointer mt-2">
+        {/* <div className="text-16 text-link-soft hover:text-main font-light cursor-pointer mt-2">
           {lang.appBox.previous}
-        </div>
+        </div> */}
       </div>
     </div>
 
     <div className="grid grid-cols-4 mb:grid-cols-2 gap-y-8 justify-around mx-auto max-w-[700px] mt-14">
       {[
-        { icon: IconWin, text: 'Windows', version: 'v0.0.1' },
-        { icon: IconLinux, text: 'Linux', version: 'v0.0.1' },
-        { icon: IconMac, text: 'macOS', version: 'v0.0.1' },
-        { icon: IconAndroid, text: 'Android', version: 'v0.0.1' },
+        { icon: IconWin, text: 'Windows', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.exe' },
+        { icon: IconLinux, text: 'Linux', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.linux.zip' },
+        { icon: IconMac, text: 'macOS', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.dmg' },
+        { icon: IconAndroid, text: 'Android', version: 'v3.2.1', link: 'https://static-assets.xue.cn/rum_mobile/rum_3.2.1.apk' },
       ].map((v, i) => (
-        <div className="flex-col flex-center cursor-pointer" key={i}>
+        <a
+          className="flex-col flex-center cursor-pointer hover:hover-orange !no-underline"
+          href={v.link}
+          target="_blank"
+          key={i}
+        >
           <img className="h-10" src={v.icon} alt="" />
           <div className="mt-2 font-light text-20 text-link-soft">
             {v.text}
@@ -66,7 +71,7 @@ export const AppBox = (props: Props) => (
           <div className="mt-1 font-light text-14 text-gray-b0">
             {v.version}
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
