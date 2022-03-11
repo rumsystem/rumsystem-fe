@@ -7,6 +7,7 @@ import React from 'react';
 import { ImgBox } from '~/components/ImgBox';
 import { langService } from '~/service/lang';
 import { useSetTitle } from '~/utils';
+import { useLessThan } from '~/utils/useLessThan';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
@@ -14,11 +15,11 @@ import { lang } from '../../lang';
 import './index.local.sass';
 
 const IMAGES = [
-  'https://img-cdn.xue.cn/17-app_screen_1_opt.png',
-  'https://img-cdn.xue.cn/17-app_screen_2_opt.png',
-  'https://img-cdn.xue.cn/17-app_screen_3_opt.png',
-  'https://img-cdn.xue.cn/17-app_screen_4_opt.png',
-  'https://img-cdn.xue.cn/17-app_screen_5_opt.png',
+  'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
+  'https://img-cdn.xue.cn/311-app_screen_2_opt.png',
+  'https://img-cdn.xue.cn/311-app_screen_3_opt.png',
+  'https://img-cdn.xue.cn/311-app_screen_4_opt.png',
+  'https://img-cdn.xue.cn/311-app_screen_5_opt.png',
 ];
 
 export const HomepageApps = observer(() => {
@@ -31,6 +32,8 @@ export const HomepageApps = observer(() => {
   }));
   lang.useLang();
   useSetTitle('Apps & Tools');
+
+  const isMobile = useLessThan(960);
 
   const handleChangeImage = action((index: number) => {
     state.imageIndex = index;
@@ -92,12 +95,12 @@ export const HomepageApps = observer(() => {
 
       <div
         className={classNames(
-          'flex mb:flex-col justify-center max-w-[1060px] w-full mt-10 mb-14 mx-auto',
+          'flex mb:flex-col justify-center max-w-[1260px] w-full mt-10 mb-14 mx-auto',
           'bg-black bg-opacity-70 leading-lang',
           langService.state.lang === 'en' && 'font-consolas',
         )}
       >
-        <div className="flex flex-1 mb:flex-col py-12 mb:pt-8 mb:pb-4 pl-12 mb:px-8">
+        <div className="flex flex-1 mb:flex-col py-8 mb:pt-8 mb:pb-4 pl-12 mb:px-8 min-w-[440px]">
           <div className="flex-1">
             <div className="font-kanit text-main text-20">
               {lang.apps.title}
@@ -110,12 +113,12 @@ export const HomepageApps = observer(() => {
               )}
             >
               {lang.apps.content.map((v, i) => (
-                <p className="mt-2" key={i}>{v}</p>
+                <p className="mt-4" key={i}>{v}</p>
               ))}
             </div>
             <div
               className={classNames(
-                'mt-4 text-13 text-gray-7b',
+                'mt-6 text-13 text-gray-7b',
                 langService.state.lang === 'en' && 'font-consolas',
               )}
             >
@@ -151,26 +154,30 @@ export const HomepageApps = observer(() => {
           onMouseEnter={handleStopSlide}
           onMouseLeave={handleResumeSlide}
         >
-          <ImgBox
-            className="flex-none pc:h-[570px] pc:w-auto mb:w-full mb:h-auto opacity-00 pointer-events-none"
-            src={IMAGES[0]}
-            alt=""
-            width="601"
-            height="550"
-          />
-
-          {state.images.map((v) => (
-            <img
-              className="absolute pc:h-[570px] pc:w-auto mb:w-full mb:h-auto duration-300"
-              style={{
-                transform: `translateY(${(v.index - state.imageIndex) * 100}%)`,
-              }}
-              src={v.link}
+          <div className="relative overflow-hidden">
+            <ImgBox
+              className="flex-none pc:h-[580px] pc:w-auto mb:w-full mb:h-auto pointer-events-none"
+              src={IMAGES[0]}
               alt=""
-              key={v.index}
-              onClick={() => handleShowBigImage(v.link)}
+              width="601"
+              height="550"
             />
-          ))}
+
+            {state.images.map((v) => (
+              <img
+                className="absolute pc:h-[580px] pc:w-auto mb:w-full mb:h-auto duration-300 top-0"
+                style={{
+                  transform: isMobile
+                    ? `translateX(${(v.index - state.imageIndex) * 100}%)`
+                    : `translateY(${(v.index - state.imageIndex) * 100}%)`,
+                }}
+                src={v.link}
+                alt=""
+                key={v.index}
+                onClick={() => handleShowBigImage(v.link)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

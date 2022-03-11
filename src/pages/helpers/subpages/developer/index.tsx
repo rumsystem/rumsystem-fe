@@ -28,7 +28,13 @@ export const HomepageDevelopers = observer(() => {
   return (
     <div className="main-box flex-col justify-center items-stretch pb-24">
       <div className="w-full max-w-[1200px] bg-black bg-opacity-70 px-5 mx-auto">
-        <div className="flex mb:flex-col items-stretch gap-y-8 gap-x-5 w-full max-w-[1050px] mx-auto py-15 font-kanit">
+        <div
+          className={classNames(
+            'flex mb:flex-col items-stretch gap-y-8 gap-x-5 w-full max-w-[1050px] mx-auto py-15',
+            langService.state.lang === 'en' && 'font-kanit',
+            langService.state.lang === 'zh-tw' && 'font-tw-kanit',
+          )}
+        >
           <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10 mb:px-6">
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.quorum.title}
@@ -40,13 +46,13 @@ export const HomepageDevelopers = observer(() => {
               )}
             >
               {lang.developers.quorum.desc.map((v, i) => (
-                <p className="mt-2" key={i}>
+                <p className="mt-4" key={i}>
                   {v}
                 </p>
               ))}
             </div>
             <div className="h-16 mt-4 relative">
-              <img className="absolute right-0 top-8" src={IconQuorum} alt="" />
+              <img className="absolute right-0 xs:-right-1 top-4" src={IconQuorum} alt="" />
             </div>
             <div className="flex-col items-start font-kanit font-light text-18 gap-y-5 relative z-10">
               <a
@@ -54,7 +60,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/quorum#build-api-document"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconGithub} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
                 {lang.developers.quorum.links.api}
               </a>
               <a
@@ -62,7 +68,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/quorum#run-a-rum-peer"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconNode} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconNode} alt="" />
                 {lang.developers.quorum.links.runPeer}
               </a>
               <a
@@ -70,7 +76,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/quorum#example-a-private-decentralized-forum"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconLinkExample} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkExample} alt="" />
                 {lang.developers.quorum.links.example}
               </a>
               <a
@@ -78,7 +84,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/quorum#run-a-rum-peer-on-server"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconLinkServer} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkServer} alt="" />
                 {lang.developers.quorum.links.runOnServer}
               </a>
             </div>
@@ -96,13 +102,13 @@ export const HomepageDevelopers = observer(() => {
             >
 
               {lang.developers.rumApp.desc.map((v, i) => (
-                <p className="mt-2" key={i}>
+                <p className="mt-4" key={i}>
                   {v}
                 </p>
               ))}
             </div>
             <div className="h-16 mt-4 relative">
-              <img className="absolute right-0 top-8" src={IconRumApp} alt="" />
+              <img className="absolute right-0 xs:-right-1" src={IconRumApp} alt="" />
             </div>
             <div className="flex-col items-start font-kanit font-light text-18 gap-y-5 relative z-10">
               <a
@@ -110,7 +116,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/rum-app"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconGithub} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
                 {lang.developers.rumApp.links.start}
               </a>
               <a
@@ -118,7 +124,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://docs.prsdev.club/#/rum-app/"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconLinkDocs} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkDocs} alt="" />
                 {lang.developers.rumApp.links.docs}
               </a>
               <a
@@ -126,7 +132,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/rum-app/blob/main/docs/i18n.md"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconLinkLangauge} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkLangauge} alt="" />
                 {lang.developers.rumApp.links.i18n}
               </a>
               <a
@@ -134,7 +140,7 @@ export const HomepageDevelopers = observer(() => {
                 href="https://github.com/rumsystem/rum-app/blob/main/docs/lint.md"
                 target="_blank"
               >
-                <img className="w-[18px] flex-none mr-4 group-hover:hover-orange" src={IconEslint} alt="" />
+                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconEslint} alt="" />
                 {lang.developers.rumApp.links.eslint}
               </a>
             </div>

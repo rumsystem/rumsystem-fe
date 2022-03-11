@@ -83,12 +83,12 @@ export const HomepageIndex = observer(() => {
 
                   <div
                     className={classNames(
-                      'text-gray-d1 mt-2',
+                      'text-gray-d1 mt-2 text-14',
                       langService.state.lang === 'en' && 'font-consolas',
                     )}
                   >
                     {lang.index.box2.p.map((v, i) => (
-                      <p className="mt-2" key={i}>{v}</p>
+                      <p className="mt-4" key={i}>{v}</p>
                     ))}
                   </div>
                 </div>
@@ -112,12 +112,12 @@ export const HomepageIndex = observer(() => {
 
               <div
                 className={classNames(
-                  'text-gray-d1',
+                  'text-gray-d1 text-14',
                   langService.state.lang === 'en' && 'font-consolas',
                 )}
               >
                 {lang.index.box3.p.map((v, i) => (
-                  <p className="mt-2" key={i}>{v}</p>
+                  <p className="mt-4" key={i}>{v}</p>
                 ))}
               </div>
             </div>
@@ -130,12 +130,12 @@ export const HomepageIndex = observer(() => {
 
                 <div
                   className={classNames(
-                    'text-gray-d1',
+                    'text-gray-d1 text-14',
                     langService.state.lang === 'en' && 'font-consolas',
                   )}
                 >
                   {lang.index.box4.p.map((v, i) => (
-                    <p className="mt-2" key={i}>{v}</p>
+                    <p className="mt-4" key={i}>{v}</p>
                   ))}
                 </div>
               </div>
@@ -151,12 +151,12 @@ export const HomepageIndex = observer(() => {
 
                   <div
                     className={classNames(
-                      'text-gray-d1 mt-2',
+                      'text-gray-d1 mt-2 text-14',
                       langService.state.lang === 'en' && 'font-consolas',
                     )}
                   >
                     {lang.index.box5.p.map((v, i) => (
-                      <p className="mt-2" key={i}>{v}</p>
+                      <p className="mt-4" key={i}>{v}</p>
                     ))}
                   </div>
                 </div>
@@ -178,12 +178,12 @@ export const HomepageIndex = observer(() => {
 
               <div
                 className={classNames(
-                  'text-gray-d1',
+                  'text-gray-d1 text-14',
                   langService.state.lang === 'en' && 'font-consolas',
                 )}
               >
                 {lang.index.box6.p.map((v, i) => (
-                  <p className="mt-2" key={i}>{v}</p>
+                  <p className="mt-4" key={i}>{v}</p>
                 ))}
               </div>
 
@@ -212,7 +212,7 @@ export const HomepageIndex = observer(() => {
               )}
             >
               {lang.index.howWorks.p.map((v, i) => (
-                <p className="mt-2" key={i}>
+                <p className="mt-4" key={i}>
                   {v.map((u, j) => (
                     <span
                       className={classNames(u.type.includes('bold') && 'font-bold')}
@@ -239,7 +239,7 @@ export const HomepageIndex = observer(() => {
 
           <div
             className={classNames(
-              'flex mb:flex-col gap-x-20 mt-10',
+              'flex mb:flex-col gap-x-20 mt-10 text-14',
               langService.state.lang === 'en' && 'font-consolas',
             )}
           >

@@ -26,7 +26,7 @@ const HomepageContent = observer(() => {
   React.useEffect(() => {
     // preload app image
     const img = new Image();
-    img.src = 'https://img-cdn.xue.cn/17-app_screen_1_opt.png';
+    img.src = 'https://img-cdn.xue.cn/311-app_screen_1_opt.png';
   }, []);
 
   if (!lang.ready) {

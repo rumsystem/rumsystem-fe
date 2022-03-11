@@ -164,6 +164,7 @@ config.plugin('progress')
 config.plugin('html-webpack-plugin')
   .use(HtmlWebpackPlugin, [{
     template: resolve('src/template/template.html'),
+    minify: false,
   }]);
 
 config.plugin('define-commit-hash')
