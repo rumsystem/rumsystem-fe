@@ -1,8 +1,10 @@
 import React from 'react';
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
 import { ImgBox } from '~/components/ImgBox';
 import { useSetTitle } from '~/utils';
+import { langService } from '~/service/lang';
 
 import { lang } from '../../lang';
 
@@ -20,7 +22,12 @@ export const HomepageWhy = observer(() => {
   return (
     <div className="main-box flex-col justify-center items-stretch">
       <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb-16">
-        <div className="flex mb:flex-col gap-x-2 flex-center max-w-[1200px] flex-1 text-14 pt-10 pb-14 font-consolas">
+        <div
+          className={classNames(
+            'flex mb:flex-col gap-x-2 flex-center max-w-[1200px] flex-1 text-14 pt-10 pb-14',
+            langService.state.lang === 'en' && 'font-consolas',
+          )}
+        >
           <div className="flex-col flex-none mb:w-full">
             <ImgBox
               className="flex-none self-center -translate-x-7 mb:translate-x-0 mb:max-w-[400px] mb:h-auto"
@@ -33,7 +40,7 @@ export const HomepageWhy = observer(() => {
               <div className="font-kanit italic text-23 text-main">
                 {lang.why.title}
               </div>
-              <div className="text-18 mt-4 text-white font-bold ">
+              <div className="text-18 mt-4 text-white font-bold font-consolas">
                 {lang.why.subtitle}
               </div>
             </div>

@@ -6,7 +6,7 @@ const fontEmoji = ', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "
 const langFontMap = [
   [/^en.*$/i, `${fontBase}sans-serif${fontEmoji}`],
   [/^zh-cn$/i, `${fontBase}Source Han Sans SC, Microsoft Yahei UI, Microsoft Yahei, sans-serif${fontEmoji}`],
-  [/^zh-tw$/i, `${fontBase}DengXian, Source Han Sans TC, sans-serif${fontEmoji}`],
+  [/^zh-tw$/i, `${fontBase}dengxian, Source Han Sans TC, sans-serif${fontEmoji}`],
 ] as const;
 
 export const themeLang = langService.createLangLoader({

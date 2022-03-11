@@ -1,9 +1,7 @@
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory();
+export const routerHistory = createBrowserHistory();
 
-history.listen(() => {
+routerHistory.listen(() => {
   window.scrollTo(0, 0);
 });
-
-export default history;

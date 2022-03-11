@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
 import { useSetTitle } from '~/utils';
@@ -10,6 +11,7 @@ import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
 import IconEslint from '~/icons/icon_eslint.svg';
+import { langService } from '~/service/lang';
 
 import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';
@@ -31,7 +33,12 @@ export const HomepageDevelopers = observer(() => {
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.quorum.title}
             </div>
-            <div className="font-consolas text-gray-d1 leading-lang mt-7">
+            <div
+              className={classNames(
+                'text-gray-d1 leading-lang mt-7',
+                langService.state.lang === 'en' && 'font-consolas',
+              )}
+            >
               {lang.developers.quorum.desc.map((v, i) => (
                 <p className="mt-2" key={i}>
                   {v}
@@ -81,7 +88,12 @@ export const HomepageDevelopers = observer(() => {
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.rumApp.title}
             </div>
-            <div className="font-consolas text-gray-d1 leading-lang mt-7">
+            <div
+              className={classNames(
+                'text-gray-d1 leading-lang mt-7',
+                langService.state.lang === 'en' && 'font-consolas',
+              )}
+            >
 
               {lang.developers.rumApp.desc.map((v, i) => (
                 <p className="mt-2" key={i}>

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Router, useLocation } from 'react-router-dom';
 import RouterComponent from './router';
 import Layout from './layouts';
-import history from './history';
+import { routerHistory } from './history';
 import { ThemeRoot } from './utils/theme';
 import { initService } from './service';
 import { themeLang } from './service/theme';
@@ -28,7 +28,7 @@ const App = observer(() => {
   }
   return (
     <ThemeRoot>
-      <Router history={history}>
+      <Router history={routerHistory}>
         <LocationChange />
         <Layout>
           <RouterComponent />
