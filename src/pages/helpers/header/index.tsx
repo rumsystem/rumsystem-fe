@@ -4,14 +4,13 @@ import classNames from 'classnames';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import { Language, Check, Menu as MenuIcon, Download } from '@mui/icons-material';
-import { Menu, MenuItem, Drawer, List, ListItem, Divider } from '@mui/material';
+import { Menu, MenuItem, Drawer, List, ListItem, Divider, Box } from '@mui/material';
 
 import IconDownload from '~/icons/icon_download.svg';
 import RumLogo from '~/icons/logo_rumsystem.svg';
-import { langService, AllLanguages } from '~/service/lang';
+import { langService, AllLanguages, langName } from '~/service/lang';
 
 import { lang } from '../lang';
-import { Box } from '@mui/system';
 
 export const HomepageHeader = observer(() => {
   lang.useLang();
@@ -92,7 +91,7 @@ export const HomepageHeader = observer(() => {
       <div
         className={classNames(
           'mb:hidden flex gap-x-16 absolute mui-fixed right-0 mb top-0 mt-8 mr-10 ',
-          'text-kanit text-link text-16',
+          'font-kanit text-link text-16',
         )}
       >
         <div
@@ -128,15 +127,15 @@ export const HomepageHeader = observer(() => {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={() => handleSwitchLang('en')}>
-            En
+          {/* <MenuItem onClick={() => handleSwitchLang('en')}>
+            {langName.en}
             {langService.state.lang === 'en' && (
               <Check className="text-link" />
             )}
-          </MenuItem>
-          <MenuItem onClick={() => handleSwitchLang('cn')}>
-            中文
-            {langService.state.lang === 'cn' && (
+          </MenuItem> */}
+          <MenuItem onClick={() => handleSwitchLang('zh-tw')}>
+            {langName['zh-tw']}
+            {langService.state.lang === 'zh-tw' && (
               <Check className="text-link" />
             )}
           </MenuItem>
@@ -178,12 +177,12 @@ export const HomepageHeader = observer(() => {
                 </ListItem>
               ))}
               <Divider />
-              <ListItem className="text-kanit justify-end px-5" button>
+              <ListItem className="font-kanit justify-end px-5" button>
                 <Download className="mr-[6px] text-22" />
                 {lang.header.download}
               </ListItem>
-              <ListItem
-                className="text-kanit justify-end px-5"
+              {/* <ListItem
+                className="font-kanit justify-end px-5"
                 button
                 onClick={() => handleSwitchLang('en')}
               >
@@ -191,18 +190,18 @@ export const HomepageHeader = observer(() => {
                   <Check className="text-link" />
                 )}
                 <Language className="mr-[6px] text-22" />
-                En
-              </ListItem>
+                {langName.en}
+              </ListItem> */}
               <ListItem
-                className="text-kanit justify-end px-5"
+                className="font-kanit justify-end px-5"
                 button
-                onClick={() => handleSwitchLang('cn')}
+                onClick={() => handleSwitchLang('zh-tw')}
               >
-                {langService.state.lang === 'cn' && (
+                {langService.state.lang === 'zh-tw' && (
                   <Check className="text-link" />
                 )}
                 <Language className="mr-[6px] text-22" />
-                中文
+                {langName['zh-tw']}
               </ListItem>
             </List>
           </Box>
@@ -223,7 +222,7 @@ interface Item {
 export const LinkItem = ({ item, className }: { item: Item, className?: string }) => (
   <Link
     className={classNames(
-      'relative text-black font-medium text-kanit tracking-wide text-20 hover:no-underline mb-[2px]',
+      'relative text-black font-medium font-kanit tracking-wide text-20 hover:no-underline mb-[2px]',
       className,
     )}
     style={{ order: item.order }}

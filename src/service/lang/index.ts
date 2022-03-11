@@ -3,12 +3,21 @@ import React from 'react';
 
 const LANG_STORAGE_KEY = 'LANG_STORAGE_KEY';
 
-const allLang = ['cn', 'en'] as const;
+const allLang = [
+  'en',
+  'zh-cn',
+  'zh-tw',
+] as const;
+export const langName: Record<AllLanguages, string> = {
+  'en': 'En',
+  'zh-cn': '简中',
+  'zh-tw': '繁中',
+};
 export type AllLanguages = typeof allLang[number];
-type LangData<T> = Record<string, (() => Promise<{ content: T }>) | { content: T }>;
+type LangData<T> = Partial<Record<AllLanguages, (() => Promise<{ content: T }>) | { content: T }>>;
 
 const state = observable({
-  lang: 'en' as AllLanguages,
+  lang: 'zh-tw' as AllLanguages,
 });
 
 const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
@@ -28,10 +37,10 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
   });
 
   const loadLang = async () => {
-    // fallback to cn
+    // fallback to zh-tw
     const langToLoad = state.lang in langData
       ? state.lang
-      : 'cn';
+      : 'zh-tw';
 
     const item = loaderState.map.get(state.lang);
     if (item) {
@@ -54,6 +63,9 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
     // load the lang
     const loadFn = langData[langToLoad];
     const result = typeof loadFn === 'function' ? loadFn() : loadFn;
+    if (!result) {
+      throw new Error(`no lang found for ${langToLoad}`);
+    }
     if (!(result instanceof Promise)) {
       runInAction(() => {
         loaderState.map.set(langToLoad, result);
@@ -98,6 +110,7 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
           if (prop === '$$typeof') {
             return;
           }
+          // console.log(loaderState)
           console.error(new Error(`loading key ${String(prop)} for ${loaderState.lang} failed. ${loaderState.lang} is not loaded or defined`));
         }
         return null;
@@ -130,14 +143,14 @@ const saveLang = () => {
 
 const init = action(() => {
   const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages;
-  if (!lang) {
-    if (navigator.language.startsWith('zh')) {
-      state.lang = 'cn';
-    }
-  } else if (allLang.includes(lang)) {
+  // FUTURE: normalize locale name
+  // if (navigator.language.startsWith('zh')) {
+  //   state.lang = 'cn';
+  // }
+  if (allLang.includes(lang)) {
     state.lang = lang;
   }
-  saveLang();
+  switchLang(state.lang);
   return () => 1;
 });
 

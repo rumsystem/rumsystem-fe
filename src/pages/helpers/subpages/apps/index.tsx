@@ -79,26 +79,34 @@ export const HomepageApps = observer(() => {
   return (
     <div className="main-box flex-col justify-center items-stretch">
       <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb:px-0">
-        <div className="max-w-[1200px] flex-1 text-14 text-consolas">
+        <div className="max-w-[1200px] flex-1 text-14 font-consolas">
           <AppBox />
         </div>
       </div>
 
-      <div className="flex mb:flex-col justify-center bg-black bg-opacity-70 max-w-[1060px] w-full mt-10 mx-auto text-consolas mb-14">
+      <div
+        className={classNames(
+          'flex mb:flex-col justify-center max-w-[1060px] w-full mt-10 mb-14 mx-auto',
+          'bg-black bg-opacity-70 font-consolas leading-lang',
+        )}
+      >
         <div className="flex flex-1 mb:flex-col py-12 mb:pt-8 mb:pb-4 pl-12 mb:px-8">
           <div className="flex-1">
-            <div className="text-kanit text-main text-20">
+            <div className="font-kanit text-main text-20">
               {lang.apps.title}
             </div>
 
-            <div className="mt-2 text-gray-d1 text-consolas leading-tight">
+            <div className="mt-2 text-gray-d1 font-consolas">
               {lang.apps.content.map((v, i) => (
                 <p className="mt-2" key={i}>{v}</p>
               ))}
             </div>
+            <div className="mt-4 text-13 text-gray-7b font-consolas">
+              {lang.apps.smallTip}
+            </div>
           </div>
           <div
-            className="flex-col mb:flex-row flex-center gap-y-4 gap-x-4 mb:mt-4 px-5"
+            className="flex-col mb:flex-row flex-center gap-y-4 gap-x-4 mb:mt-4 px-4"
             onMouseEnter={handleStopSlide}
             onMouseLeave={handleResumeSlide}
           >
@@ -122,12 +130,12 @@ export const HomepageApps = observer(() => {
         </div>
 
         <div
-          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-2w-[600px]"
+          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-w-[600px]"
           onMouseEnter={handleStopSlide}
           onMouseLeave={handleResumeSlide}
         >
           <ImgBox
-            className="flex-none pc:h-[550px] pc:w-auto mb:w-full mb:h-auto opacity-00 pointer-events-none"
+            className="flex-none pc:h-[570px] pc:w-auto mb:w-full mb:h-auto opacity-00 pointer-events-none"
             src={IMAGES[0]}
             alt=""
             width="601"
@@ -136,7 +144,7 @@ export const HomepageApps = observer(() => {
 
           {state.images.map((v) => (
             <img
-              className="absolute pc:h-[550px] pc:w-auto mb:w-full mb:h-auto duration-300"
+              className="absolute pc:h-[570px] pc:w-auto mb:w-full mb:h-auto duration-300"
               style={{
                 transform: `translateY(${(v.index - state.imageIndex) * 100}%)`,
               }}
