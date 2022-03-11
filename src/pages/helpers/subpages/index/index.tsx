@@ -93,7 +93,7 @@ export const HomepageIndex = observer(() => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end mt-2">
+              <div className="flex justify-end mt-3">
                 <a
                   className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
                   href="https://github.com/rumsystem/quorum#run-a-rum-peer"
@@ -163,7 +163,7 @@ export const HomepageIndex = observer(() => {
                 <ImgBox className="flex-none mb:order-1 mb:mb-4" src={IconToken} alt="" width={65} height={68} />
 
               </div>
-              {/* <div className="flex justify-start mt-2">
+              {/* <div className="flex justify-start mt-3">
                 <a className="flex items-center text-link-soft hover:text-main text-18 font-light tracking-wide" href="">
                   <img className="mr-3" src={IconCoin} alt="" />
                   {lang.index.box5.link}
@@ -187,7 +187,7 @@ export const HomepageIndex = observer(() => {
                 ))}
               </div>
 
-              <div className="flex justify-end mt-2">
+              <div className="flex justify-end mt-3">
                 <a className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide" href="">
                   <img className="mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
                   {lang.index.box6.link}
