@@ -1,9 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
+import { langService } from '~/service/lang';
 import { ImgBox } from '~/components/ImgBox';
 // import IconCoin from '~/icons/icon_coin.svg';
 import IconNode from '~/icons/icon_node.svg';
@@ -17,7 +19,6 @@ import IconPrivacy from './icons/icon_privacy.svg';
 import IconToken from './icons/icon_token.svg';
 import ArchDiagram from './icons/arch_diagram.svg';
 
-import classNames from 'classnames';
 
 export const HomepageIndex = observer(() => {
   const state = useLocalObservable(() => ({
@@ -41,7 +42,12 @@ export const HomepageIndex = observer(() => {
   return (
     <div className="main-box flex justify-center">
       <div className="flex flex-1 justify-center mx-5 mb:mx-0 mb:mt-0 my-10 px-5 max-w-[1200px] bg-black bg-opacity-70">
-        <div className="max-w-[1000px] flex-1 text-16 text-gray-d1 py-16 mb:pt-8 font-kanit leading-lang">
+        <div
+          className={classNames(
+            'max-w-[1000px] flex-1 text-16 text-gray-d1 py-16 mb:pt-8 leading-lang',
+            langService.state.lang === 'en' && 'font-kanit',
+          )}
+        >
           <div className="grid gap-x-[10px] gap-y-[10px] grid-cols-2 text-white mb:grid-cols-1">
             <div className="flex flex-center border border-gray-83 p-14 mb:p-4">
               <div className="text-main text-23 leading-snug">
@@ -53,6 +59,7 @@ export const HomepageIndex = observer(() => {
                     {!v.type.includes('linebreak') && (
                       <span
                         className={classNames(
+                          v.type.includes('kanit') && 'font-kanit',
                           v.type.includes('light') && 'font-extralight',
                           v.type.includes('italic') && 'italic',
                           v.type.includes('small') && 'text-17',
@@ -74,7 +81,12 @@ export const HomepageIndex = observer(() => {
                     {lang.index.box2.title}
                   </div>
 
-                  <div className="font-consolas text-gray-d1 mt-2">
+                  <div
+                    className={classNames(
+                      'text-gray-d1 mt-2',
+                      langService.state.lang === 'en' && 'font-consolas',
+                    )}
+                  >
                     {lang.index.box2.p.map((v, i) => (
                       <p className="mt-2" key={i}>{v}</p>
                     ))}
@@ -98,7 +110,12 @@ export const HomepageIndex = observer(() => {
                 {lang.index.box3.title}
               </div>
 
-              <div className="font-consolas text-gray-d1">
+              <div
+                className={classNames(
+                  'text-gray-d1',
+                  langService.state.lang === 'en' && 'font-consolas',
+                )}
+              >
                 {lang.index.box3.p.map((v, i) => (
                   <p className="mt-2" key={i}>{v}</p>
                 ))}
@@ -111,7 +128,12 @@ export const HomepageIndex = observer(() => {
                   {lang.index.box4.title}
                 </div>
 
-                <div className="font-consolas text-gray-d1">
+                <div
+                  className={classNames(
+                    'text-gray-d1',
+                    langService.state.lang === 'en' && 'font-consolas',
+                  )}
+                >
                   {lang.index.box4.p.map((v, i) => (
                     <p className="mt-2" key={i}>{v}</p>
                   ))}
@@ -127,7 +149,12 @@ export const HomepageIndex = observer(() => {
                     {lang.index.box5.title}
                   </div>
 
-                  <div className="font-consolas text-gray-d1 mt-2">
+                  <div
+                    className={classNames(
+                      'text-gray-d1 mt-2',
+                      langService.state.lang === 'en' && 'font-consolas',
+                    )}
+                  >
                     {lang.index.box5.p.map((v, i) => (
                       <p className="mt-2" key={i}>{v}</p>
                     ))}
@@ -149,7 +176,12 @@ export const HomepageIndex = observer(() => {
                 {lang.index.box6.title}
               </div>
 
-              <div className="font-consolas text-gray-d1">
+              <div
+                className={classNames(
+                  'text-gray-d1',
+                  langService.state.lang === 'en' && 'font-consolas',
+                )}
+              >
                 {lang.index.box6.p.map((v, i) => (
                   <p className="mt-2" key={i}>{v}</p>
                 ))}
@@ -168,12 +200,17 @@ export const HomepageIndex = observer(() => {
           <AppBox className="mt-14 mb:mt-10 border border-gray-70" />
 
           <div className="flex mb:flex-col flex-center gap-x-12 max-w-[820px] mx-auto mt-10">
-            <div className="text-24 text-main flex-none uppercase mb:text-center">
+            <div className="text-24 text-main font-kanit flex-none uppercase mb:text-center">
               {lang.index.howWorks.title.split('\n').map((v, i) => (
                 <p key={i}>{v}</p>
               ))}
             </div>
-            <div className="flex-1 font-consolas text-gray-d1 mb:mt-4">
+            <div
+              className={classNames(
+                'text-gray-d1 flex-1 mb:mt-4',
+                langService.state.lang === 'en' && 'font-consolas',
+              )}
+            >
               {lang.index.howWorks.p.map((v, i) => (
                 <p className="mt-2" key={i}>
                   {v.map((u, j) => (
@@ -200,7 +237,12 @@ export const HomepageIndex = observer(() => {
             </span>
           </div>
 
-          <div className="flex mb:flex-col gap-x-20 font-consolas mt-10">
+          <div
+            className={classNames(
+              'flex mb:flex-col gap-x-20 mt-10',
+              langService.state.lang === 'en' && 'font-consolas',
+            )}
+          >
             {lang.index.terms.map((sec, seci) => (
               <div className="flex-1" key={seci}>
                 {sec.map((v, i) => (

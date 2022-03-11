@@ -5,6 +5,7 @@ import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import React from 'react';
 import { ImgBox } from '~/components/ImgBox';
+import { langService } from '~/service/lang';
 import { useSetTitle } from '~/utils';
 
 import { AppBox } from '../../AppBox';
@@ -79,7 +80,12 @@ export const HomepageApps = observer(() => {
   return (
     <div className="main-box flex-col justify-center items-stretch">
       <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb:px-0">
-        <div className="max-w-[1200px] flex-1 text-14 font-consolas">
+        <div
+          className={classNames(
+            'max-w-[1200px] flex-1 text-14',
+            langService.state.lang === 'en' && 'font-consolas',
+          )}
+        >
           <AppBox />
         </div>
       </div>
@@ -87,7 +93,8 @@ export const HomepageApps = observer(() => {
       <div
         className={classNames(
           'flex mb:flex-col justify-center max-w-[1060px] w-full mt-10 mb-14 mx-auto',
-          'bg-black bg-opacity-70 font-consolas leading-lang',
+          'bg-black bg-opacity-70 leading-lang',
+          langService.state.lang === 'en' && 'font-consolas',
         )}
       >
         <div className="flex flex-1 mb:flex-col py-12 mb:pt-8 mb:pb-4 pl-12 mb:px-8">
@@ -96,12 +103,22 @@ export const HomepageApps = observer(() => {
               {lang.apps.title}
             </div>
 
-            <div className="mt-2 text-gray-d1 font-consolas">
+            <div
+              className={classNames(
+                'mt-2 text-gray-d1',
+                langService.state.lang === 'en' && 'font-consolas',
+              )}
+            >
               {lang.apps.content.map((v, i) => (
                 <p className="mt-2" key={i}>{v}</p>
               ))}
             </div>
-            <div className="mt-4 text-13 text-gray-7b font-consolas">
+            <div
+              className={classNames(
+                'mt-4 text-13 text-gray-7b',
+                langService.state.lang === 'en' && 'font-consolas',
+              )}
+            >
               {lang.apps.smallTip}
             </div>
           </div>

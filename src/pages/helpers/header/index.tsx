@@ -9,12 +9,13 @@ import { Menu, MenuItem, Drawer, List, ListItem, Divider, Box } from '@mui/mater
 import IconDownload from '~/icons/icon_download.svg';
 import RumLogo from '~/icons/logo_rumsystem.svg';
 import { langService, AllLanguages, langName } from '~/service/lang';
+import { routerHistory } from '~/history';
 
 import { lang } from '../lang';
 
 export const HomepageHeader = observer(() => {
   lang.useLang();
-  useLocation();
+  const location = useLocation();
   const state = useLocalObservable(() => ({
     language: false,
     mbMenu: false,
@@ -52,7 +53,7 @@ export const HomepageHeader = observer(() => {
 
   return (<>
     <div className="h-[120px] mb:h-[75px]" />
-    <div className="fixed mui-fixed top-0 left-0 right-0 h-[120px] mb:h-[75px] pb-3 mb:pb-0 flex justify-center items-bottom bg-white">
+    <div className="fixed mui-fixed top-0 left-0 right-0 h-[120px] mb:h-[75px] pb-3 mb:pb-0 flex justify-center items-bottom bg-white z-10">
       <div className="mb:hidden flex justify-between w-full px-6 max-w-[1000px] items-end">
         {links.map((v) => (
           <LinkItem className="mb:hidden" item={v} key={v.to} />
@@ -91,15 +92,17 @@ export const HomepageHeader = observer(() => {
       <div
         className={classNames(
           'mb:hidden flex gap-x-16 absolute mui-fixed right-0 mb top-0 mt-8 mr-10 ',
-          'font-kanit text-link text-16',
+          'text-link text-16',
+          langService.state.lang === 'en' && 'font-kanit',
         )}
       >
-        <div
+        <Link
           className="flex flex-center cursor-pointer"
+          to="/apps"
         >
           <img className="mr-2" src={IconDownload} alt="" />
           {lang.header.download}
-        </div>
+        </Link>
         <div
           className="flex flex-center cursor-pointer"
           ref={menuAnchorEl}
@@ -177,12 +180,22 @@ export const HomepageHeader = observer(() => {
                 </ListItem>
               ))}
               <Divider />
-              <ListItem className="font-kanit justify-end px-5" button>
+              <ListItem
+                className={classNames(
+                  'justify-end px-5',
+                  langService.state.lang === 'en' && 'font-kanit',
+                )}
+                button
+                onClick={() => routerHistory.push('/apps')}
+              >
                 <Download className="mr-[6px] text-22" />
                 {lang.header.download}
               </ListItem>
               {/* <ListItem
-                className="font-kanit justify-end px-5"
+                className={classNames(
+                  'justify-end px-5',
+                  langService.state.lang === 'en' && 'font-kanit',
+                )}
                 button
                 onClick={() => handleSwitchLang('en')}
               >
@@ -193,7 +206,10 @@ export const HomepageHeader = observer(() => {
                 {langName.en}
               </ListItem> */}
               <ListItem
-                className="font-kanit justify-end px-5"
+                className={classNames(
+                  'justify-end px-5',
+                  langService.state.lang === 'en' && 'font-kanit',
+                )}
                 button
                 onClick={() => handleSwitchLang('zh-tw')}
               >
