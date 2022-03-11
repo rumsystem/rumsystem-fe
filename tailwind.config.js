@@ -8,6 +8,9 @@ module.exports = {
       mb: {
         max: `${960 - 1}px`,
       },
+      xs: {
+        max: '375px',
+      },
       pc: {
         min: '960px',
       },

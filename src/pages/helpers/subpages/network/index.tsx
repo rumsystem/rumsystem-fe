@@ -40,7 +40,7 @@ export const HomepageNetwork = observer(() => {
               )}
             >
               {lang.network.ecoContent.map((v, i) => (
-                <p className="mt-2" key={i}>{v}</p>
+                <p className="mt-4" key={i}>{v}</p>
               ))}
             </div>
           </div>
@@ -64,7 +64,7 @@ export const HomepageNetwork = observer(() => {
                   )}
                 >
                   {v.content.map((v, i) => (
-                    <p className="mt-2" key={i}>
+                    <p className="mt-4" key={i}>
                       {v}
                     </p>
                   ))}
@@ -89,7 +89,7 @@ export const HomepageNetwork = observer(() => {
       </div>
 
       <div className="w-full max-w-[1200px] bg-black bg-opacity-70 px-5 mt-15 mb:mt-12 mx-auto">
-        <div className="w-full max-w-[1000px] mx-auto px-5 pt-10 pb-14">
+        <div className="w-full max-w-[1000px] mx-auto pt-10 pb-14">
           <div className="ml-4 flex-1 text-23 text-main italic font-kanit">
             {lang.network.token}
           </div>

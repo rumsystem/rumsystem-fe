@@ -86,7 +86,7 @@ export const HomepageHeader = observer(() => {
         className="pc:hidden absolute mui-fixed flex px-4 py-3 flex-center cursor-pointer right-0 bottom-0"
         onClick={handleToggleMenu}
       >
-        <MenuIcon />
+        <MenuIcon className="text-28" />
       </div>
 
       <div
@@ -158,9 +158,9 @@ export const HomepageHeader = observer(() => {
             onKeyDown={handleToggleMenu}
           >
             <List>
-              <ListItem button>
+              <ListItem className="py-4" button>
                 <div className="w-full flex flex-center">
-                  <Link className="relative text-black font-medium relative order-3" to="/">
+                  <Link className="relative text-black font-medium relative" to="/">
                     <img
                       className="w-30 relative z-10"
                       src={RumLogo}
@@ -173,16 +173,21 @@ export const HomepageHeader = observer(() => {
                   </Link>
                 </div>
               </ListItem>
-              <Divider />
+              <Divider className="my-2" />
               {links.map((v) => (
-                <ListItem button key={v.to}>
+                <ListItem
+                  className="py-3"
+                  button
+                  key={v.to}
+                  onClick={() => routerHistory.push(v.to)}
+                >
                   <LinkItem className="mx-4 py-1" item={v} key={v.to} />
                 </ListItem>
               ))}
-              <Divider />
+              <Divider className="my-2" />
               <ListItem
                 className={classNames(
-                  'justify-end px-5',
+                  'justify-end px-6 py-4',
                   langService.state.lang === 'en' && 'font-kanit',
                 )}
                 button
@@ -207,7 +212,7 @@ export const HomepageHeader = observer(() => {
               </ListItem> */}
               <ListItem
                 className={classNames(
-                  'justify-end px-5',
+                  'justify-end px-5 py-4',
                   langService.state.lang === 'en' && 'font-kanit',
                 )}
                 button

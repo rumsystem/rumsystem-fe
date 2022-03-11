@@ -19,7 +19,8 @@ const run = async () => {
   const compiler = webpack(webpackConfig.toConfig());
   const devServer = new WebpackDevServer(compiler, {
     https: false,
-    host: 'localhost',
+    // host: 'localhost',
+    host: '0.0.0.0',
     port: config.urls.fe.port,
     webSocketServer: 'ws',
     allowedHosts: 'all',
