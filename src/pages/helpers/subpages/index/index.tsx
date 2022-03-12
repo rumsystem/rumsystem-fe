@@ -190,7 +190,7 @@ export const HomepageIndex = observer(() => {
               <div className="flex justify-end mt-3">
                 <a
                   className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
-                  href="https://github.com/rumsystem/quorum/blob/main/Tutorial.md"
+                  href="https://github.com/rumsystem"
                   target="_blank"
                 >
                   <img className="mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
