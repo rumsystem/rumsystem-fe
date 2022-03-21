@@ -91,18 +91,19 @@ export const HomepageHeader = observer(() => {
 
       <div
         className={classNames(
-          'mb:hidden flex gap-x-16 absolute mui-fixed right-0 mb top-0 mt-8 mr-10 ',
+          'mb:hidden flex absolute mui-fixed right-0 mb top-0 mt-8 mr-10 ',
           'text-link text-16',
           langService.state.lang === 'en' && 'font-kanit',
         )}
       >
         <Link
-          className="flex flex-center cursor-pointer"
+          className="flex flex-center cursor-pointer mr-16"
           to="/apps"
         >
           <img className="mr-2" src={IconDownload} alt="" />
           {lang.header.download}
         </Link>
+
         <div
           className="flex flex-center cursor-pointer"
           ref={menuAnchorEl}

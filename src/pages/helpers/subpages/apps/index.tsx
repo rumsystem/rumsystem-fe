@@ -25,7 +25,6 @@ const IMAGES = [
 export const HomepageApps = observer(() => {
   const state = useLocalObservable(() => ({
     imageIndex: 0,
-    images: IMAGES.map((v, i) => ({ link: v, index: i })),
     timerId: 0,
     dialog: false,
     bigImageLink: '',
@@ -82,10 +81,10 @@ export const HomepageApps = observer(() => {
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
-      <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb:px-0">
+      <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 mb:px-0">
         <div
           className={classNames(
-            'max-w-[1200px] flex-1 text-14',
+            'max-w-[1200px] grow text-14',
             langService.state.lang === 'en' && 'font-consolas',
           )}
         >
@@ -100,8 +99,8 @@ export const HomepageApps = observer(() => {
           langService.state.lang === 'en' && 'font-consolas',
         )}
       >
-        <div className="flex flex-1 mb:flex-col py-8 mb:pt-8 mb:pb-4 pl-12 mb:px-8 min-w-[440px]">
-          <div className="flex-1">
+        <div className="flex mb:flex-col mb:flex-none py-8 mb:pt-8 mb:pb-4 pl-12 mb:px-8 pc:min-w-[440px]">
+          <div className="">
             <div className="font-kanit text-main text-20">
               {lang.apps.title}
             </div>
@@ -126,13 +125,13 @@ export const HomepageApps = observer(() => {
             </div>
           </div>
           <div
-            className="flex-col mb:flex-row flex-center gap-y-4 gap-x-4 mb:mt-4 px-4"
+            className="flex-col mb:flex-row flex-center gap-x-4 mb:mt-4 px-4"
             onMouseEnter={handleStopSlide}
             onMouseLeave={handleResumeSlide}
           >
             {Array(5).fill(0).map((_, i) => (
               <div
-                className="h-6 w-6 flex flex-center cursor-pointer"
+                className="h-6 w-6 flex flex-center cursor-pointer pc:my-2"
                 key={i}
                 onClick={() => handleChangeImage(i)}
               >
@@ -159,22 +158,22 @@ export const HomepageApps = observer(() => {
               className="flex-none pc:h-[580px] pc:w-auto mb:w-full mb:h-auto pointer-events-none"
               src={IMAGES[0]}
               alt=""
-              width="601"
-              height="550"
+              width="772"
+              height="580"
             />
 
-            {state.images.map((v) => (
+            {IMAGES.map((v, i) => (
               <img
                 className="absolute pc:h-[580px] pc:w-auto mb:w-full mb:h-auto duration-300 top-0"
                 style={{
                   transform: isMobile
-                    ? `translateX(${(v.index - state.imageIndex) * 100}%)`
-                    : `translateY(${(v.index - state.imageIndex) * 100}%)`,
+                    ? `translateX(${(i - state.imageIndex) * 100}%)`
+                    : `translateY(${(i - state.imageIndex) * 100}%)`,
                 }}
-                src={v.link}
+                src={v}
                 alt=""
-                key={v.index}
-                onClick={() => handleShowBigImage(v.link)}
+                key={i}
+                onClick={() => handleShowBigImage(v)}
               />
             ))}
           </div>
