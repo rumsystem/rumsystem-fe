@@ -21,10 +21,10 @@ export const HomepageWhy = observer(() => {
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
-      <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5 mb-16">
+      <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 mb-16">
         <div
           className={classNames(
-            'flex mb:flex-col gap-x-2 flex-center max-w-[1200px] flex-1 text-14 pt-10 pb-14',
+            'flex mb:flex-col gap-x-2 flex-center max-w-[1200px] grow text-14 pt-10 pb-14',
             langService.state.lang === 'en' && 'font-consolas',
           )}
         >
@@ -45,14 +45,12 @@ export const HomepageWhy = observer(() => {
               </div>
             </div>
           </div>
-          <div className="flex flex-1 gap-x-16 mt-2 text-gray-d1 text-16 leading-lang">
-            <div className="flex-1">
-              {lang.why.content.map((v, i) => (
-                <p className="mt-5" key={i}>
-                  {v}
-                </p>
-              ))}
-            </div>
+          <div className="grow mb:flex-none gap-x-16 mt-2 text-gray-d1 text-16 leading-lang">
+            {lang.why.content.map((v, i) => (
+              <p className="mt-5" key={i}>
+                {v}
+              </p>
+            ))}
           </div>
         </div>
       </div>

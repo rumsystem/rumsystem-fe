@@ -30,12 +30,12 @@ export const HomepageDevelopers = observer(() => {
       <div className="w-full max-w-[1200px] bg-black bg-opacity-70 px-5 mx-auto">
         <div
           className={classNames(
-            'flex mb:flex-col items-stretch gap-y-8 gap-x-5 w-full max-w-[1050px] mx-auto py-15',
+            'flex mb:flex-col items-stretch w-full max-w-[1050px] mx-auto py-15',
             langService.state.lang === 'en' && 'font-kanit',
             langService.state.lang === 'zh-tw' && 'font-tw-kanit',
           )}
         >
-          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10 mb:px-6">
+          <div className="grow border border-gray-83 pt-8 pb-16 px-10 mb:px-6 pc:mr-5">
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.quorum.title}
             </div>
@@ -54,43 +54,50 @@ export const HomepageDevelopers = observer(() => {
             <div className="h-16 mt-4 relative">
               <img className="absolute right-0 xs:-right-1 top-4" src={IconQuorum} alt="" />
             </div>
-            <div className="flex-col items-start font-kanit font-light text-18 gap-y-5 relative z-10">
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/quorum#build-api-document"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
-                {lang.developers.quorum.links.api}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/quorum#run-a-rum-peer"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconNode} alt="" />
-                {lang.developers.quorum.links.runPeer}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/quorum#example-a-private-decentralized-forum"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkExample} alt="" />
-                {lang.developers.quorum.links.example}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/quorum#run-a-rum-peer-on-server"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkServer} alt="" />
-                {lang.developers.quorum.links.runOnServer}
-              </a>
+            <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
+              {[
+                {
+                  link: 'https://github.com/rumsystem/quorum#build-api-document',
+                  image: IconGithub,
+                  text: lang.developers.quorum.links.api,
+                },
+                {
+                  link: 'https://github.com/rumsystem/quorum#run-a-rum-peer',
+                  image: IconNode,
+                  text: lang.developers.quorum.links.runPeer,
+                },
+                {
+                  link: 'https://github.com/rumsystem/quorum#example-a-private-decentralized-forum',
+                  image: IconLinkExample,
+                  text: lang.developers.quorum.links.example,
+                },
+                {
+                  link: 'https://github.com/rumsystem/quorum#run-a-rum-peer-on-server',
+                  image: IconLinkServer,
+                  text: lang.developers.quorum.links.runOnServer,
+                },
+              ].map((v, i) => (
+                <a
+                  className={classNames(
+                    'inline-flex flex-center group text-link-soft hover:text-main',
+                    i !== 0 && 'mt-5',
+                  )}
+                  href={v.link}
+                  target="_blank"
+                  key={i}
+                >
+                  <img
+                    className="w-[18px] flex-none mr-3 group-hover:hover-orange"
+                    src={v.image}
+                    alt=""
+                  />
+                  {v.text}
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="flex-1 border border-gray-83 pt-8 pb-16 px-10 mb:px-6">
+          <div className="grow border border-gray-83 pt-8 pb-16 px-10 mb:px-6 mb:mt-8">
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.rumApp.title}
             </div>
@@ -110,39 +117,46 @@ export const HomepageDevelopers = observer(() => {
             <div className="h-16 mt-4 relative">
               <img className="absolute right-0 xs:-right-1" src={IconRumApp} alt="" />
             </div>
-            <div className="flex-col items-start font-kanit font-light text-18 gap-y-5 relative z-10">
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/rum-app"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
-                {lang.developers.rumApp.links.start}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://docs.prsdev.club/#/rum-app/"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkDocs} alt="" />
-                {lang.developers.rumApp.links.docs}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/rum-app/blob/main/docs/i18n.md"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconLinkLangauge} alt="" />
-                {lang.developers.rumApp.links.i18n}
-              </a>
-              <a
-                className="inline-flex flex-center group text-link-soft hover:text-main"
-                href="https://github.com/rumsystem/rum-app/blob/main/docs/lint.md"
-                target="_blank"
-              >
-                <img className="w-[18px] flex-none mr-3 group-hover:hover-orange" src={IconEslint} alt="" />
-                {lang.developers.rumApp.links.eslint}
-              </a>
+            <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
+              {[
+                {
+                  link: 'https://github.com/rumsystem/rum-app',
+                  image: IconGithub,
+                  text: lang.developers.rumApp.links.start,
+                },
+                {
+                  link: 'https://docs.prsdev.club/#/rum-app/',
+                  image: IconLinkDocs,
+                  text: lang.developers.rumApp.links.docs,
+                },
+                {
+                  link: 'https://github.com/rumsystem/rum-app/blob/main/docs/i18n.md',
+                  image: IconLinkLangauge,
+                  text: lang.developers.rumApp.links.i18n,
+                },
+                {
+                  link: 'https://github.com/rumsystem/rum-app/blob/main/docs/lint.md',
+                  image: IconEslint,
+                  text: lang.developers.rumApp.links.eslint,
+                },
+              ].map((v, i) => (
+                <a
+                  className={classNames(
+                    'inline-flex flex-center group text-link-soft hover:text-main',
+                    i !== 0 && 'mt-5',
+                  )}
+                  href={v.link}
+                  target="_blank"
+                  key={i}
+                >
+                  <img
+                    className="w-[18px] flex-none mr-3 group-hover:hover-orange"
+                    src={v.image}
+                    alt=""
+                  />
+                  {v.text}
+                </a>
+              ))}
             </div>
           </div>
         </div>

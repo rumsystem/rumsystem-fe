@@ -41,10 +41,10 @@ export const HomepageIndex = observer(() => {
 
   return (
     <div className="main-box flex justify-center">
-      <div className="flex flex-1 justify-center mx-5 mb:mx-0 mb:mt-0 my-10 px-5 max-w-[1200px] bg-black bg-opacity-70">
+      <div className="flex grow justify-center mx-5 mb:mx-0 mb:mt-0 my-10 px-5 max-w-[1200px] bg-black bg-opacity-70">
         <div
           className={classNames(
-            'max-w-[1000px] flex-1 text-16 text-gray-d1 py-16 mb:pt-8 leading-lang',
+            'max-w-[1000px] grow text-16 text-gray-d1 py-16 mb:pt-8 leading-lang',
             langService.state.lang === 'en' && 'font-kanit',
           )}
         >
@@ -76,7 +76,7 @@ export const HomepageIndex = observer(() => {
             <div className="border border-gray-83 px-8 py-6">
               <div className="flex mb:flex-col flex-center gap-x-6">
                 <ImgBox className="flex-none mb:mb-4" src={IconDecentralized} width={70} height={87} alt="" />
-                <div className="flex-1">
+                <div className="grow">
                   <div className="text-20">
                     {lang.index.box2.title}
                   </div>
@@ -123,7 +123,7 @@ export const HomepageIndex = observer(() => {
             </div>
 
             <div className="flex mb:flex-col flex-center gap-x-6 border border-gray-83 px-8 py-6">
-              <div className="flex-1 mb:order-2">
+              <div className="grow mb:order-2">
                 <div className="text-20">
                   {lang.index.box4.title}
                 </div>
@@ -144,7 +144,7 @@ export const HomepageIndex = observer(() => {
 
             <div className="border border-gray-83 px-8 py-6">
               <div className="flex mb:flex-col flex-center gap-x-6">
-                <div className="flex-1 mb:order-2">
+                <div className="grow mb:order-2">
                   <div className="text-20 mb:mb-4">
                     {lang.index.box5.title}
                   </div>
@@ -203,15 +203,15 @@ export const HomepageIndex = observer(() => {
 
           <AppBox className="mt-14 mb:mt-10 border border-gray-70" />
 
-          <div className="flex mb:flex-col flex-center gap-x-12 max-w-[820px] mx-auto mt-10">
-            <div className="text-24 text-main font-kanit flex-none uppercase mb:text-center">
+          <div className="flex mb:flex-col flex-center max-w-[820px] mx-auto mt-10">
+            <div className="text-24 text-main font-kanit flex-none uppercase mb:text-center pc:mr-12">
               {lang.index.howWorks.title.split('\n').map((v, i) => (
                 <p key={i}>{v}</p>
               ))}
             </div>
             <div
               className={classNames(
-                'text-gray-d1 flex-1 mb:mt-4',
+                'text-gray-d1 grow mb:mt-4',
                 langService.state.lang === 'en' && 'font-consolas',
               )}
             >
@@ -243,12 +243,12 @@ export const HomepageIndex = observer(() => {
 
           <div
             className={classNames(
-              'flex mb:flex-col gap-x-20 mt-10 text-14',
+              'grid grid-cols-2 mb:grid-cols-1 gap-x-20 mt-10 text-14',
               langService.state.lang === 'en' && 'font-consolas',
             )}
           >
             {lang.index.terms.map((sec, seci) => (
-              <div className="flex-1" key={seci}>
+              <div className="grow" key={seci}>
                 {sec.map((v, i) => (
                   <p className="mt-5" key={i}>
                     <span className="font-bold uppercase text-white">

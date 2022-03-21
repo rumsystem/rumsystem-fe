@@ -22,15 +22,15 @@ export const HomepageNetwork = observer(() => {
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-20">
-      <div className="flex flex-1 justify-center bg-black bg-opacity-70 px-5">
+      <div className="flex justify-center bg-black bg-opacity-70 px-5">
         <div
           className={classNames(
-            'max-w-[1000px] py-12 flex-1 text-14',
+            'max-w-[1000px] py-12 text-14',
             langService.state.lang === 'en' && 'font-consolas',
           )}
         >
-          <div className="flex mb:flex-col gap-y-6 gap-x-20">
-            <div className="flex flex-center pb-12 flex-none text-main text-main font-kanit italic text-23 tracking-wide">
+          <div className="flex mb:flex-col">
+            <div className="flex flex-center pb-12 pc:mr-20 flex-none text-main text-main font-kanit italic text-23 tracking-wide">
               {lang.network.rumeco}
             </div>
             <div
@@ -45,10 +45,21 @@ export const HomepageNetwork = observer(() => {
             </div>
           </div>
 
-          <div className="flex mb:flex-col gap-y-10 gap-x-8 border border-gray-83 p-8 mt-12">
-            <ImgBox className="flex-none self-end mr-4 mb-3 mb:order-2 mb:-mt-4" src={IconNTF} alt="" width={169} height={126} />
+          <div className="flex mb:flex-col border border-gray-83 p-8 mt-12">
+            <ImgBox
+              className="flex-none self-end mr-4 mb-3 mb:order-2"
+              src={IconNTF}
+              width={169}
+              height={126}
+              alt=""
+            />
             {[lang.network.box1, lang.network.box2].map((v, i) => (
-              <div className="mb:order-1 flex-1" key={i}>
+              <div
+                className={classNames(
+                  'mb:order-1 pc:grow pc:w-0 pc:ml-8 mb:mb-10',
+                )}
+                key={i}
+              >
                 <div
                   className={classNames(
                     'text-20 text-white tracking-wide',
@@ -90,7 +101,7 @@ export const HomepageNetwork = observer(() => {
 
       <div className="w-full max-w-[1200px] bg-black bg-opacity-70 px-5 mt-15 mb:mt-12 mx-auto">
         <div className="w-full max-w-[1000px] mx-auto pt-10 pb-14">
-          <div className="ml-4 flex-1 text-23 text-main italic font-kanit">
+          <div className="ml-4 text-23 text-main italic font-kanit">
             {lang.network.token}
           </div>
           <div className="mt-4 border border-gray-83 py-6 px-7">
@@ -104,12 +115,15 @@ export const HomepageNetwork = observer(() => {
             </div>
             <div
               className={classNames(
-                'flex mb:flex-col gap-y-8 gap-x-7 mt-5',
+                'flex mb:flex-col mt-5',
                 langService.state.lang === 'en' && 'font-consolas',
               )}
             >
               {lang.network.tokenA.map((v, i) => (
-                <div className="flex-1" key={i}>
+                <div
+                  className="pc:flex-1 pc:mr-7 mb:mb-8"
+                  key={i}
+                >
                   <div className="text-20 text-white font-bold">
                     {v.title}
                   </div>
@@ -118,7 +132,13 @@ export const HomepageNetwork = observer(() => {
                   </div>
                 </div>
               ))}
-              <ImgBox className="self-start" src={IconRumToken} alt="" width={116} height={215} />
+              <ImgBox
+                className="self-start"
+                src={IconRumToken}
+                width={116}
+                height={215}
+                alt=""
+              />
             </div>
           </div>
         </div>

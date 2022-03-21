@@ -9,7 +9,7 @@ interface Props {
 
 const BasicLayout = observer((props: Props) => (
   <div className="layout-box flex-col min-h-[100vh]">
-    <div className="page-container-box flex-col flex-auto flex-1">
+    <div className="page-container-box flex-col flex-auto flex-none">
       {props.children}
     </div>
 

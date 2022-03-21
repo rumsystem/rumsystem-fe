@@ -26,13 +26,18 @@ export const AppBox = (props: Props) => (
       langService.state.lang === 'en' && 'font-kanit',
     )}
   >
-    <div className="flex mb:flex-col flex-center gap-x-12">
-      <img className="flex-none w-15 h-auto" src={RumLogo} srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`} alt="" />
-      <div className="flex-col flex-center gap-y-1 text-24 mb:mt-4">
+    <div className="flex mb:flex-col flex-center">
+      <img
+        className="flex-none w-15 h-auto pc:mr-12"
+        src={RumLogo}
+        srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`}
+        alt=""
+      />
+      <div className="flex-col flex-center text-24 mb:mt-4">
         <div className="text-main font-tw-kanit">
           {lang.appBox.title}
         </div>
-        <div className="mb:text-center tracking-wide text-white">
+        <div className="mb:text-center tracking-wide text-white mt-1">
           {lang.appBox.content.map((v, i) => (
             <span
               className={classNames(
