@@ -130,7 +130,7 @@ export const HomepageDevelopers = observer(() => {
                   text: lang.developers.rumApp.links.docs,
                 },
                 {
-                  link: 'https://github.com/rumsystem/rum-app/blob/main/docs/i18n.md',
+                  link: 'https://github.com/rumsystem/rum-app/blob/main/src/utils/lang/cn.ts',
                   image: IconLinkLangauge,
                   text: lang.developers.rumApp.links.i18n,
                 },
