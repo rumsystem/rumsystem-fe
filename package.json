@@ -5,7 +5,7 @@
     "build": "./build/scripts/build.sh",
     "a": "rimraf ./dist && yarn genroutes && webpack --config build/config/webpack.prod.analyze.conf.js",
     "genroutes": "ts-node -P ./build/tsconfig.json build/generateRoutes",
-    "lint": "eslint --ext \"js,jsx,ts,tsx\" src test",
+    "lint": "eslint --ext \"js,jsx,ts,tsx\" src",
     "postinstall": "rimraf ./node_modules/.cache/"
   },
   "dependencies": {
