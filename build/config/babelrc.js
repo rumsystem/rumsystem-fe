@@ -5,6 +5,7 @@ module.exports = (api) => {
     sourceMaps: true,
     presets: [
       '@babel/preset-react',
+      '@babel/preset-typescript',
       api.env('production') && ['@babel/preset-env', {
         modules: false,
         bugfixes: true,

@@ -64,10 +64,6 @@ config.module.rule('ts')
   .use('babel')
   .loader('babel-loader')
   .end()
-  .use('ts')
-  .loader('ts-loader')
-  .options({ transpileOnly: true, happyPackMode: true })
-  .end()
   .exclude.add(/node_modules/);
 
 config.module.rule('js')
