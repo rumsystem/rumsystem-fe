@@ -22,7 +22,7 @@ export const themeLang = langService.createLangLoader({
   },
   'en': {
     content: {
-      lineHeight: 1.25,
+      lineHeight: 1.3,
     },
   },
 });
@@ -40,7 +40,6 @@ const setTheme = () => {
     rules.push(`html{font-family:${langFontMap[0][1]};}`);
   }
   style.innerHTML = rules.join('\n');
-  console.log('run');
 };
 
 const init = () => {

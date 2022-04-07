@@ -95,7 +95,7 @@ export const HomepageApps = observer(() => {
       <div
         className={classNames(
           'flex mb:flex-col justify-center max-w-[1260px] w-full mt-10 mb-14 mx-auto',
-          'bg-black bg-opacity-70 leading-lang',
+          'bg-black bg-opacity-70 leading-lang overflow-hidden',
           langService.state.lang === 'en' && 'font-consolas',
         )}
       >

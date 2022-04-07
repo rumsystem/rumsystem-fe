@@ -35,7 +35,7 @@ export const HomepageDevelopers = observer(() => {
             langService.state.lang === 'zh-tw' && 'font-tw-kanit',
           )}
         >
-          <div className="grow border border-gray-83 pt-8 pb-16 px-10 mb:px-6 pc:mr-5">
+          <div className="grow pc:w-0 border border-gray-83 pt-8 pb-16 px-10 mb:px-6 pc:mr-5">
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.quorum.title}
             </div>
@@ -97,7 +97,7 @@ export const HomepageDevelopers = observer(() => {
             </div>
           </div>
 
-          <div className="grow border border-gray-83 pt-8 pb-16 px-10 mb:px-6 mb:mt-8">
+          <div className="grow pc:w-0 border border-gray-83 pt-8 pb-16 px-10 mb:px-6 mb:mt-8">
             <div className="text-23 text-main italic traicking-wide text-center">
               {lang.developers.rumApp.title}
             </div>

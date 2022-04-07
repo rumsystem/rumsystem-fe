@@ -30,7 +30,7 @@ export const HomepageNetwork = observer(() => {
           )}
         >
           <div className="flex mb:flex-col">
-            <div className="flex flex-center pb-12 pc:mr-20 flex-none text-main text-main font-kanit italic text-23 tracking-wide">
+            <div className="flex flex-center pc:pb-12 mb:pb-8 pc:mr-20 flex-none text-main text-main font-kanit italic text-23 tracking-wide">
               {lang.network.rumeco}
             </div>
             <div

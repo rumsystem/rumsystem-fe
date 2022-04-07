@@ -61,7 +61,7 @@ export const AppBox = (props: Props) => (
         { icon: IconWin, text: 'Windows', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.exe' },
         { icon: IconLinux, text: 'Linux', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.linux.zip' },
         { icon: IconMac, text: 'macOS', version: 'v3.1.22', link: 'https://static-assets.xue.cn/rum-testing/RUM-3.1.22.dmg' },
-        { icon: IconAndroid, text: 'Android', version: 'v3.2.1', link: 'https://static-assets.xue.cn/rum_mobile/rum_3.2.1.apk' },
+        { icon: IconAndroid, text: 'Android', version: 'v3.2.2', link: 'https://static-assets.xue.cn/rum_mobile/rum_3.2.2.apk' },
       ].map((v, i) => (
         <div className="flex flex-center font-kanit" key={i}>
           <a

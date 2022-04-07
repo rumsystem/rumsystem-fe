@@ -4,20 +4,22 @@ import React from 'react';
 const LANG_STORAGE_KEY = 'LANG_STORAGE_KEY';
 
 const allLang = [
-  'en',
-  'zh-cn',
-  'zh-tw',
+  ['zh-tw', /^zh.*/],
+  ['en', /^en.*/],
+  ['zh-cn', /^zh-cn/],
 ] as const;
 export const langName: Record<AllLanguages, string> = {
   'en': 'En',
   'zh-cn': '简中',
   'zh-tw': '繁中',
 };
-export type AllLanguages = typeof allLang[number];
+export type AllLanguages = typeof allLang[number][0];
 type LangData<T> = Partial<Record<AllLanguages, (() => Promise<{ content: T }>) | { content: T }>>;
 
+const FALLBACK_LANG: AllLanguages = 'zh-tw';
+
 const state = observable({
-  lang: 'zh-tw' as AllLanguages,
+  lang: FALLBACK_LANG as AllLanguages,
 });
 
 const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
@@ -40,7 +42,7 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
     // fallback to zh-tw
     const langToLoad = state.lang in langData
       ? state.lang
-      : 'zh-tw';
+      : FALLBACK_LANG;
 
     const item = loaderState.map.get(state.lang);
     if (item) {
@@ -110,7 +112,6 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
           if (prop === '$$typeof') {
             return;
           }
-          // console.log(loaderState)
           console.error(new Error(`loading key ${String(prop)} for ${loaderState.lang} failed. ${loaderState.lang} is not loaded or defined`));
         }
         return null;
@@ -143,14 +144,8 @@ const saveLang = () => {
 
 const init = action(() => {
   const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages;
-  // FUTURE: normalize locale name
-  // if (navigator.language.startsWith('zh')) {
-  //   state.lang = 'cn';
-  // }
-  if (allLang.includes(lang)) {
-    state.lang = lang;
-  }
-  switchLang(state.lang);
+  const selectedLang = allLang.find((v) => v[1].test(lang))?.[0] ?? FALLBACK_LANG;
+  switchLang(selectedLang);
   return () => 1;
 });
 
