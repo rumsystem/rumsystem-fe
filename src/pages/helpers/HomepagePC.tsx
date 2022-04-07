@@ -13,7 +13,7 @@ import { HomepageDevelopers } from './subpages/developer';
 import './index.local.sass';
 
 const HomepagePC = () => (
-  <div className="homepage-pc">
+  <div className="homepage-pc flex-col flex-1">
     <HomepageHeader />
     <HomepageContent />
   </div>

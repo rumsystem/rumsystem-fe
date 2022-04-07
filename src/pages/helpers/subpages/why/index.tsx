@@ -20,8 +20,8 @@ export const HomepageWhy = observer(() => {
   }
 
   return (
-    <div className="main-box flex-col justify-center items-stretch">
-      <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 mb-16">
+    <div className="main-box flex-col flex-1 items-stretch">
+      <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 my-16">
         <div
           className={classNames(
             'flex mb:flex-col gap-x-2 flex-center max-w-[1200px] grow text-14 pt-10 pb-14',

@@ -16,7 +16,7 @@ export const content = {
       { type: ['light'], text: '，參與創建你的' },
       { type: ['bold'], text: '新節點' },
     ],
-    // previous: '查看其它歷史更新版本',
+    previous: '查看其它歷史更新版本',
   },
 
   index: {
@@ -54,7 +54,7 @@ export const content = {
       p: [
         '當所有數據均為用戶掌握，內容創造和價值交換都不再需要傳統中介機構充當金錢和信息的仲裁者。用戶可以通過智能合約為自己創建的內容定價，或出售羣組門票等，之後也可以在此基礎上參與流量分發，加速內容交易，由此獲得分發傭金。',
       ],
-      // link: '關聯錢包，開始挖礦',
+      link: '關聯錢包，開始挖礦',
     },
     box6: {
       title: '開源',
@@ -118,9 +118,6 @@ export const content = {
     title: 'Why Rum',
     subtitle: 'The internet is broken.',
     content: [
-      // 'Technology monopoly, especially social network monopoly, has become a worldwide problem.',
-      // 'Almost all online services are running on Client-Server architecture, which means all users\' activities and data will be stored in centralized servers. User\'s data always be controlled by service providers not themself, this made the internet centralized by nature.',
-      // 'RUM uses a different approach to rebuild the online service. Users will control their own data and interact with other related users in the peer-to-peer network.',
       '雲，是人們給這個時代偉大的科技重工業賦予的輕巧之名。雲的背面，是龐大的數據中心、上萬台集中運行的數據存儲和處理器、數百萬英里的光纖連接起的高度中心化網絡。科技巨頭們以規模和增長為壟斷正名，支配地位又令它們獲得可持續改造自己所控制市場的能力，源源不斷將金錢和權力虹吸到金字塔頂部。科技壟斷，尤其是社交網絡壟斷已經是世界性問題。',
       '將用戶隱私當商品、不尊重作者的價值、追蹤用戶行為和社交關係、使用算法控制分發、操控信息的生產和消費、影響用戶的“獨立思考結果”，這些對傳統互聯網平台的批評，在各個國家早已是主流聲音。對於內容創作而言，佔據壟斷地位的內容中介也可利用其支配地位，為迎合商業化目標，粉碎意見和品位的多樣性。市場高度集中後的面臨的就是同質化，這也是我們正目睹的現實。',
       '當前秩序下，中立性、安全、隱私、知識產權、數據所有權等方面的危機已經成為互聯網不可迴避的問題。而這些問題都不能在現有的網絡體系和商業模式中找到解決方案。人們急需一種不再由少量中心化企業控制流量如何分佈、不採用“隱私換廣告”模式來造血的新型網絡系統。這樣的基礎上才可能重建一個流通自由、定價自主、為價值付費、多元、公平、可持續的內容創作與交易生態。',
@@ -129,25 +126,25 @@ export const content = {
       '在 Internet，科技巨頭們控制著你的信息並由此獲利。在 Rum，你將掌握自己的信息並自由決定如何計費。',
     ],
 
-    faq: 'FAQ',
-    faqs: [
-      {
-        q: 'Ut enim ad minim veniam quis nostrud?',
-        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-      {
-        q: 'Ut enim ad minim veniam quis nostrud?',
-        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-      {
-        q: 'Ut enim ad minim veniam quis nostrud?',
-        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-      {
-        q: 'Ut enim ad minim veniam quis nostrud?',
-        a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      },
-    ],
+    // faq: 'FAQ',
+    // faqs: [
+    //   {
+    //     q: 'Ut enim ad minim veniam quis nostrud?',
+    //     a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    //   },
+    //   {
+    //     q: 'Ut enim ad minim veniam quis nostrud?',
+    //     a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    //   },
+    //   {
+    //     q: 'Ut enim ad minim veniam quis nostrud?',
+    //     a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    //   },
+    //   {
+    //     q: 'Ut enim ad minim veniam quis nostrud?',
+    //     a: 'Lorem ipsum dolor sit, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    //   },
+    // ],
   },
 
   network: {
@@ -170,8 +167,7 @@ export const content = {
         'NFT 標記了創造物與創造者之間的關係，為買家提供所有權證明。同時NFT的流通過程，也是數字資產分發的參與者去分配權益的過程。',
         'Rum System 使用戶可百分百掌握自己創造的內容及數據的所有權。配合內容確權、鏈上存證、智能合約的自動結算+可靈活自定義的合約條件，可完美支持 NFT 及其它創新的去中心交易模式。',
       ],
-      link: '',
-      // link: '關聯錢包，開始挖礦（開發中）',
+      link: '關聯錢包，開始挖礦（開發中）',
     },
     token: 'Rum Token',
     tokenQ: '為什麼需要 RUM Tokens?',

@@ -131,12 +131,12 @@ export const HomepageHeader = observer(() => {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {/* <MenuItem onClick={() => handleSwitchLang('en')}>
+          <MenuItem onClick={() => handleSwitchLang('en')}>
             {langName.en}
             {langService.state.lang === 'en' && (
               <Check className="text-link" />
             )}
-          </MenuItem> */}
+          </MenuItem>
           <MenuItem onClick={() => handleSwitchLang('zh-tw')}>
             {langName['zh-tw']}
             {langService.state.lang === 'zh-tw' && (
@@ -197,7 +197,7 @@ export const HomepageHeader = observer(() => {
                 <Download className="mr-[6px] text-22" />
                 {lang.header.download}
               </ListItem>
-              {/* <ListItem
+              <ListItem
                 className={classNames(
                   'justify-end px-5',
                   langService.state.lang === 'en' && 'font-kanit',
@@ -210,7 +210,7 @@ export const HomepageHeader = observer(() => {
                 )}
                 <Language className="mr-[6px] text-22" />
                 {langName.en}
-              </ListItem> */}
+              </ListItem>
               <ListItem
                 className={classNames(
                   'justify-end px-5 py-4',

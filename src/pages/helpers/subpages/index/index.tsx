@@ -41,7 +41,7 @@ export const HomepageIndex = observer(() => {
 
   return (
     <div className="main-box flex justify-center">
-      <div className="flex grow justify-center mx-5 mb:mx-0 mb:mt-0 my-10 px-5 max-w-[1200px] bg-black bg-opacity-70">
+      <div className="flex grow justify-center mx-6 mb:mx-0 mb:mt-0 my-10 px-6 max-w-[1200px] bg-black bg-opacity-70">
         <div
           className={classNames(
             'max-w-[1000px] grow text-16 text-gray-d1 py-16 mb:pt-8 leading-lang',
@@ -203,8 +203,8 @@ export const HomepageIndex = observer(() => {
 
           <AppBox className="mt-14 mb:mt-10 border border-gray-70" />
 
-          <div className="flex mb:flex-col flex-center max-w-[820px] mx-auto mt-10">
-            <div className="text-24 text-main font-kanit flex-none uppercase mb:text-center pc:mr-12">
+          <div className="flex mb:flex-col mb:flex-center max-w-[820px] mx-auto mt-10">
+            <div className="text-24 text-main font-kanit flex-none uppercase leading-normal mb:text-center pc:mr-12 pc:mt-8">
               {lang.index.howWorks.title.split('\n').map((v, i) => (
                 <p key={i}>{v}</p>
               ))}
