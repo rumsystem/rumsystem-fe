@@ -29,7 +29,7 @@ export const AppBox = observer((props: Props) => {
       className={classNames(
         'app-box p-14 mb:px-6',
         props.className,
-        langService.state.lang === 'en' && 'font-kanit',
+        langService.en && 'font-kanit',
       )}
     >
       <div className="flex mb:flex-col flex-center">

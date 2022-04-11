@@ -31,8 +31,8 @@ export const HomepageDevelopers = observer(() => {
         <div
           className={classNames(
             'flex mb:flex-col items-stretch w-full max-w-[1050px] mx-auto py-15',
-            langService.state.lang === 'en' && 'font-kanit',
-            langService.state.lang === 'zh-tw' && 'font-tw-kanit',
+            langService.en && 'font-kanit',
+            langService.zh && 'font-tw-kanit',
           )}
         >
           <div className="grow pc:w-0 border border-gray-83 pt-8 pb-16 px-10 mb:px-6 pc:mr-5">
@@ -42,7 +42,7 @@ export const HomepageDevelopers = observer(() => {
             <div
               className={classNames(
                 'text-gray-d1 leading-lang mt-7',
-                langService.state.lang === 'en' && 'font-consolas',
+                langService.en && 'font-consolas text-15',
               )}
             >
               {lang.developers.quorum.desc.map((v, i) => (
@@ -51,7 +51,7 @@ export const HomepageDevelopers = observer(() => {
                 </p>
               ))}
             </div>
-            <div className="h-16 mt-4 relative">
+            <div className="h-16 relative">
               <img className="absolute right-0 xs:-right-1 top-4" src={IconQuorum} alt="" />
             </div>
             <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
@@ -104,7 +104,7 @@ export const HomepageDevelopers = observer(() => {
             <div
               className={classNames(
                 'text-gray-d1 leading-lang mt-7',
-                langService.state.lang === 'en' && 'font-consolas',
+                langService.en && 'font-consolas text-15',
               )}
             >
 
@@ -114,8 +114,8 @@ export const HomepageDevelopers = observer(() => {
                 </p>
               ))}
             </div>
-            <div className="h-16 mt-4 relative">
-              <img className="absolute right-0 xs:-right-1" src={IconRumApp} alt="" />
+            <div className="h-16 relative">
+              <img className="absolute top-4 right-0 xs:-right-1" src={IconRumApp} alt="" />
             </div>
             <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
               {[

@@ -24,13 +24,13 @@ export const HomepageWhy = observer(() => {
       <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 my-16">
         <div
           className={classNames(
-            'flex mb:flex-col gap-x-2 flex-center max-w-[1200px] grow text-14 pt-10 pb-14',
-            langService.state.lang === 'en' && 'font-consolas',
+            'flex mb:flex-col flex-center max-w-[1200px] grow pt-10 pb-14',
+            langService.en && 'font-consolas',
           )}
         >
           <div className="flex-col flex-none mb:w-full">
             <ImgBox
-              className="flex-none self-center -translate-x-7 mb:translate-x-0 mb:max-w-[400px] mb:h-auto"
+              className="flex-none self-center -translate-x-7 mb:translate-x-0 mb:max-w-[400px] mb:h-auto pc:mr-2"
               src={WhyRum}
               width="349.602"
               height="309.172"
@@ -45,7 +45,12 @@ export const HomepageWhy = observer(() => {
               </div>
             </div>
           </div>
-          <div className="grow mb:flex-none gap-x-16 mt-2 text-gray-d1 text-16 leading-lang">
+          <div
+            className={classNames(
+              'grow mb:flex-none gap-x-16 mt-2 text-gray-d1 leading-lang',
+              langService.en && 'text-15',
+            )}
+          >
             {lang.why.content.map((v, i) => (
               <p className="mt-5" key={i}>
                 {v}

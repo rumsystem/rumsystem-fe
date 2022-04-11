@@ -151,6 +151,13 @@ const init = action(() => {
 
 export const langService = {
   state,
+  get en() {
+    return state.lang === 'en';
+  },
+  get zh() {
+    return ['zh-cn', 'zh-tw'].includes(state.lang);
+  },
+
   init,
   createLangLoader,
   switchLang,

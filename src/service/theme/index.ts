@@ -1,5 +1,5 @@
 import { reaction } from 'mobx';
-import { langService } from '~/service';
+import { langService } from '~/service/lang';
 
 const fontBase = '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, ';
 const fontEmoji = ', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';
@@ -22,7 +22,7 @@ export const themeLang = langService.createLangLoader({
   },
   'en': {
     content: {
-      lineHeight: 1.3,
+      lineHeight: 1.4,
     },
   },
 });
@@ -45,7 +45,7 @@ const setTheme = () => {
 const init = () => {
   const dispose = reaction(
     () => langService.state.lang,
-    setTheme,
+    () => setTimeout(setTheme),
   );
   setTheme();
   document.head.append(style);
