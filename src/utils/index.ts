@@ -1,34 +1,10 @@
 import React from 'react';
 
+export * from './useScreenSize';
+
 export const isMobile = () => window.innerWidth < 960;
 
-/** 当屏幕宽度大于指定值时 */
-export const useWiderThan = (() => {
-  type SetItem = [number, React.Dispatch<React.SetStateAction<boolean>>];
-  const listeners = new Set<SetItem>();
-  const handleResize = () => {
-    const innerWidth = window.innerWidth;
-    Array.from(listeners).forEach((v) => {
-      v[1](innerWidth >= v[0]);
-    });
-  };
-
-  window.addEventListener('resize', handleResize);
-
-  return (width: number) => {
-    const [state, setState] = React.useState(window.innerWidth >= width);
-
-    React.useEffect(() => {
-      const item: SetItem = [width, setState];
-      listeners.add(item);
-      return () => {
-        listeners.delete(item);
-      };
-    }, []);
-
-    return state;
-  };
-})();
+export const sleep = (time?: number) => new Promise<void>((rs) => setTimeout(rs, time));
 
 type SetLoading = (l: boolean) => unknown;
 type UnknownFunction = (...p: Array<any>) => unknown;
@@ -109,4 +85,16 @@ export const useSetTitle = (title?: string) => {
       setTitle();
     };
   }, []);
+};
+
+export const createPromise = <T extends unknown>() => {
+  let rs!: (v: T) => unknown;
+  let rj!: (v: any) => unknown;
+
+  const p = new Promise<T>((resolve, reject) => {
+    rs = resolve;
+    rj = reject;
+  });
+
+  return { p, rs, rj };
 };

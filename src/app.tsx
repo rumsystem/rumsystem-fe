@@ -19,10 +19,7 @@ const LocationChange = () => {
 
 const App = observer(() => {
   themeLang.useLang();
-  React.useEffect(
-    () => initService(),
-    [],
-  );
+  React.useEffect(() => initService(), []);
   if (!themeLang.ready) {
     return null;
   }

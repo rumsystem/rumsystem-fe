@@ -13,29 +13,6 @@ const theme = createTheme({
       main: '#1880b8',
     },
   },
-  // components: {
-  //   MuiTypography: {
-  //     styleOverrides: {
-  //       body1: {
-  //         fontFamily: 'inherit',
-  //       },
-  //     },
-  //   },
-  //   MuiInputLabel: {
-  //     styleOverrides: {
-  //       outlined: {
-  //         fontSize: '14px',
-  //       },
-  //     },
-  //   },
-  //   MuiInputBase: {
-  //     styleOverrides: {
-  //       input: {
-  //         fontSize: '14px',
-  //       },
-  //     },
-  //   },
-  // },
 });
 
 
