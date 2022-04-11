@@ -1,5 +1,5 @@
 import { reaction } from 'mobx';
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 
 const fontBase = '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, ';
 const fontEmoji = ', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"';

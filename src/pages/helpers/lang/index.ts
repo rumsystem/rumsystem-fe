@@ -1,4 +1,4 @@
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 
 export const lang = langService.createLangLoader({
   'zh-tw': () => import('./zh-tw'),
