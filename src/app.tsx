@@ -6,7 +6,6 @@ import Layout from './layouts';
 import { routerHistory } from './history';
 import { ThemeRoot } from './utils/theme';
 import { initService } from './service';
-import { themeLang } from './service/theme';
 
 const LocationChange = () => {
   const location = useLocation();
@@ -18,11 +17,7 @@ const LocationChange = () => {
 };
 
 const App = observer(() => {
-  themeLang.useLang();
   React.useEffect(() => initService(), []);
-  if (!themeLang.ready) {
-    return null;
-  }
   return (
     <ThemeRoot>
       <Router history={routerHistory}>

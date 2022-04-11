@@ -9,23 +9,17 @@ const langFontMap = [
   [/^zh-tw$/i, `${fontBase}dengxian, Source Han Sans TC, sans-serif${fontEmoji}`],
 ] as const;
 
-export const themeLang = langService.createLangLoader({
+const themeMap = {
   'zh-tw': {
-    content: {
-      lineHeight: 1.5,
-    },
+    lineHeight: 1.5,
   },
   'zh-cn': {
-    content: {
-      lineHeight: 1.5,
-    },
+    lineHeight: 1.5,
   },
   'en': {
-    content: {
-      lineHeight: 1.4,
-    },
+    lineHeight: 1.4,
   },
-});
+} as const;
 
 let style = null as null | HTMLStyleElement;
 
@@ -45,7 +39,7 @@ const setTheme = () => {
   const lang = langService.state.lang;
   const item = langFontMap.find((v) => v[0].test(lang));
   const rules = [];
-  rules.push(`html{--rum-line-height:${themeLang.lineHeight};}`);
+  rules.push(`html{--rum-line-height:${themeMap[lang].lineHeight};}`);
   if (item) {
     rules.push(`html{font-family:${item[1]};}`);
   } else {
@@ -58,7 +52,7 @@ const setTheme = () => {
 const init = () => {
   const dispose = reaction(
     () => langService.state.lang,
-    () => setTimeout(setTheme),
+    setTheme,
   );
   setTheme();
 
