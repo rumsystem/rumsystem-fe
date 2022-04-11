@@ -76,7 +76,6 @@
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.3",
     "progress-bar-webpack-plugin": "^2.1.0",
-    "puppeteer": "^13.5.2",
     "react-refresh": "^0.12.0",
     "sass-loader": "^12.6.0",
     "scoped-css-loader": "^1.0.0",
