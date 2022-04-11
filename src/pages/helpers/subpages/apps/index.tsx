@@ -6,8 +6,7 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 import React from 'react';
 import { ImgBox } from '~/components/ImgBox';
 import { langService } from '~/service';
-import { useSetTitle } from '~/utils';
-import { useLessThan } from '~/utils/useLessThan';
+import { useSetTitle, useLessThan } from '~/utils';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';

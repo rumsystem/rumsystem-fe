@@ -27,7 +27,19 @@ export const themeLang = langService.createLangLoader({
   },
 });
 
-const style = document.createElement('style');
+let style = null as null | HTMLStyleElement;
+
+const appendTag = () => {
+  const point = Array.from(document.head.childNodes)
+    .filter((v) => v.nodeType === 8)
+    .find((v) => v.textContent!.includes('style-loader-insertion-point'))!;
+
+  if (!style) {
+    style = document.createElement('style');
+    document.head.append(style);
+  }
+  document.head.insertBefore(style, point);
+};
 
 const setTheme = () => {
   const lang = langService.state.lang;
@@ -39,7 +51,8 @@ const setTheme = () => {
   } else {
     rules.push(`html{font-family:${langFontMap[0][1]};}`);
   }
-  style.innerHTML = rules.join('\n');
+  appendTag();
+  style!.innerHTML = rules.join('\n');
 };
 
 const init = () => {
@@ -48,7 +61,6 @@ const init = () => {
     () => setTimeout(setTheme),
   );
   setTheme();
-  document.head.append(style);
 
   return dispose;
 };

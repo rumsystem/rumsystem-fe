@@ -12,31 +12,53 @@ const resolve = (dir) => path.join(__dirname, '../../..', dir);
 
 const config = new Config();
 
-const createCssRule = (name, test) => config.module.rule(name)
-  .test(test)
-  .use('thread-loader')
-  .loader('thread-loader')
-  .options({ workers })
-  .end()
-  .use('style-loader')
-  .loader('style-loader')
-  .end()
-  .use('css-loader')
-  .loader('css-loader')
-  .end()
-  .use('scoped-css-loader')
-  .loader('scoped-css-loader')
-  .end()
-  .use('postcss-loader')
-  .loader('postcss-loader')
-  .end();
+const createCssRule = ({
+  name,
+  test,
+  scope,
+  sourceMap,
+  insert,
+  sass,
+}) => {
+  const rule = config.module.rule(name).test(test);
+  // .use('thread-loader')
+  // .loader('thread-loader')
+  // .options({ workers })
+  // .end()
+  rule.use('style-loader')
+    .loader('style-loader')
+    .options({ insert: insert ?? '#style-loader-insertion-point' });
+
+  rule.use('css-loader')
+    .loader('css-loader')
+    .options({ sourceMap });
+
+
+  if (scope) {
+    rule.use('scoped-css-loader')
+      .loader('scoped-css-loader');
+  }
+
+  rule.use('postcss-loader')
+    .loader('postcss-loader')
+    .options({ sourceMap });
+
+  if (sass) {
+    rule.use('sass-loader')
+      .loader('sass-loader')
+      .options({ sourceMap })
+      .end();
+  }
+
+  return rule;
+};
 
 config.mode('none');
 
 config.context(resolve('.'));
 
 config.entry('index')
-  .add(resolve('./src/index.ts'));
+  .add(resolve('./src/index.tsx'));
 
 config.output
   .path(resolve('dist'))
@@ -77,51 +99,40 @@ config.module.rule('js')
   .end()
   .exclude.add(/node_modules/);
 
-createCssRule('css', /\.css$/);
-createCssRule('sass', /\.(sass|scss)$/)
-  .use('sass-loader')
-  .loader('sass-loader')
-  .end()
+createCssRule({
+  name: 'css',
+  test: /\.css$/,
+  scope: true,
+  sourceMap: true,
+});
+
+createCssRule({
+  name: 'sass',
+  test: /\.(sass|scss)$/,
+  scope: true,
+  sourceMap: true,
+  sass: true,
+})
   .exclude
   .add(/tailwind\.sass$/)
   .add(/tailwind-base\.sass$/);
 
-config.module.rule('tailwind-base-css')
-  .test(/tailwind-base\.sass$/)
-  .use('style-loader')
-  .loader('style-loader')
-  .options({ insert: '#preflight-injection-point' })
-  .end()
-  .use('css-loader')
-  .loader('css-loader')
-  .options({ sourceMap: false })
-  .end()
-  .use('postcss-loader')
-  .loader('postcss-loader')
-  .options({ sourceMap: false })
-  .end()
-  .use('sass-loader')
-  .loader('sass-loader')
-  .options({ sourceMap: false })
-  .end();
+createCssRule({
+  name: 'tailwind-base-css',
+  test: /tailwind-base\.sass$/,
+  insert: '#preflight-injection-point',
+  sourceMap: false,
+  scope: false,
+  sass: true,
+});
 
-config.module.rule('tailwind-css')
-  .test(/tailwind\.sass$/)
-  .use('style-loader')
-  .loader('style-loader')
-  .end()
-  .use('css-loader')
-  .loader('css-loader')
-  .options({ sourceMap: false })
-  .end()
-  .use('postcss-loader')
-  .loader('postcss-loader')
-  .options({ sourceMap: false })
-  .end()
-  .use('sass-loader')
-  .loader('sass-loader')
-  .options({ sourceMap: false })
-  .end();
+createCssRule({
+  name: 'tailwind-css',
+  test: /tailwind\.sass$/,
+  sourceMap: false,
+  scope: false,
+  sass: true,
+});
 
 config.module.rule('assets')
   .test(/\.(jpg|png|svg)$/)
