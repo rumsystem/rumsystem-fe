@@ -14,9 +14,9 @@ export const content: ZHTWContent = {
     title: 'Download Rum App',
     content: [
       { type: ['light'], text: 'Join as a ' },
-      { type: ['bold'], text: 'Node' },
+      { type: [], text: 'Node' },
       { type: ['light'], text: ' of an ' },
-      { type: ['bold'], text: 'alternative World' },
+      { type: [], text: 'alternative World' },
     ],
     previous: 'View previous versions',
   },

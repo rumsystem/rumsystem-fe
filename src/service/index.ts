@@ -7,8 +7,8 @@ export * from './theme';
 
 export const initService = () => {
   const disposes = [
-    langService.init(),
     themeService.init(),
+    langService.init(),
   ];
 
   return () => {

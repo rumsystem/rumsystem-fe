@@ -25,8 +25,8 @@ export const HomepageNetwork = observer(() => {
       <div className="flex justify-center bg-black bg-opacity-70 px-5">
         <div
           className={classNames(
-            'max-w-[1000px] py-12 text-14',
-            langService.state.lang === 'en' && 'font-consolas',
+            'max-w-[1000px] py-12',
+            langService.en && 'font-consolas',
           )}
         >
           <div className="flex mb:flex-col">
@@ -35,8 +35,8 @@ export const HomepageNetwork = observer(() => {
             </div>
             <div
               className={classNames(
-                'text-gray-d1 leading-lang text-16 -mt-2',
-                langService.state.lang === 'en' && 'font-consolas',
+                'text-gray-d1 leading-lang -mt-2',
+                langService.en && 'font-consolas text-15',
               )}
             >
               {lang.network.ecoContent.map((v, i) => (
@@ -63,15 +63,15 @@ export const HomepageNetwork = observer(() => {
                 <div
                   className={classNames(
                     'text-20 text-white tracking-wide',
-                    langService.state.lang === 'en' && 'font-kanit',
+                    langService.en && 'font-kanit',
                   )}
                 >
                   {v.title}
                 </div>
                 <div
                   className={classNames(
-                    'text-16 text-gray-d1 leading-lang mt-2',
-                    langService.state.lang === 'en' && 'font-consolas',
+                    'text-gray-d1 leading-lang mt-2',
+                    langService.en && 'font-consolas text-15',
                   )}
                 >
                   {v.content.map((v, i) => (
@@ -84,7 +84,7 @@ export const HomepageNetwork = observer(() => {
                   <div
                     className={classNames(
                       'text-16 text-gray-d1 mt-4',
-                      langService.state.lang === 'en' && 'font-kanit',
+                      langService.en && 'font-kanit',
                     )}
                   >
                     <span className="inline-flex group text-link-soft hover:text-main text-18 font-light tracking-wider cursor-pointer">
@@ -107,8 +107,8 @@ export const HomepageNetwork = observer(() => {
           <div className="mt-4 border border-gray-83 py-6 px-7">
             <div className={classNames(
               'text-link-soft font-light text-18 tracking-wide',
-              langService.state.lang === 'en' && 'font-kanit',
-              langService.state.lang === 'zh-tw' && 'font-tw-kanit',
+              langService.en && 'font-kanit',
+              langService.zh && 'font-tw-kanit',
             )}
             >
               {lang.network.tokenQ}
@@ -116,7 +116,7 @@ export const HomepageNetwork = observer(() => {
             <div
               className={classNames(
                 'flex mb:flex-col mt-5',
-                langService.state.lang === 'en' && 'font-consolas',
+                langService.en && 'font-consolas',
               )}
             >
               {lang.network.tokenA.map((v, i) => (
@@ -127,7 +127,12 @@ export const HomepageNetwork = observer(() => {
                   <div className="text-20 text-white font-bold">
                     {v.title}
                   </div>
-                  <div className="mt-2 text-gray-d1">
+                  <div
+                    className={classNames(
+                      'mt-2 text-gray-d1',
+                      langService.en && 'text-15',
+                    )}
+                  >
                     {v.content}
                   </div>
                 </div>

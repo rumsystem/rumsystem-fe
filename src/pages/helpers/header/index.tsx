@@ -93,7 +93,7 @@ export const HomepageHeader = observer(() => {
         className={classNames(
           'mb:hidden flex absolute mui-fixed right-0 mb top-0 mt-8 mr-10 ',
           'text-link text-16',
-          langService.state.lang === 'en' && 'font-kanit',
+          langService.en && 'font-kanit',
         )}
       >
         <Link
@@ -133,13 +133,13 @@ export const HomepageHeader = observer(() => {
         >
           <MenuItem onClick={() => handleSwitchLang('en')}>
             {langName.en}
-            {langService.state.lang === 'en' && (
+            {langService.en && (
               <Check className="text-link" />
             )}
           </MenuItem>
           <MenuItem onClick={() => handleSwitchLang('zh-tw')}>
             {langName['zh-tw']}
-            {langService.state.lang === 'zh-tw' && (
+            {langService.zh && (
               <Check className="text-link" />
             )}
           </MenuItem>
@@ -189,7 +189,7 @@ export const HomepageHeader = observer(() => {
               <ListItem
                 className={classNames(
                   'justify-end px-6 py-4',
-                  langService.state.lang === 'en' && 'font-kanit',
+                  langService.en && 'font-kanit',
                 )}
                 button
                 onClick={() => routerHistory.push('/apps')}
@@ -200,12 +200,12 @@ export const HomepageHeader = observer(() => {
               <ListItem
                 className={classNames(
                   'justify-end px-5',
-                  langService.state.lang === 'en' && 'font-kanit',
+                  langService.en && 'font-kanit',
                 )}
                 button
                 onClick={() => handleSwitchLang('en')}
               >
-                {langService.state.lang === 'en' && (
+                {langService.en && (
                   <Check className="text-link" />
                 )}
                 <Language className="mr-[6px] text-22" />
@@ -214,12 +214,12 @@ export const HomepageHeader = observer(() => {
               <ListItem
                 className={classNames(
                   'justify-end px-5 py-4',
-                  langService.state.lang === 'en' && 'font-kanit',
+                  langService.en && 'font-kanit',
                 )}
                 button
                 onClick={() => handleSwitchLang('zh-tw')}
               >
-                {langService.state.lang === 'zh-tw' && (
+                {langService.zh && (
                   <Check className="text-link" />
                 )}
                 <Language className="mr-[6px] text-22" />

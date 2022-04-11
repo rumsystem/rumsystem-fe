@@ -85,7 +85,7 @@ export const HomepageApps = observer(() => {
         <div
           className={classNames(
             'max-w-[1200px] grow text-14',
-            langService.state.lang === 'en' && 'font-consolas',
+            langService.en && 'font-consolas',
           )}
         >
           <AppBox />
@@ -96,7 +96,7 @@ export const HomepageApps = observer(() => {
         className={classNames(
           'flex mb:flex-col justify-center max-w-[1260px] w-full mt-10 mb-14 mx-auto',
           'bg-black bg-opacity-70 leading-lang overflow-hidden',
-          langService.state.lang === 'en' && 'font-consolas',
+          langService.en && 'font-consolas',
         )}
       >
         <div className="flex mb:flex-col mb:flex-none py-8 mb:pt-8 mb:pb-4 pl-12 mb:px-8 pc:min-w-[440px]">
@@ -108,7 +108,7 @@ export const HomepageApps = observer(() => {
             <div
               className={classNames(
                 'mt-2 text-gray-d1',
-                langService.state.lang === 'en' && 'font-consolas',
+                langService.en && 'font-consolas text-15',
               )}
             >
               {lang.apps.content.map((v, i) => (
@@ -118,20 +118,20 @@ export const HomepageApps = observer(() => {
             <div
               className={classNames(
                 'mt-6 text-13 text-gray-7b',
-                langService.state.lang === 'en' && 'font-consolas',
+                langService.en && 'font-consolas',
               )}
             >
               {lang.apps.smallTip}
             </div>
           </div>
           <div
-            className="flex-col mb:flex-row flex-center gap-x-4 mb:mt-4 px-4"
+            className="flex-col mb:flex-row flex-center mb:mt-4 px-4"
             onMouseEnter={handleStopSlide}
             onMouseLeave={handleResumeSlide}
           >
             {Array(5).fill(0).map((_, i) => (
               <div
-                className="h-6 w-6 flex flex-center cursor-pointer pc:my-2"
+                className="h-6 w-6 flex flex-center cursor-pointer pc:my-2 mb:mx-2"
                 key={i}
                 onClick={() => handleChangeImage(i)}
               >
