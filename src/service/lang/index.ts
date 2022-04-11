@@ -143,7 +143,9 @@ const saveLang = () => {
 };
 
 const init = action(() => {
-  const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages;
+  const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages
+    ?? allLang.find((v) => v[1].test(navigator.language))
+    ?? FALLBACK_LANG;
   const selectedLang = allLang.find((v) => v[1].test(lang))?.[0] ?? FALLBACK_LANG;
   switchLang(selectedLang);
   return () => 1;
