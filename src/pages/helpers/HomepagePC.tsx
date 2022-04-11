@@ -32,7 +32,6 @@ const HomepageContent = observer(() => {
   if (!lang.ready) {
     return null;
   }
-
   return (<>
     {pathname === '/' && (
       <HomepageIndex />
