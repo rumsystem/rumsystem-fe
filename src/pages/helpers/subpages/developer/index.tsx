@@ -11,7 +11,7 @@ import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
 import IconEslint from '~/icons/icon_eslint.svg';
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 
 import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';

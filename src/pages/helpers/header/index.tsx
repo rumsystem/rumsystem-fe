@@ -8,7 +8,7 @@ import { Menu, MenuItem, Drawer, List, ListItem, Divider, Box } from '@mui/mater
 
 import IconDownload from '~/icons/icon_download.svg';
 import RumLogo from '~/icons/logo_rumsystem.svg';
-import { langService, AllLanguages, langName } from '~/service/lang';
+import { langService, AllLanguages, langName } from '~/service';
 import { routerHistory } from '~/history';
 
 import { lang } from '../lang';

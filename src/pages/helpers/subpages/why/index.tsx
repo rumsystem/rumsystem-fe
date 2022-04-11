@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 import { ImgBox } from '~/components/ImgBox';
 import { useSetTitle } from '~/utils';
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 
 import { lang } from '../../lang';
 

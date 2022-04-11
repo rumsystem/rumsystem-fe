@@ -5,7 +5,7 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 import { ImgBox } from '~/components/ImgBox';
 // import IconCoin from '~/icons/icon_coin.svg';
 import IconNode from '~/icons/icon_node.svg';

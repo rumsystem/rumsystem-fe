@@ -6,7 +6,7 @@ import IconCoin from '~/icons/icon_coin.svg';
 import { useSetTitle } from '~/utils';
 
 import { ImgBox } from '~/components/ImgBox';
-import { langService } from '~/service/lang';
+import { langService } from '~/service';
 
 import { lang } from '../../lang';
 import IconNTF from './icons/Illustration_NFT.svg';
