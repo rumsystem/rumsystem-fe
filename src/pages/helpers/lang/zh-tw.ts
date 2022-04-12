@@ -159,7 +159,6 @@ export const content = {
       content: [
         '去中心的 Rum Network 可令數字內容的交易無須再依賴傳統中介機構充當金錢和信息的仲裁者。用戶可以通過智能合約為自己創建的內容定價，或出售羣組門票等，之後也可以在此基礎上參與流量分發，加速內容交易，由此獲得分發傭金。',
       ],
-      link: '關聯錢包，開始挖礦（開發中）',
     },
     box2: {
       title: 'RUM 與 NFT',
@@ -167,8 +166,11 @@ export const content = {
         'NFT 標記了創造物與創造者之間的關係，為買家提供所有權證明。同時NFT的流通過程，也是數字資產分發的參與者去分配權益的過程。',
         'Rum System 使用戶可百分百掌握自己創造的內容及數據的所有權。配合內容確權、鏈上存證、智能合約的自動結算+可靈活自定義的合約條件，可完美支持 NFT 及其它創新的去中心交易模式。',
       ],
-      link: '關聯錢包，開始挖礦（開發中）',
     },
+    link: [
+      { type: [], text: '關聯錢包，開始挖礦' },
+      { type: ['small'], text: '（開發中）' },
+    ] as Array<{ type: Array<string>, text: string }>,
     token: 'Rum Token',
     tokenQ: '為什麼需要 RUM Tokens?',
     tokenA: [

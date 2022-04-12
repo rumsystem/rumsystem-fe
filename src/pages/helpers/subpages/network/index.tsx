@@ -47,7 +47,7 @@ export const HomepageNetwork = observer(() => {
 
           <div className="flex mb:flex-col border border-gray-83 p-8 mt-12">
             <ImgBox
-              className="flex-none self-end mr-4 mb-3 mb:order-2"
+              className="flex-none self-end mr-4 pc:mb-12 mb:mb-3 mb:order-2"
               src={IconNTF}
               width={169}
               height={126}
@@ -80,16 +80,34 @@ export const HomepageNetwork = observer(() => {
                     </p>
                   ))}
                 </div>
-                {!!v.link && (
+                {i === 0 && (
                   <div
                     className={classNames(
                       'text-16 text-gray-d1 mt-4',
                       langService.en && 'font-kanit',
                     )}
                   >
-                    <span className="inline-flex group text-link-soft hover:text-main text-18 font-light tracking-wider cursor-pointer">
+                    <span
+                      className={classNames(
+                        'inline-flex group text-link-soft hover:text-main font-light tracking-wider cursor-pointer',
+                        langService.en && 'text-16',
+                        langService.zh && 'text-18',
+                      )}
+                    >
                       <img className="mr-3 self-center group-hover:hover-orange" src={IconCoin} alt="" />
-                      {v.link}
+                      <span>
+                        {lang.network.link.map((l, li) => (
+                          <span
+                            className={classNames(
+                              l.type.includes('small') && langService.en && 'text-13',
+                              l.type.includes('small') && langService.zh && 'text-14',
+                            )}
+                            key={li}
+                          >
+                            {l.text}
+                          </span>
+                        ))}
+                      </span>
                     </span>
                   </div>
                 )}

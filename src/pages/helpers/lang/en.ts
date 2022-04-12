@@ -159,15 +159,17 @@ export const content: ZHTWContent = {
       content: [
         'The decentralization of RumNetwork can eliminate the need for traditional intermediaries to act as arbiters of money and value. Users can set prices, subscription or trading conditions for digital assets they created or copyright represented through smart contracts, or earn distribution commissions by helping promote or facilitate deals.',
       ],
-      link: 'Link wallet and start mining (under development)',
     },
     box2: {
       title: 'RUMs and NFTs',
       content: [
         'NFTs mark the relationship between creation and creator, providing buyers with proof of ownership. At the same time, the circulation of NFT is also a process of interest allocation for those who participate in adding value to the asset. RumSystem is Ideal for a variety of NFT projects and hopes to fuel more innovative business opportunities for digital asset trading.',
       ],
-      link: 'Link wallet and start mining (under development)',
     },
+    link: [
+      { type: [], text: 'Link Wallet & Earn Rum ' },
+      { type: ['small'], text: '(coming soon)' },
+    ],
     token: 'Rum Token',
     tokenQ: 'Why do you need RUM Tokens?',
     tokenA: [
