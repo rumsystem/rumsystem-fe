@@ -59,7 +59,7 @@ export interface RumAndroidMetadata {
 const getRumAppVersion = cachePromiseHof(async () => {
   if (state.rumAppVersionRaw) { return; }
   try {
-    const fetchResponse = await fetch('https://static-assets.pek3b.qingstor.com/rum-testing/latest.yml');
+    const fetchResponse = await fetch(`https://static-assets.pek3b.qingstor.com/rum-testing/latest.yml?t=${Date.now()}`);
     const metaText = await fetchResponse.text();
     const data = load(metaText) as RumAppMetadata;
     runInAction(() => {
