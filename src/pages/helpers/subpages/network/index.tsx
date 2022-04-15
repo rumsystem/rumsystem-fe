@@ -13,12 +13,7 @@ import IconNTF from './icons/Illustration_NFT.svg';
 import IconRumToken from './icons/Illustration_Rum_Token.svg';
 
 export const HomepageNetwork = observer(() => {
-  lang.useLang();
   useSetTitle('Token & Eco');
-
-  if (!lang.ready) {
-    return null;
-  }
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-20">
