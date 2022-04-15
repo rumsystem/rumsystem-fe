@@ -18,12 +18,7 @@ import IconQuorum from './icons/Illustration_QuoRum.svg';
 import IconRumApp from './icons/Illustration_RumApp.svg';
 
 export const HomepageDevelopers = observer(() => {
-  lang.useLang();
   useSetTitle('Developers');
-
-  if (!lang.ready) {
-    return null;
-  }
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-24">

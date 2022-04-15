@@ -12,15 +12,18 @@ import { HomepageDevelopers } from './subpages/developer';
 
 import './index.local.sass';
 
-const HomepagePC = () => (
-  <div className="homepage-pc flex-col flex-1">
-    <HomepageHeader />
-    <HomepageContent />
-  </div>
-);
-
-const HomepageContent = observer(() => {
+const HomepagePC = observer(() => {
   lang.useLang();
+  if (!lang.ready) { return null; }
+  return (
+    <div className="homepage-pc flex-col flex-1">
+      <HomepageHeader />
+      <HomepageContent />
+    </div>
+  );
+});
+
+const HomepageContent = () => {
   const { pathname } = useLocation();
 
   React.useEffect(() => {
@@ -29,9 +32,6 @@ const HomepageContent = observer(() => {
     img.src = 'https://img-cdn.xue.cn/311-app_screen_1_opt.png';
   }, []);
 
-  if (!lang.ready) {
-    return null;
-  }
   return (<>
     {pathname === '/' && (
       <HomepageIndex />
@@ -49,7 +49,7 @@ const HomepageContent = observer(() => {
       <HomepageDevelopers />
     )}
   </>);
-});
+};
 
 
 export default HomepagePC;

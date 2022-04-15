@@ -3,6 +3,7 @@ import React, { ImgHTMLAttributes } from 'react';
 type Props = ImgHTMLAttributes<Element> & {
   mbWidth?: number | string
   mbHeight?: number | string
+  retainSize?: boolean
 };
 
 /** img with size hint to prevent layout shift */
@@ -28,6 +29,7 @@ export const ImgBox = (props: Props) => {
   });
 
   const handleOnLoad = () => {
+    if (props.retainSize) { return; }
     setSize({});
   };
 

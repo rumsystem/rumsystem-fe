@@ -12,12 +12,7 @@ import WhyRum from './icons/Illustration_why_rum.svg';
 // import IconFaq from './icons/icon_faq.svg';
 
 export const HomepageWhy = observer(() => {
-  lang.useLang();
   useSetTitle('Why Rum');
-
-  if (!lang.ready) {
-    return null;
-  }
 
   return (
     <div className="main-box flex-col flex-1 items-stretch">

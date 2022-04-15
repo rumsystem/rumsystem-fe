@@ -14,7 +14,6 @@ import { routerHistory } from '~/history';
 import { lang } from '../lang';
 
 export const HomepageHeader = observer(() => {
-  lang.useLang();
   const location = useLocation();
   const state = useLocalObservable(() => ({
     language: false,
@@ -39,10 +38,6 @@ export const HomepageHeader = observer(() => {
     langService.switchLang(lang);
     handleCloseLanguage();
   };
-
-  if (!lang.ready) {
-    return null;
-  }
 
   const links = [
     { to: 'apps', text: lang.header.apps, order: 1, active: !!matchPath(location.pathname, { path: '/apps', exact: true }) },

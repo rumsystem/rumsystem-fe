@@ -24,7 +24,6 @@ export const HomepageIndex = observer(() => {
   const state = useLocalObservable(() => ({
     open: false,
   }));
-  lang.useLang();
   useSetTitle('Homepage');
 
   const handleOpenDialog = action(() => {
@@ -34,10 +33,6 @@ export const HomepageIndex = observer(() => {
   const handleCloseDialog = action(() => {
     state.open = false;
   });
-
-  if (!lang.ready) {
-    return null;
-  }
 
   return (
     <div className="main-box flex justify-center">

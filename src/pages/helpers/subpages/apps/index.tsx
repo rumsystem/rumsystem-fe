@@ -28,7 +28,6 @@ export const HomepageApps = observer(() => {
     dialog: false,
     bigImageLink: '',
   }));
-  lang.useLang();
   useSetTitle('Apps & Tools');
 
   const isMobile = useLessThan(960);
@@ -73,10 +72,6 @@ export const HomepageApps = observer(() => {
 
     return handleStopSlide;
   }, []);
-
-  if (!lang.ready) {
-    return null;
-  }
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
