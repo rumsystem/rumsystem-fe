@@ -13,45 +13,10 @@
   <!-- preflight-injection-point -->
   <!-- mui-insertion-point -->
   <!-- style-loader-insertion-point -->
-  <script>
-    // (() => {
-    //   const styles = [];
-    //   let inside = false;
-    //   const tags = Array.from(document.head.childNodes);
-    //   for (const tag of tags) {
-    //     if (inside && tag instanceof Element && tag.tagName === 'STYLE') {
-    //       styles.push(tag);
-    //     } else if (tag.nodeType === 8 && !inside && tag.textContent && tag.textContent.includes('style-start')) {
-    //       inside = true;
-    //       continue;
-    //     } else if (tag.nodeType === 8 && inside && tag.textContent && tag.textContent.includes('style-loader-insertion-point')) {
-    //       break;
-    //     }
-    //   }
-    //   styles.forEach((v) => v.remove());
-    // })();
-  </script>
 </head>
 
 <body>
-  <div id="preflight-injection-point" style="display: none;"></div>
-  <div id="style-loader-insertion-point" style="display: none;"></div>
   <div id="root"></div>
-  <script>
-    // style-loader insert hack
-    (function() {
-      ['preflight-injection-point', 'style-loader-insertion-point'].forEach(function(id) {
-        var point = Array.from(document.head.childNodes).filter(function(v) {
-          return v.nodeType === 8;
-        }).find(function(v) {
-          return v.textContent.includes(id);
-        })
-        document.getElementById(id).appendChild = function(element) {
-          document.head.insertBefore(element, point);
-        }
-      })
-    })();
-  </script>
 </body>
 
 </html>

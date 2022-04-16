@@ -13,9 +13,14 @@ const handleResize = () => {
   });
 };
 
-window.addEventListener('resize', handleResize);
+if (typeof document !== 'undefined') {
+  window.addEventListener('resize', handleResize);
+}
 
 export const useLessThan = (width: number) => {
+  if (typeof document === 'undefined') {
+    return width < 960;
+  }
   const [state, setState] = React.useState(window.innerWidth < width);
 
   React.useEffect(() => {
@@ -31,6 +36,9 @@ export const useLessThan = (width: number) => {
 
 /** 当屏幕宽度大于指定值时 */
 export const useWiderThan = (width: number) => {
+  if (typeof document === 'undefined') {
+    return width >= 960;
+  }
   const [state, setState] = React.useState(window.innerWidth < width);
 
   React.useEffect(() => {

@@ -21,15 +21,23 @@ const themeMap = {
   },
 } as const;
 
+const state = {
+  css: '',
+};
+
 let style = null as null | HTMLStyleElement;
 
 const appendTag = () => {
+  if (typeof document === 'undefined') {
+    return;
+  }
   const point = Array.from(document.head.childNodes)
     .filter((v) => v.nodeType === 8)
     .find((v) => v.textContent!.includes('style-loader-insertion-point'))!;
 
   if (!style) {
-    style = document.createElement('style');
+    style = document.querySelector('style[data-theme-service="true"]') ?? document.createElement('style');
+    style.dataset.themeService = 'true';
     document.head.append(style);
   }
   document.head.insertBefore(style, point);
@@ -46,7 +54,11 @@ const setTheme = () => {
     rules.push(`html{font-family:${langFontMap[0][1]};}`);
   }
   appendTag();
-  style!.innerHTML = rules.join('\n');
+  if (process.env.SSR) {
+    state.css = rules.join('\n');
+  } else {
+    style!.innerHTML = rules.join('\n');
+  }
 };
 
 const init = () => {
@@ -59,6 +71,12 @@ const init = () => {
   return dispose;
 };
 
+const initSSR = () => {
+  setTheme();
+};
+
 export const themeService = {
   init,
+  initSSR,
+  state,
 };

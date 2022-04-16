@@ -12,7 +12,7 @@ interface RouteItem {
   isLayout?: boolean
 }
 
-const generateRouteFileContent = async () => {
+const generateRouteFileContent = async (ssr = false) => {
   const parseDir = async (base: string, dir: string): Promise<RouteItem | Array<RouteItem>> => {
     const filePaths = await fs.readdir(dir);
     const fileItems = (await Promise.all(
@@ -57,7 +57,9 @@ const generateRouteFileContent = async () => {
         return {
           isLayout: fileItem.relativePath.endsWith('/_layout.tsx') && !fileItem.dir,
           path: urlPath,
-          component: `!!!() => import(/* webpackChunkName: '${chunkName}' */'${importPath}')!!!`,
+          component: ssr
+            ? `!!!require('${importPath}')!!!`
+            : `!!!() => import(/* webpackChunkName: '${chunkName}' */'${importPath}')!!!`,
         };
       }),
     )).flatMap((v) => v);
@@ -94,7 +96,11 @@ const generateRouteFileContent = async () => {
 
 export const generateRoutes = async () => {
   const routesFile = await generateRouteFileContent();
-  await fs.writeFile(resolve('src/routes.ts'), routesFile);
+  const ssrRoutesFile = await generateRouteFileContent(true);
+  const routePath = resolve('src/routes.ts');
+  const ssrRoutePath = resolve('src/routes-ssr.ts');
+  await fs.writeFile(routePath, routesFile);
+  await fs.writeFile(ssrRoutePath, ssrRoutesFile);
   return routesFile;
 };
 

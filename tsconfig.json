@@ -17,7 +17,8 @@
     "experimentalDecorators": true,
     "paths": {
       "~/*": ["src/*"],
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "ssr-style-loader": ["src/utils/ssr-style-loader"]
     },
     "allowSyntheticDefaultImports": true
   },

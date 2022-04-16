@@ -17,22 +17,21 @@ const createCssRule = ({
   test,
   scope,
   sourceMap,
-  insert,
+  insertBeforeComment,
   sass,
 }) => {
   const rule = config.module.rule(name).test(test);
-  // .use('thread-loader')
-  // .loader('thread-loader')
-  // .options({ workers })
-  // .end()
-  rule.use('style-loader')
-    .loader('style-loader')
-    .options({ insert: insert ?? '#style-loader-insertion-point' });
+
+  rule.use('ssr-style-loader')
+    .loader(resolve('src/utils/ssr-style-loader/loader.js'))
+    .options({ insertBeforeComment: insertBeforeComment ?? 'style-loader-insertion-point' });
 
   rule.use('css-loader')
     .loader('css-loader')
-    .options({ sourceMap });
-
+    .options({
+      sourceMap,
+      esModule: !process.env.SSR,
+    });
 
   if (scope) {
     rule.use('scoped-css-loader')
@@ -57,11 +56,14 @@ config.mode('none');
 
 config.context(resolve('.'));
 
-config.entry('index')
-  .add(resolve('./src/index.tsx'));
+if (process.env.SSR) {
+  config.entry('ssr').add(resolve('./src/ssr.tsx'));
+} else {
+  config.entry('index').add(resolve('./src/index.tsx'));
+}
 
 config.output
-  .path(resolve('dist'))
+  .path(process.env.SSR ? resolve('dist_ssr') : resolve('dist'))
   .filename('[name].js')
   .set('assetModuleFilename', 'static/[name].[contenthash:8][ext]')
   .publicPath('/')
@@ -75,7 +77,8 @@ config.resolve.symlinks(false);
 
 config.resolve.alias
   .set('~', resolve('src'))
-  .set('@', resolve('src'));
+  .set('@', resolve('src'))
+  .set('ssr-style-loader', resolve('src/utils/ssr-style-loader/index.tsx'));
 
 config.module.rule('ts')
   .test(/\.tsx?$/)
@@ -120,7 +123,7 @@ createCssRule({
 createCssRule({
   name: 'tailwind-base-css',
   test: /tailwind-base\.sass$/,
-  insert: '#preflight-injection-point',
+  insertBeforeComment: 'preflight-injection-point',
   sourceMap: false,
   scope: false,
   sass: true,
@@ -179,6 +182,11 @@ config.plugin('define-commit-hash')
     'process.env.COMMIT_HASH': process.env.ENABLE_SENTRY
       ? JSON.stringify(childProcess.execSync('git rev-parse --short HEAD').toString().trim())
       : JSON.stringify(''),
+  }]);
+
+config.plugin('define-ssr')
+  .use(webpack.DefinePlugin, [{
+    'process.env.SSR': JSON.stringify(process.env.SSR ? 'true' : ''),
   }]);
 
 config.module.rules.values().forEach((v) => {

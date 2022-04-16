@@ -121,6 +121,10 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
     },
   });
 
+  if (process.env.SSR) {
+    loadLang();
+  }
+
   disposes.push(reaction(
     () => [state.lang, loaderState.active],
     () => {

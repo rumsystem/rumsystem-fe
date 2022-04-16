@@ -9,30 +9,10 @@ try {
 const createConfig = () => {
   const config = {
     // proxy listen port
-    listen: 8904,
+    port: 8904,
+    ssrPort: 8905,
     // eslint-disable-next-line
     ...(localConfig as {}),
-    urls: {
-      fe: {
-        host: '127.0.0.1',
-        port: 8905,
-        protocal: 'http',
-        ...localConfig.fe,
-      },
-      api: {
-        host: '127.0.0.1',
-        port: 8906,
-        protocal: 'http',
-        ...localConfig.api,
-      },
-      prod: {
-        host: '',
-        port: 443,
-        protocal: 'https',
-        agent: null as any,
-        ...localConfig.prod,
-      },
-    },
   };
 
   Object.entries(localConfig.urls ?? {}).forEach(([k, v]) => {

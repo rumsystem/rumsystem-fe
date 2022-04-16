@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
 import { ImgBox } from '~/components/ImgBox';
-import { useSetTitle } from '~/utils';
-import { langService } from '~/service';
+import { langService, titleService } from '~/service';
 
 import { lang } from '../../lang';
 
@@ -12,7 +11,7 @@ import WhyRum from './icons/Illustration_why_rum.svg';
 // import IconFaq from './icons/icon_faq.svg';
 
 export const HomepageWhy = observer(() => {
-  useSetTitle('Why Rum');
+  titleService.useSetTitle('Why Rum');
 
   return (
     <div className="main-box flex-col flex-1 items-stretch">
