@@ -2,8 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
-import { useSetTitle } from '~/utils';
-
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
 import IconLinkServer from '~/icons/icon_link_server.svg';
@@ -11,14 +9,14 @@ import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
 import IconEslint from '~/icons/icon_eslint.svg';
-import { langService } from '~/service';
+import { langService, titleService } from '~/service';
 
 import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';
 import IconRumApp from './icons/Illustration_RumApp.svg';
 
 export const HomepageDevelopers = observer(() => {
-  useSetTitle('Developers');
+  titleService.useSetTitle('Developers');
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-24">

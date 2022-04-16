@@ -9,7 +9,7 @@ import webpackConfig from './config/webpack/webpack.dev.conf';
 
 const run = async () => {
   webpackConfig.plugin('react-fast-refresh').tap((options: any) => {
-    options[0].overlay.sockPort = config.urls.fe.port;
+    options[0].overlay.sockPort = config.port;
     return options;
   });
 
@@ -21,13 +21,13 @@ const run = async () => {
     https: false,
     // host: 'localhost',
     host: '0.0.0.0',
-    port: config.urls.fe.port,
+    port: config.port,
     webSocketServer: 'ws',
     allowedHosts: 'all',
     hot: true,
     client: {
       webSocketURL: {
-        port: config.urls.fe.port,
+        port: config.port,
       },
     },
     devMiddleware: {

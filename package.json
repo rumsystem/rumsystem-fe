@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" ts-node-transpile-only -P \"./build/tsconfig.json\" ./build/dev-server.ts",
+    "start": "rimraf ./dist && cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" ts-node-transpile-only -P \"./build/tsconfig.json\" ./build/dev-server.ts",
+    "start:ssr": "rimraf ./dist_ssr && cross-env SSR=true NODE_OPTIONS=\"--max-old-space-size=8192\" ts-node-transpile-only -P \"./build/tsconfig.json\" ./build/dev-ssr-server.ts",
+    "start:ssr-server": "nodemon dist_ssr/ssr.js",
     "build": "./build/scripts/build.sh",
     "gen": "cross-env TS_NODE_PROJECT=\"./gen/tsconfig.json\" node -r ts-node/register/transpile-only ./gen/index.ts",
     "serve": "cross-env TS_NODE_PROJECT=\"./gen/tsconfig.json\" node -r ts-node/register/transpile-only ./gen/serve.ts",
@@ -45,6 +47,7 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.17.7",
+    "@emotion/server": "^11.4.0",
     "@noe132/eslint-config-react": "^0.1.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
     "@types/react": "^18.0.1",
@@ -72,6 +75,7 @@
     "http-proxy": "^1.18.1",
     "mkdirp": "^1.0.4",
     "node-watch": "^0.7.3",
+    "nodemon": "^2.0.15",
     "postcss": "^8.4.12",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.4.3",
@@ -83,14 +87,14 @@
     "speed-measure-webpack-plugin": "^1.5.0",
     "stats-webpack-plugin": "^0.7.0",
     "string-replace-loader": "^3.1.0",
-    "style-loader": "^3.3.1",
     "thread-loader": "^3.0.4",
     "ts-node": "^10.7.0",
     "webpack": "^5.72.0",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-chain": "^6.5.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
+    "webpack-dev-server": "^4.8.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "browserslist": [
     "last 3 years"

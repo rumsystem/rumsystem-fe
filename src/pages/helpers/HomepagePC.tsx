@@ -10,10 +10,11 @@ import { HomepageApps } from './subpages/apps';
 import { HomepageNetwork } from './subpages/network';
 import { HomepageDevelopers } from './subpages/developer';
 
-import './index.local.sass';
+import inject from './index.local.sass';
 
 const HomepagePC = observer(() => {
   lang.useLang();
+  inject();
   if (!lang.ready) { return null; }
   return (
     <div className="homepage-pc flex-col flex-1">

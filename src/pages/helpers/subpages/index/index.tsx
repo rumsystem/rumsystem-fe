@@ -5,12 +5,11 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import { langService } from '~/service';
+import { langService, titleService } from '~/service';
 import { ImgBox } from '~/components/ImgBox';
 // import IconCoin from '~/icons/icon_coin.svg';
 import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
-import { useSetTitle } from '~/utils';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
@@ -21,10 +20,10 @@ import ArchDiagram from './icons/arch_diagram.svg';
 
 
 export const HomepageIndex = observer(() => {
+  titleService.useSetTitle('Homepage');
   const state = useLocalObservable(() => ({
     open: false,
   }));
-  useSetTitle('Homepage');
 
   const handleOpenDialog = action(() => {
     state.open = true;

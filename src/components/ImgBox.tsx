@@ -1,4 +1,5 @@
 import React, { ImgHTMLAttributes } from 'react';
+import { useWiderThan } from '~/utils';
 
 type Props = ImgHTMLAttributes<Element> & {
   mbWidth?: number | string
@@ -16,7 +17,7 @@ export const ImgBox = (props: Props) => {
     ...restProps
   } = props;
 
-  const isPC = window.innerWidth >= 960;
+  const isPC = useWiderThan(960);
   const isMobile = !isPC;
 
   const imgRef = React.useRef<HTMLImageElement>(null);

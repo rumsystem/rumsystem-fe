@@ -13,13 +13,14 @@ import IconWin from '~/icons/icon_os_win.svg';
 
 import { lang } from '../lang';
 
-import './index.local.sass';
+import inject from './index.local.sass';
 
 interface Props {
   className?: string
 }
 
 export const AppBox = observer((props: Props) => {
+  inject();
   React.useEffect(() => {
     appService.getVersion();
   }, []);

@@ -1,4 +1,5 @@
 /src/routes.ts
+/src/routes-ssr.ts
 
 /dist
 /node_modules

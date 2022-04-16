@@ -1,5 +1,6 @@
 module.exports = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
+  const ssr = !!process.env.SSR;
 
   const config = {
     sourceMaps: true,
@@ -17,10 +18,10 @@ module.exports = (api) => {
       ['babel-plugin-react-scoped-css', {
         include: '.local.(sa|sc|c)ss$',
       }],
-      ['@babel/plugin-transform-runtime', {
+      !ssr && ['@babel/plugin-transform-runtime', {
         useESModules: true,
       }],
-      !api.env('production') && 'react-refresh/babel',
+      !api.env('production') && !ssr && 'react-refresh/babel',
     ].filter(Boolean),
   };
 

@@ -1,7 +1,11 @@
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 
-export const routerHistory = createBrowserHistory();
+export const routerHistory = process.env.SSR
+  ? createMemoryHistory()
+  : createBrowserHistory();
 
-routerHistory.listen(() => {
-  window.scrollTo(0, 0);
-});
+if (!process.env.SSR) {
+  routerHistory.listen(() => {
+    window.scrollTo(0, 0);
+  });
+}

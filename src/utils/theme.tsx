@@ -13,21 +13,38 @@ const theme = createTheme({
       main: '#1880b8',
     },
   },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+        disableElevation: true,
+        color: 'primary',
+      },
+    },
+  },
 });
 
 
 const cache = createCache({
-  key: 'css',
-  insertionPoint: Array.from(document.head.childNodes)
-    .filter((v) => v.nodeType === 8)
-    .find((v) => v.textContent?.includes('mui-insertion-point')) as any,
+  key: 'mui-css',
+  insertionPoint: typeof document !== 'undefined'
+    ? Array.from(document.head.childNodes)
+      .filter((v) => v.nodeType === 8)
+      .find((v) => v.textContent?.includes('mui-insertion-point')) as any
+    : null,
 });
 
-export const ThemeRoot = (props: { children: React.ReactNode }) => (
-  // replacement for StyledEngineProvider
-  <CacheProvider value={cache}>
+export const ThemeRoot = (props: { children: React.ReactNode }) => (process.env.SSR
+  ? (
     <ThemeProvider theme={theme}>
       {props.children}
     </ThemeProvider>
-  </CacheProvider>
-);
+  )
+  : (
+  // replacement for StyledEngineProvider
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        {props.children}
+      </ThemeProvider>
+    </CacheProvider>
+  ));

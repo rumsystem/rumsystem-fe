@@ -3,17 +3,16 @@ import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
 import IconCoin from '~/icons/icon_coin.svg';
-import { useSetTitle } from '~/utils';
 
 import { ImgBox } from '~/components/ImgBox';
-import { langService } from '~/service';
+import { langService, titleService } from '~/service';
 
 import { lang } from '../../lang';
 import IconNTF from './icons/Illustration_NFT.svg';
 import IconRumToken from './icons/Illustration_Rum_Token.svg';
 
 export const HomepageNetwork = observer(() => {
-  useSetTitle('Token & Eco');
+  titleService.useSetTitle('Token & Eco');
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-20">

@@ -5,13 +5,13 @@ import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import React from 'react';
 import { ImgBox } from '~/components/ImgBox';
-import { langService } from '~/service';
-import { useSetTitle, useLessThan } from '~/utils';
+import { langService, titleService } from '~/service';
+import { useLessThan } from '~/utils';
 
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
 
-import './index.local.sass';
+import inject from './index.local.sass';
 
 const IMAGES = [
   'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
@@ -22,13 +22,14 @@ const IMAGES = [
 ];
 
 export const HomepageApps = observer(() => {
+  inject();
+  titleService.useSetTitle('Apps & Tools');
   const state = useLocalObservable(() => ({
     imageIndex: 0,
     timerId: 0,
     dialog: false,
     bigImageLink: '',
   }));
-  useSetTitle('Apps & Tools');
 
   const isMobile = useLessThan(960);
 
