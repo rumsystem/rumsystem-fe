@@ -14,8 +14,11 @@ root.render(<App />);
 when(
   () => firstRenderService.state.firstRender,
   () => {
-    oldRoot.remove();
-    document.body.append(newRoot);
-    newRoot.id = 'root';
+    // wait for layout to prevent flashing
+    setTimeout(() => {
+      oldRoot.remove();
+      document.body.append(newRoot);
+      newRoot.id = 'root';
+    });
   },
 );

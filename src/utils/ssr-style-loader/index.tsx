@@ -14,6 +14,7 @@ interface PoolItem {
   css: CSSModuleExport
   loaderOptions: LoaderOptions
   hash: string
+  styleTag: null | HTMLStyleElement
 }
 
 const defaultPool = new Map<string, PoolItem>();
@@ -39,42 +40,51 @@ export const createHook = (css: CSSModuleExport, moduleHash: string, loaderOptio
   const context = React.useContext(ssrStyleContext);
 
   if (typeof document === 'undefined') {
-    const current = context.get(moduleHash);
-    if (current) {
-      current.ref += 1;
-    } else {
-      context.set(moduleHash, {
-        css,
-        loaderOptions,
-        hash: moduleHash,
-        ref: 1,
-      });
-    }
+    const item = context.get(moduleHash) ?? {
+      css,
+      loaderOptions,
+      hash: moduleHash,
+      ref: 0,
+      styleTag: null,
+    };
+    item.ref += 1;
+    context.set(moduleHash, item);
   }
 
   React.useEffect(() => {
-    let styleTag: null | HTMLStyleElement = null;
-    if (document) {
-      styleTag = document.querySelector(`style[data-ssr-style-hash="${moduleHash}"]`) ?? document.createElement('style');
-      styleTag.dataset.ssrStyleHash = moduleHash;
-      const cssContent = css.toString();
-      if (styleTag.innerHTML !== cssContent) {
-        styleTag.innerHTML = css.toString();
-      }
-      if (loaderOptions.insertBeforeComment) {
-        const commentNode = Array.from(document.head.childNodes)
-          .filter((v) => v.nodeType === 8)
-          .find((v) => v.textContent?.includes(loaderOptions.insertBeforeComment!))!;
-        document.head.insertBefore(styleTag, commentNode);
-      } else {
-        document.head.appendChild(styleTag);
-      }
+    const item = context.get(moduleHash) ?? {
+      css,
+      loaderOptions,
+      hash: moduleHash,
+      ref: 0,
+      styleTag: document.querySelector(`style[data-ssr-style-hash="${moduleHash}"]`) ?? document.createElement('style'),
+    };
+    item.ref += 1;
+    context.set(moduleHash, item);
+
+    item.styleTag = document.querySelector(`style[data-ssr-style-hash="${moduleHash}"]`) ?? document.createElement('style');
+    item.styleTag.dataset.ssrStyleHash = moduleHash;
+    const cssContent = css.toString();
+    if (item.styleTag.innerHTML !== cssContent) {
+      item.styleTag.innerHTML = css.toString();
+    }
+    if (loaderOptions.insertBeforeComment) {
+      const commentNode = Array.from(document.head.childNodes)
+        .filter((v) => v.nodeType === 8)
+        .find((v) => v.textContent?.includes(loaderOptions.insertBeforeComment!))!;
+      document.head.insertBefore(item.styleTag, commentNode);
+    } else {
+      document.head.appendChild(item.styleTag);
     }
 
     return () => {
-      if (styleTag) {
-        styleTag.remove();
-      }
+      setTimeout(() => {
+        item.ref -= 1;
+        if (item.ref === 0) {
+          context.delete(moduleHash);
+        }
+        item.styleTag?.remove();
+      });
     };
   }, []);
 };

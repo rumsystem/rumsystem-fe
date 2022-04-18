@@ -195,7 +195,7 @@ export const content: ZHTWContent = {
         'Our protocols, APIs and SDKs have been in development for less than a year and are still being improved. Keep following and tell us your needs and queries. Or join the RumNetwork as a node.',
       ],
       links: {
-        api: 'Build API Document',
+        api: 'API Document',
         runPeer: 'Run a RUM peer',
         example: 'Example',
         runOnServer: 'Run a RUM peer on server',
