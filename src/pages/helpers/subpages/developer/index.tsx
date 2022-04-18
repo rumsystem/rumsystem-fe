@@ -50,7 +50,7 @@ export const HomepageDevelopers = observer(() => {
             <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
               {[
                 {
-                  link: 'https://github.com/rumsystem/quorum#build-api-document',
+                  link: 'https://rumsystem.github.io/quorum-api/',
                   image: IconGithub,
                   text: lang.developers.quorum.links.api,
                 },

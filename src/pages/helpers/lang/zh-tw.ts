@@ -196,7 +196,7 @@ export const content = {
         '我們的協議、API 和 SDK 經歷了不到一年的開發，還在不斷完善中。歡迎持續關注我們的進展，提出你的需求和想法。或加入 RumNetwork 體驗網絡，成為我們的出塊節點。',
       ],
       links: {
-        api: 'Build API Document',
+        api: 'API Document',
         runPeer: 'Run a RUM peer',
         example: 'Example',
         runOnServer: 'Run a RUM peer on server',
