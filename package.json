@@ -2,17 +2,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "yarn genroutes && tsc && vite build",
     "a": "cross-env analyze=true vite build",
     "preview": "vite preview",
     "lint": "eslint --ext \"js,jsx,ts,tsx\" src",
-    "bak:start": "rimraf ./dist && cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" ts-node-transpile-only -P \"./build/tsconfig.json\" ./build/dev-server.ts",
-    "bak:start:ssr": "rimraf ./dist_ssr && cross-env SSR=true NODE_OPTIONS=\"--max-old-space-size=8192\" ts-node-transpile-only -P \"./build/tsconfig.json\" ./build/dev-ssr-server.ts",
-    "bak:start:ssr-server": "nodemon dist_ssr/ssr.js",
-    "bak:build": "./build/scripts/build.sh",
-    "gen": "cross-env TS_NODE_PROJECT=\"./gen/tsconfig.json\" node -r ts-node/register/transpile-only ./gen/index.ts",
-    "serve": "cross-env TS_NODE_PROJECT=\"./gen/tsconfig.json\" node -r ts-node/register/transpile-only ./gen/serve.ts",
-    "bak:a": "rimraf ./dist && yarn genroutes && webpack --config build/config/webpack.prod.analyze.conf.js",
     "genroutes": "ts-node -P ./build/tsconfig.json build/generateRoutes",
     "postinstall": "rimraf ./node_modules/.cache/"
   },
