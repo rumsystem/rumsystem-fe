@@ -4,7 +4,7 @@ import React from 'react';
 import express from 'express';
 import axios from 'axios';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter } from 'react-router-dom/server';
 import createEmotionServer from '@emotion/server/create-instance';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
