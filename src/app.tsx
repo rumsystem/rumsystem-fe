@@ -1,9 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { Router, useLocation } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import RouterComponent from './router';
 import Layout from './layouts';
-import { routerHistory } from './history';
 import { ThemeRoot } from './utils/theme';
 import { initService, initServiceSSR } from './service';
 
@@ -30,9 +29,9 @@ const App = observer(() => {
 
   const RouterWrapper = (props: {children: React.ReactNode}) => (<>
     {!process.env.SSR && (
-      <Router history={routerHistory}>
+      <BrowserRouter>
         {props.children}
-      </Router>
+      </BrowserRouter>
     )}
     {process.env.SSR && props.children}
   </>);

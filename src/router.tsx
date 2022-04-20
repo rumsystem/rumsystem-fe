@@ -1,6 +1,6 @@
 import { action } from 'mobx';
 import React, { Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { firstRenderService } from './service';
 
 const routes = !process.env.SSR
@@ -14,11 +14,15 @@ interface RouteItem {
   children?: Array<RouteItem>
 }
 
-const modifiedRoutes = routes as Array<RouteItem>;
-const root = modifiedRoutes.find((v) => v.path === '/');
-if (root) {
-  root.path = ['/', '/why', '/apps', '/network', '/developers'];
-}
+const modifiedRoutes = (routes as Array<RouteItem>).map((v) => ({
+  ...v,
+  path: v.path !== '/'
+    ? v.path
+    : ['/', '/why', '/apps', '/network', '/developers'],
+  component: process.env.SSR
+    ? v.component.default
+    : React.lazy(v.component),
+}));
 
 const PageRenderHook = (props: { children: React.ReactElement }) => {
   React.useEffect(action(() => {
@@ -27,20 +31,17 @@ const PageRenderHook = (props: { children: React.ReactElement }) => {
   return props.children;
 };
 
-const genRoutes = (list: Array<RouteItem>) => list.map((item, index) => {
-  const Page = process.env.SSR
-    ? item.component.default
-    : React.lazy(item.component);
+const PageSwitch = () => {
+  const location = useLocation();
+  const item = modifiedRoutes.find((v) => (Array.isArray(v.path) ? v.path : [v.path]).includes(location.pathname));
+  // TODO: 404 fallback
+  if (!item) { return null; }
   return (
-    <Route exact={!item.noExact} key={index} path={item.path}>
-      <PageRenderHook>
-        <Page>
-          {!!item.children && genRoutes(item.children)}
-        </Page>
-      </PageRenderHook>
-    </Route>
+    <PageRenderHook>
+      <item.component />
+    </PageRenderHook>
   );
-});
+};
 
 const Router = () => {
   const SuspenseWrapper = (props: {children: React.ReactNode}) => (<>
@@ -54,9 +55,9 @@ const Router = () => {
 
   return (
     <SuspenseWrapper>
-      <Switch>
-        {genRoutes(routes)}
-      </Switch>
+      <Routes>
+        <Route path="/*" element={<PageSwitch />} />
+      </Routes>
     </SuspenseWrapper>
   );
 };

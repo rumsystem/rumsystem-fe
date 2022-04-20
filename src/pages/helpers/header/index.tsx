@@ -2,19 +2,19 @@ import React from 'react';
 import { action } from 'mobx';
 import classNames from 'classnames';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import { Link, matchPath, useLocation } from 'react-router-dom';
+import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { Language, Check, Menu as MenuIcon, Download } from '@mui/icons-material';
 import { Menu, MenuItem, Drawer, List, ListItem, Divider, Box } from '@mui/material';
 
 import IconDownload from '~/icons/icon_download.svg';
 import RumLogo from '~/icons/logo_rumsystem.svg';
 import { langService, AllLanguages, langName } from '~/service';
-import { routerHistory } from '~/history';
 
 import { lang } from '../lang';
 
 export const HomepageHeader = observer(() => {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = useLocalObservable(() => ({
     language: false,
     mbMenu: false,
@@ -40,10 +40,10 @@ export const HomepageHeader = observer(() => {
   };
 
   const links = [
-    { to: 'apps', text: lang.header.apps, order: 1, active: !!matchPath(location.pathname, { path: '/apps', exact: true }) },
-    { to: 'why', text: lang.header.why, order: 2, active: !!matchPath(location.pathname, { path: '/why', exact: true }) },
-    { to: 'network', text: lang.header.network, order: 4, active: !!matchPath(location.pathname, { path: '/network', exact: true }) },
-    { to: 'developers', text: lang.header.developers, order: 5, active: !!matchPath(location.pathname, { path: '/developers', exact: true }) },
+    { to: 'apps', text: lang.header.apps, order: 1, active: !!matchPath('/apps', location.pathname) },
+    { to: 'why', text: lang.header.why, order: 2, active: !!matchPath('/why', location.pathname) },
+    { to: 'network', text: lang.header.network, order: 4, active: !!matchPath('/network', location.pathname) },
+    { to: 'developers', text: lang.header.developers, order: 5, active: !!matchPath('/developers', location.pathname) },
   ] as const;
 
   return (<>
@@ -60,7 +60,7 @@ export const HomepageHeader = observer(() => {
             alt=""
             draggable="false"
           />
-          {!!matchPath(location.pathname, { path: '/', exact: true }) && (
+          {!!matchPath('/', location.pathname) && (
             <div className="bg-main h-[2px] absolute -left-4 -right-4 bottom-px" />
           )}
         </Link>
@@ -163,7 +163,7 @@ export const HomepageHeader = observer(() => {
                       alt=""
                       draggable="false"
                     />
-                    {!!matchPath(location.pathname, { path: '/', exact: true }) && (
+                    {!!matchPath('/', location.pathname) && (
                       <div className="bg-main h-[2px] absolute -left-4 -right-4 bottom-px" />
                     )}
                   </Link>
@@ -175,7 +175,7 @@ export const HomepageHeader = observer(() => {
                   className="py-3"
                   button
                   key={v.to}
-                  onClick={() => routerHistory.push(v.to)}
+                  onClick={() => navigate(v.to)}
                 >
                   <LinkItem className="mx-4 py-1" item={v} key={v.to} />
                 </ListItem>
@@ -187,7 +187,7 @@ export const HomepageHeader = observer(() => {
                   langService.en && 'font-kanit',
                 )}
                 button
-                onClick={() => routerHistory.push('/apps')}
+                onClick={() => navigate('/apps')}
               >
                 <Download className="mr-[6px] text-22" />
                 {lang.header.download}
