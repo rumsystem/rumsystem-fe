@@ -1,4 +1,3 @@
-const os = require('os');
 const path = require('path');
 const childProcess = require('child_process');
 const chalk = require('chalk');
@@ -7,7 +6,6 @@ const Config = require('webpack-chain');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const workers = Math.min(2, os.cpus().length - 1);
 const resolve = (dir) => path.join(__dirname, '../../..', dir);
 
 const config = new Config();
@@ -82,10 +80,6 @@ config.resolve.alias
 
 config.module.rule('ts')
   .test(/\.tsx?$/)
-  .use('thread-loader')
-  .loader('thread-loader')
-  .options({ workers })
-  .end()
   .use('babel')
   .loader('babel-loader')
   .end()
@@ -93,10 +87,6 @@ config.module.rule('ts')
 
 config.module.rule('js')
   .test(/\.jsx?$/)
-  .use('thread-loader')
-  .loader('thread-loader')
-  .options({ workers })
-  .end()
   .use('babel')
   .loader('babel-loader')
   .end()
@@ -188,15 +178,5 @@ config.plugin('define-ssr')
   .use(webpack.DefinePlugin, [{
     'process.env.SSR': JSON.stringify(process.env.SSR ? 'true' : ''),
   }]);
-
-config.module.rules.values().forEach((v) => {
-  if (v.uses.has('thread-loader') && os.cpus().length === 1) {
-    v.uses.delete('thread-loader');
-  }
-});
-
-// config.set('experiments', {
-//   lazyCompilation: true,
-// });
 
 module.exports = config;
