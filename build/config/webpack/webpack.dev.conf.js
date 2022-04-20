@@ -8,7 +8,6 @@ process.env.NODE_ENV = 'development';
 
 const resolve = (dir) => path.join(__dirname, '../../..', dir);
 
-// TODO: remove after webpack-dev-server@4
 config.target('web');
 config.mode('development');
 config.devtool(false);

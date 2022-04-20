@@ -1,13 +1,14 @@
 module.exports = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
   const ssr = !!process.env.SSR;
+  const prod = api.env('production');
 
   const config = {
     sourceMaps: true,
     presets: [
       '@babel/preset-react',
       '@babel/preset-typescript',
-      api.env('production') && ['@babel/preset-env', {
+      prod && ['@babel/preset-env', {
         modules: false,
         bugfixes: true,
         useBuiltIns: 'usage',
@@ -18,10 +19,10 @@ module.exports = (api) => {
       ['babel-plugin-react-scoped-css', {
         include: '.local.(sa|sc|c)ss$',
       }],
-      !ssr && ['@babel/plugin-transform-runtime', {
+      prod && !ssr && ['@babel/plugin-transform-runtime', {
         useESModules: true,
       }],
-      !api.env('production') && !ssr && 'react-refresh/babel',
+      !prod && !ssr && 'react-refresh/babel',
     ].filter(Boolean),
   };
 
