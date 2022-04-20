@@ -1,26 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "jsx": "preserve",
-    "esModuleInterop": true,
-    "sourceMap": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "baseUrl": ".",
-    "strict": true,
+    "allowJs": false,
     "skipLibCheck": true,
-    "lib": [
-      "DOM",
-      "ESNext",
-    ],
-    "experimentalDecorators": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "paths": {
-      "~/*": ["src/*"],
-      "@/*": ["src/*"],
-      "ssr-style-loader": ["src/utils/ssr-style-loader"]
+      "~/*": ["./src/*"]
     },
-    "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "build",
+    "vite.config.ts"
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

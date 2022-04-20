@@ -11,7 +11,7 @@ import { useLessThan } from '~/utils';
 import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
 
-import inject from './index.local.sass';
+import './index.sass';
 
 const IMAGES = [
   'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
@@ -23,7 +23,6 @@ const IMAGES = [
 ];
 
 export const HomepageApps = observer(() => {
-  inject();
   titleService.useSetTitle('Apps & Tools');
   const state = useLocalObservable(() => ({
     imageIndex: 0,

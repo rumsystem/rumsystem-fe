@@ -6,10 +6,6 @@ import Layout from './layouts';
 import { ThemeRoot } from './utils/theme';
 import { initService, initServiceSSR } from './service';
 
-import injectTailwindBase from './style/tailwind-base.sass';
-import injectTailwind from './style/tailwind.sass';
-import injectGlobal from './style/global.sass';
-
 const LocationChange = () => {
   const location = useLocation();
   React.useEffect(() => {
@@ -20,9 +16,6 @@ const LocationChange = () => {
 };
 
 const App = observer(() => {
-  injectTailwindBase();
-  injectTailwind();
-  injectGlobal();
   React.useEffect(() => initService(), []);
 
   initServiceSSR();

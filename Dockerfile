@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:alpine
 
 ADD ./dist /app
 

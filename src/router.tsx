@@ -2,10 +2,7 @@ import { action } from 'mobx';
 import React, { Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { firstRenderService } from './service';
-
-const routes = !process.env.SSR
-  ? require('./routes').default
-  : require('./routes-ssr').default;
+import routes from './routes';
 
 interface RouteItem {
   noExact?: boolean
