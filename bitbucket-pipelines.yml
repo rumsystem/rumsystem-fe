@@ -12,5 +12,5 @@ pipelines:
             - docker
           script:
             - yarn
-            - ./build/scripts/build.sh
+            - yarn build
             - ./build/scripts/build_image.sh

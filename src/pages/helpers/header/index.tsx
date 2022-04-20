@@ -69,7 +69,7 @@ export const HomepageHeader = observer(() => {
       <div className="pc:hidden flex flex-center">
         <Link className="text-black font-medium order-3" to="/">
           <img
-            className="w-24  z-10"
+            className="w-24 z-10"
             src={RumLogo}
             alt=""
             draggable="false"

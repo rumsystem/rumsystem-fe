@@ -1,3 +1,4 @@
+export * from './findHeadComment';
 export * from './useScreenSize';
 
 export const isMobile = () => window.innerWidth < 960;

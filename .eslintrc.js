@@ -49,6 +49,8 @@ module.exports = {
       tsconfigRootDir: __dirname,
     },
     'rules': {
+      'react/react-in-jsx-scope': 'off',
+      'import/no-unresolved': ['error', { ignore: ['generated-routes'] }],
       '@typescript-eslint/array-type': 'off',
       '@typescript-eslint/explicit-member-accessibility': 'off',
 
