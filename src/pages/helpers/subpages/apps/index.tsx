@@ -15,7 +15,8 @@ import inject from './index.local.sass';
 
 const IMAGES = [
   'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
-  'https://img-cdn.xue.cn/311-app_screen_2_opt.png',
+  'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-24_opt.png',
+  'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-52_opt.png',
   'https://img-cdn.xue.cn/311-app_screen_3_opt.png',
   'https://img-cdn.xue.cn/311-app_screen_4_opt.png',
   'https://img-cdn.xue.cn/311-app_screen_5_opt.png',
@@ -124,7 +125,7 @@ export const HomepageApps = observer(() => {
             onMouseEnter={handleStopSlide}
             onMouseLeave={handleResumeSlide}
           >
-            {Array(5).fill(0).map((_, i) => (
+            {Array(IMAGES.length).fill(0).map((_, i) => (
               <div
                 className="h-6 w-6 flex flex-center cursor-pointer pc:my-2 mb:mx-2"
                 key={i}
