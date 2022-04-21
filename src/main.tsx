@@ -3,13 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { when } from 'mobx';
 import { firstRenderService } from './service';
 import App from './app';
-import { injectStyleTo, sleep } from './utils';
-import tailwindBaseCss from './style/tailwind-base.sass?inline';
-import tailwindCss from './style/tailwind.sass?inline';
+import { sleep } from './utils';
+import './style/tailwind-base.sass';
+import './style/tailwind.sass';
 import './style/global.sass';
-
-injectStyleTo('preflight-injection-point', tailwindBaseCss);
-injectStyleTo('style-loader-insertion-point', tailwindCss);
 
 const oldRoot = document.getElementById('root')!;
 const newRoot = document.createElement('div');
