@@ -8,13 +8,34 @@
     <link rel="preload" as="image" media="(min-width: 960px)" href="https://img-cdn.xue.cn/62-bg_web.jpg">
     <link rel="preload" as="image" media="(max-width: 959px)" href="https://img-cdn.xue.cn/62-bg_mb.jpg">
     <title>Rumsystem</title>
-    <!-- style-start -->
     <!-- preflight-injection-point -->
     <!-- mui-insertion-point -->
-    <!-- style-loader-insertion-point -->
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (() => {
+        const findHeadComment = (comment) => Array.from(document.head.childNodes)
+          .filter((v) => v.nodeType === 8)
+          .find((v) => v.textContent?.includes(comment));
+
+        const injectStyleTo = (comment, style) => {
+          const commentNode = findHeadComment(comment);
+          document.head.insertBefore(style, commentNode);
+        };
+
+        const originalAppendChild = document.head.appendChild
+        document.head.appendChild = (node) => {
+          if (node.nodeType === 1 && node.tagName === 'STYLE') {
+            if (node.innerHTML.startsWith('.tailwind-base-style')) {
+              injectStyleTo('preflight-injection-point', node);
+              return
+            }
+          }
+          originalAppendChild.call(document.head, node)
+        }
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

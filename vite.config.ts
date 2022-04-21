@@ -17,7 +17,12 @@ export default async () => {
   }
 
   if (!prod) {
-    const cp = spawn('node', ['node_modules/eslint-watch/bin/esw', '--color']);
+    const cp = spawn('node', [
+      'node_modules/eslint-watch/bin/esw',
+      '--color',
+      '-w',
+      'src',
+    ]);
     cp.stdout.pipe(process.stdout);
     cp.stderr.pipe(process.stderr);
   }
