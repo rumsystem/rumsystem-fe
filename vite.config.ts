@@ -20,6 +20,8 @@ export default async () => {
     const cp = spawn('node', [
       'node_modules/eslint-watch/bin/esw',
       '--color',
+      '--ext',
+      '.js,.jsx,.ts,.tsx',
       '-w',
       'src',
     ]);
