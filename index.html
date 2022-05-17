@@ -27,7 +27,7 @@
       (() => {
         const findHeadComment = (comment) => Array.from(document.head.childNodes)
           .filter((v) => v.nodeType === 8)
-          .find((v) => v.textContent?.includes(comment));
+          .find((v) => v.textContent && v.textContent.includes(comment));
 
         const injectStyleTo = (comment, style) => {
           const commentNode = findHeadComment(comment);
