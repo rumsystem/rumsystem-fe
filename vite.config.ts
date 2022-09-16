@@ -1,8 +1,8 @@
 import { join } from 'path';
-import { spawn } from 'child_process';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
+import checker from 'vite-plugin-checker';
 import { generateRoutes, watchRoutes } from './build/generateRoutes';
 import { svgInline } from './build/svg-inline';
 
@@ -14,19 +14,6 @@ export default async () => {
     await generateRoutes();
   } else {
     watchRoutes();
-  }
-
-  if (!prod) {
-    const cp = spawn('node', [
-      'node_modules/eslint-watch/bin/esw',
-      '--color',
-      '--ext',
-      '.js,.jsx,.ts,.tsx',
-      '-w',
-      'src',
-    ]);
-    cp.stdout.pipe(process.stdout);
-    cp.stderr.pipe(process.stderr);
   }
 
   return defineConfig({
@@ -45,6 +32,13 @@ export default async () => {
     },
     plugins: [
       react(),
+      checker({
+        typescript: true,
+        eslint: {
+          lintCommand: 'eslint "./src/**/*.{ts,tsx,js,jsx}"',
+        },
+        overlay: false,
+      }),
       a && visualizer({
         filename: join(__dirname, 'dist/stats.html'),
         open: true,
