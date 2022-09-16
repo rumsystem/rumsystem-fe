@@ -19,9 +19,14 @@ module.exports = {
 
   'root': true,
 
+  'parserOptions': {
+    project: [
+      path.join(__dirname, 'tsconfig.json'),
+    ],
+  },
+
   'settings': {
     'import/resolver': {
-      // 'typescript': {},
       'typescript': {
         'project': path.join(__dirname, 'tsconfig.json'),
       },
@@ -44,10 +49,6 @@ module.exports = {
       '*.ts',
       '*.tsx',
     ],
-    parserOptions: {
-      project: 'tsconfig.json',
-      tsconfigRootDir: __dirname,
-    },
     'rules': {
       'react/react-in-jsx-scope': 'off',
       'import/no-unresolved': ['error', { ignore: ['generated-routes'] }],
