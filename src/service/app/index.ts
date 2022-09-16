@@ -2,38 +2,13 @@ import { observable, runInAction } from 'mobx';
 import { load } from 'js-yaml';
 import { cachePromiseHof } from '~/utils';
 
-const state = observable({
-  rumAppVersionRaw: '',
-  rumAndroidVersion: '',
-  rumAndroidLink: '',
-
-  get rumAppLoading() {
-    return !this.rumAppVersionRaw;
-  },
-  get rumAndroidLoading() {
-    return !this.rumAndroidVersion;
-  },
-  get rumAppVersion() {
-    return `v${this.rumAppVersionRaw}`;
-  },
-  get rumAppWinLink() {
-    return `https://static-assets.xue.cn/rum-testing/RUM-${this.rumAppVersionRaw}.exe`;
-  },
-  get rumAppLinuxLink() {
-    return `https://static-assets.xue.cn/rum-testing/RUM-${this.rumAppVersionRaw}.linux.zip`;
-  },
-  get rumAppMacLink() {
-    return `https://static-assets.xue.cn/rum-testing/RUM-${this.rumAppVersionRaw}.dmg`;
-  },
-});
-
 export interface RumAppMetadata {
   version: string
-  files: {
+  files: Array<{
     url: string
     sha512: string
     size: number
-  }
+  }>
   path: string
   sha512: string
   releaseNotes: string
@@ -55,42 +30,64 @@ export interface RumAndroidMetadata {
   version_name: string
 }
 
+const state = observable({
+  metadata: {
+    windows: null as null | RumAppMetadata,
+    linux: null as null | RumAppMetadata,
+    macos: null as null | RumAppMetadata,
+    android: null as null | RumAndroidMetadata,
+  },
+});
 
-const getRumAppVersion = cachePromiseHof(async () => {
-  if (state.rumAppVersionRaw) { return; }
-  try {
-    const fetchResponse = await fetch(`https://static-assets.pek3b.qingstor.com/rum-testing/latest.yml?t=${Date.now()}`);
+const fetchYml = async <T>(url: string) => {
+  for (let i = 0; i < 3; i += 1) {
+    const fetchResponse = await fetch(url);
     const metaText = await fetchResponse.text();
-    const data = load(metaText) as RumAppMetadata;
-    runInAction(() => {
-      state.rumAppVersionRaw = data.version;
-    });
-  } catch {}
+    const data = load(metaText) as T;
+    return data;
+  }
+  return null;
+};
+
+const loadWindows = cachePromiseHof(async () => {
+  if (state.metadata.windows) { return; }
+  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest.yml?t=${Date.now()}`);
+  runInAction(() => {
+    if (data) { state.metadata.windows = data; }
+  });
+});
+const loadLinux = cachePromiseHof(async () => {
+  if (state.metadata.linux) { return; }
+  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest-linux.yml?t=${Date.now()}`);
+  runInAction(() => {
+    if (data) { state.metadata.linux = data; }
+  });
+});
+const loadMacOS = cachePromiseHof(async () => {
+  if (state.metadata.macos) { return; }
+  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest-mac.yml?t=${Date.now()}`);
+  runInAction(() => {
+    if (data) { state.metadata.macos = data; }
+  });
+});
+const loadAndroid = cachePromiseHof(async () => {
+  if (state.metadata.android) { return; }
+  const data = await fetchYml<RumAndroidMetadata>('https://xue.cn/hub/api/app_managements?platform=android&channel=rum');
+  runInAction(() => {
+    if (data) { state.metadata.android = data; }
+  });
 });
 
-const getRumAndroidVersion = cachePromiseHof(async () => {
-  if (state.rumAndroidVersion) { return; }
-  try {
-    const fetchResponse = await fetch('https://xue.cn/hub/api/app_managements?platform=android&channel=rum');
-    const data: RumAndroidMetadata = await fetchResponse.json();
-    runInAction(() => {
-      state.rumAndroidLink = data.file;
-      state.rumAndroidVersion = `v${data.version_name}`;
-    });
-  } catch {}
-});
-
-const getVersion = cachePromiseHof(async () => {
+const loadData = async () => {
   await Promise.all([
-    getRumAppVersion(),
-    getRumAndroidVersion(),
+    loadWindows(),
+    loadLinux(),
+    loadMacOS(),
+    loadAndroid(),
   ]);
-});
-
+};
 
 export const appService = {
   state,
-  getRumAppVersion,
-  getRumAndroidVersion,
-  getVersion,
+  loadData,
 };
