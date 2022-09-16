@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 import classNames from 'classnames';
 
 import { langService, appService } from '~/service';
@@ -20,8 +20,35 @@ interface Props {
 }
 
 export const AppBox = observer((props: Props) => {
+  const state = useLocalObservable(() => ({
+    get links() {
+      const base = 'https://static-assets.xue.cn/rum-testing/';
+      const macosFile = appService.state.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
+      return {
+        windows: appService.state.metadata.windows?.path
+          ? `${base}${appService.state.metadata.windows?.path}`
+          : '',
+        linux: appService.state.metadata.linux?.path
+          ? `${base}${appService.state.metadata.linux?.path}`
+          : '',
+        macos: macosFile
+          ? `${base}${macosFile.url}`
+          : '',
+        android: appService.state.metadata.android?.file ?? '',
+      };
+    },
+    get versions() {
+      return {
+        windows: appService.state.metadata.windows?.version ?? '',
+        linux: appService.state.metadata.linux?.version ?? '',
+        macos: appService.state.metadata.macos?.version ?? '',
+        android: appService.state.metadata.android?.version_name ?? '',
+      };
+    },
+  }));
+
   React.useEffect(() => {
-    appService.getVersion();
+    appService.loadData();
   }, []);
 
   return (
@@ -67,30 +94,26 @@ export const AppBox = observer((props: Props) => {
           {
             icon: IconWin,
             text: 'Windows',
-            version: appService.state.rumAppVersion,
-            link: appService.state.rumAppWinLink,
-            loading: appService.state.rumAppLoading,
+            version: state.versions.windows,
+            link: state.links.windows,
           },
           {
             icon: IconLinux,
             text: 'Linux',
-            version: appService.state.rumAppVersion,
-            link: appService.state.rumAppLinuxLink,
-            loading: appService.state.rumAppLoading,
+            version: state.versions.linux,
+            link: state.links.linux,
           },
           {
             icon: IconMac,
             text: 'macOS',
-            version: appService.state.rumAppVersion,
-            link: appService.state.rumAppMacLink,
-            loading: appService.state.rumAppLoading,
+            version: state.versions.macos,
+            link: state.links.macos,
           },
           {
             icon: IconAndroid,
             text: 'Android',
-            version: appService.state.rumAndroidVersion,
-            link: appService.state.rumAndroidLink,
-            loading: appService.state.rumAndroidLoading,
+            version: state.versions.android,
+            link: state.links.android,
           },
         ].map((v, i) => (
           <div className="flex flex-center font-kanit" key={i}>
@@ -105,7 +128,7 @@ export const AppBox = observer((props: Props) => {
                 {v.text}
               </div>
               <div className="mt-1 font-light text-14 text-gray-b0">
-                {v.loading ? '...' : v.version}
+                {!v.link ? '...' : `v${v.version}`}
               </div>
             </a>
           </div>
