@@ -6,7 +6,7 @@ import { langService, appService } from '~/service';
 import RumLogo from '~/icons/logo.png';
 import RumLogo2x from '~/icons/logo@2x.png';
 import RumLogo3x from '~/icons/logo@3x.png';
-import IconAndroid from '~/icons/icon_os_android.svg';
+// import IconAndroid from '~/icons/icon_os_android.svg';
 import IconLinux from '~/icons/icon_os_linux.svg';
 import IconMac from '~/icons/icon_os_mac.svg';
 import IconWin from '~/icons/icon_os_win.svg';
@@ -89,7 +89,12 @@ export const AppBox = observer((props: Props) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 mb:grid-cols-2 gap-y-8 justify-around mx-auto max-w-[700px] mt-14">
+      <div
+        className="grid gap-8 mb:gap-6 mx-auto max-w-[700px] mt-14"
+        style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(1px, min-content))',
+        }}
+      >
         {[
           {
             icon: IconWin,
@@ -109,12 +114,12 @@ export const AppBox = observer((props: Props) => {
             version: state.versions.macos,
             link: state.links.macos,
           },
-          {
-            icon: IconAndroid,
-            text: 'Android',
-            version: state.versions.android,
-            link: state.links.android,
-          },
+          // {
+          //   icon: IconAndroid,
+          //   text: 'Android',
+          //   version: state.versions.android,
+          //   link: state.links.android,
+          // },
         ].map((v, i) => (
           <div className="flex flex-center font-kanit" key={i}>
             <a
