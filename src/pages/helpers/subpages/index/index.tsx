@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import { Dialog } from '@mui/material';
+import { Button, Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 import { langService, titleService } from '~/service';
@@ -17,6 +17,7 @@ import IconDecentralized from './icons/icon_decentralized.svg';
 import IconPrivacy from './icons/icon_privacy.svg';
 import IconToken from './icons/icon_token.svg';
 import ArchDiagram from './icons/arch_diagram.svg';
+import { Link } from 'react-router-dom';
 
 
 export const HomepageIndex = observer(() => {
@@ -33,6 +34,10 @@ export const HomepageIndex = observer(() => {
     state.open = false;
   });
 
+  const guideLink = langService.state.lang === 'en'
+    ? 'https://guide-en.rumsystem.net/'
+    : 'https://guide.rumsystem.net/';
+
   return (
     <div className="main-box flex justify-center">
       <div className="flex grow justify-center mx-6 mb:mx-0 mb:mt-0 my-10 px-6 max-w-[1200px] bg-black bg-opacity-70">
@@ -43,9 +48,9 @@ export const HomepageIndex = observer(() => {
           )}
         >
           <div className="grid gap-x-[10px] gap-y-[10px] grid-cols-2 text-white mb:grid-cols-1">
-            <div className="flex flex-center border border-gray-83 p-14 mb:p-4">
+            <div className="flex-col flex-center gap-y-5 border border-gray-83 p-10 mb:p-4">
               <div className="text-main text-23 leading-snug">
-                {lang.index.box1.map((v, i) => (
+                {lang.index.box1.p.map((v, i) => (
                   <React.Fragment key={i}>
                     {v.type.includes('linebreak') && (
                       <br />
@@ -64,6 +69,22 @@ export const HomepageIndex = observer(() => {
                     )}
                   </React.Fragment>
                 ))}
+              </div>
+              <div>
+                <a
+                  className="!no-underline"
+                  href={guideLink}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Button
+                    className="rounded-full px-7 py-[2px] text-18 normal-case"
+                    color="rum"
+                    variant="outlined"
+                  >
+                    {lang.index.box1.start}
+                  </Button>
+                </a>
               </div>
             </div>
 
@@ -193,6 +214,18 @@ export const HomepageIndex = observer(() => {
               </div>
             </div>
 
+          </div>
+
+          <div className="flex-col items-center mt-14 tracking-wide">
+            <div className="text-24 text-white">
+              {lang.index.adventure.text1}
+            </div>
+            <Link
+              className="text-18 text-link-soft font-light mt-3"
+              to="/apps"
+            >
+              {lang.index.adventure.text2}
+            </Link>
           </div>
 
           <AppBox className="mt-14 mb:mt-10 border border-gray-70" />

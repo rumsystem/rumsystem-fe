@@ -26,6 +26,7 @@ module.exports = {
       colors: {
         'main': '#ff931e',
         'link': '#006fff',
+        'link2': '#0080ff',
         'link-soft': '#5fc0e9',
         'gray': {
           'f9': '#f9f9f9',

@@ -11,6 +11,7 @@ import RumLogo from '~/icons/logo_rumsystem.svg';
 import { langService, AllLanguages, langName } from '~/service';
 
 import { lang } from '../lang';
+import { ThemeLight } from '~/utils/theme';
 
 export const HomepageHeader = observer(() => {
   const location = useLocation();
@@ -140,90 +141,91 @@ export const HomepageHeader = observer(() => {
           </MenuItem>
         </Menu>
 
-        <Drawer
-          classes={{
-            paper: 'outline-none',
-          }}
-          anchor="right"
-          open={state.mbMenu}
-          onClose={handleToggleMenu}
-        >
-          <Box
-            role="presentation"
-            onClick={handleToggleMenu}
-            onKeyDown={handleToggleMenu}
+        <ThemeLight>
+          <Drawer
+            classes={{
+              paper: 'outline-none',
+            }}
+            anchor="right"
+            open={state.mbMenu}
+            onClose={handleToggleMenu}
           >
-            <List>
-              <ListItem className="py-4" button>
-                <div className="w-full flex flex-center">
-                  <Link className="relative text-black font-medium relative" to="/">
-                    <img
-                      className="w-30 relative z-10"
-                      src={RumLogo}
-                      alt=""
-                      draggable="false"
-                    />
-                    {!!matchPath('/', location.pathname) && (
-                      <div className="bg-main h-[2px] absolute -left-4 -right-4 bottom-px" />
-                    )}
-                  </Link>
-                </div>
-              </ListItem>
-              <Divider className="my-2" />
-              {links.map((v) => (
-                <ListItem
-                  className="py-3"
-                  button
-                  key={v.to}
-                  onClick={() => navigate(v.to)}
-                >
-                  <LinkItem className="mx-4 py-1" item={v} key={v.to} />
+            <Box
+              role="presentation"
+              onClick={handleToggleMenu}
+              onKeyDown={handleToggleMenu}
+            >
+              <List>
+                <ListItem className="py-4" button>
+                  <div className="w-full flex flex-center">
+                    <Link className="relative text-black font-medium relative" to="/">
+                      <img
+                        className="w-30 relative z-10"
+                        src={RumLogo}
+                        alt=""
+                        draggable="false"
+                      />
+                      {!!matchPath('/', location.pathname) && (
+                        <div className="bg-main h-[2px] absolute -left-4 -right-4 bottom-px" />
+                      )}
+                    </Link>
+                  </div>
                 </ListItem>
-              ))}
-              <Divider className="my-2" />
-              <ListItem
-                className={classNames(
-                  'justify-end px-6 py-4',
-                  langService.en && 'font-kanit',
-                )}
-                button
-                onClick={() => navigate('/apps')}
-              >
-                <Download className="mr-[6px] text-22" />
-                {lang.header.download}
-              </ListItem>
-              <ListItem
-                className={classNames(
-                  'justify-end px-5',
-                  langService.en && 'font-kanit',
-                )}
-                button
-                onClick={() => handleSwitchLang('en')}
-              >
-                {langService.en && (
-                  <Check className="text-link" />
-                )}
-                <Language className="mr-[6px] text-22" />
-                {langName.en}
-              </ListItem>
-              <ListItem
-                className={classNames(
-                  'justify-end px-5 py-4',
-                  langService.en && 'font-kanit',
-                )}
-                button
-                onClick={() => handleSwitchLang('zh-tw')}
-              >
-                {langService.zh && (
-                  <Check className="text-link" />
-                )}
-                <Language className="mr-[6px] text-22" />
-                {langName['zh-tw']}
-              </ListItem>
-            </List>
-          </Box>
-        </Drawer>
-
+                <Divider className="my-2" />
+                {links.map((v) => (
+                  <ListItem
+                    className="py-3"
+                    button
+                    key={v.to}
+                    onClick={() => navigate(v.to)}
+                  >
+                    <LinkItem className="mx-4 py-1" item={v} key={v.to} />
+                  </ListItem>
+                ))}
+                <Divider className="my-2" />
+                <ListItem
+                  className={classNames(
+                    'justify-end px-6 py-4',
+                    langService.en && 'font-kanit',
+                  )}
+                  button
+                  onClick={() => navigate('/apps')}
+                >
+                  <Download className="mr-[6px] text-22" />
+                  {lang.header.download}
+                </ListItem>
+                <ListItem
+                  className={classNames(
+                    'justify-end px-5',
+                    langService.en && 'font-kanit',
+                  )}
+                  button
+                  onClick={() => handleSwitchLang('en')}
+                >
+                  {langService.en && (
+                    <Check className="text-link" />
+                  )}
+                  <Language className="mr-[6px] text-22" />
+                  {langName.en}
+                </ListItem>
+                <ListItem
+                  className={classNames(
+                    'justify-end px-5 py-4',
+                    langService.en && 'font-kanit',
+                  )}
+                  button
+                  onClick={() => handleSwitchLang('zh-tw')}
+                >
+                  {langService.zh && (
+                    <Check className="text-link" />
+                  )}
+                  <Language className="mr-[6px] text-22" />
+                  {langName['zh-tw']}
+                </ListItem>
+              </List>
+            </Box>
+          </Drawer>
+        </ThemeLight>
       </div>
     </div>
   </>);
