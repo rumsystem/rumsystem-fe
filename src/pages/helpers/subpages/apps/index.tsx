@@ -1,26 +1,37 @@
-import { Close } from '@mui/icons-material';
-import { Dialog } from '@mui/material';
+import { forwardRef, Fragment, ReactNode, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import React from 'react';
-import { ImgBox } from '~/components/ImgBox';
-import { langService, titleService } from '~/service';
-import { useLessThan } from '~/utils';
+import { toDataURL } from 'qrcode';
+import { Close } from '@mui/icons-material';
+import { Button, Dialog, Tooltip } from '@mui/material';
 
-import { AppBox } from '../../AppBox';
+import PlanetIcon from 'boxicons/svg/solid/bxs-planet.svg?fill-icon';
+
+import IconRumLight from '~/icons/icon_rum_light.svg';
+import RumLogo from '~/icons/logo.png';
+import RumLogo2x from '~/icons/logo@2x.png';
+import RumLogo3x from '~/icons/logo@3x.png';
+import PortLogoText from '~/icons/logo_port_text.svg';
+import PortLogoImage from '~/icons/logo_port_img.svg';
+import LibLogo from '~/icons/logo_lib.svg';
+import QuorumLogo from '~/icons/logo_quorum.svg?fill-icon';
+import IconAndroid from '~/icons/icon_os_android.svg?fill-icon';
+import IconTestflight from '~/icons/icon_testflight.svg?fill-icon';
+import IconLinux from '~/icons/icon_os_linux.svg';
+import IconMac from '~/icons/icon_os_mac.svg';
+import IconWin from '~/icons/icon_os_win.svg';
+import IconGithub from '~/icons/icon_github.svg';
+import IconBook from '~/icons/icon_book.svg';
+
+import { appService, langService, titleService } from '~/service';
+import { useWiderThan } from '~/utils';
+
 import { lang } from '../../lang';
+import { ImageSlide } from './ImageSlide';
+import { mobileScreenShots, portScreenShots, rumlibScreenShots } from './screenshots';
 
 import './index.sass';
-
-const IMAGES = [
-  'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
-  'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-24_opt.png',
-  'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-52_opt.png',
-  'https://img-cdn.xue.cn/311-app_screen_3_opt.png',
-  'https://img-cdn.xue.cn/311-app_screen_4_opt.png',
-  'https://img-cdn.xue.cn/311-app_screen_5_opt.png',
-];
 
 export const HomepageApps = observer(() => {
   titleService.useSetTitle('Apps & Tools');
@@ -29,35 +40,16 @@ export const HomepageApps = observer(() => {
     timerId: 0,
     dialog: false,
     bigImageLink: '',
+    qrImage: '',
+    get links() {
+      return appService.state.links;
+    },
+    get versions() {
+      return appService.state.versions;
+    },
   }));
-
-  const isMobile = useLessThan(960);
-
-  const handleChangeImage = action((index: number) => {
-    state.imageIndex = index;
-  });
-
-  const nextSlide = action(() => {
-    const newIndex = state.imageIndex === IMAGES.length - 1
-      ? 0
-      : state.imageIndex + 1;
-    state.imageIndex = newIndex;
-
-    state.timerId = window.setTimeout(() => {
-      nextSlide();
-    }, 2500);
-  });
-
-  const handleStopSlide = () => {
-    window.clearTimeout(state.timerId);
-  };
-
-  const handleResumeSlide = () => {
-    handleStopSlide();
-    state.timerId = window.setTimeout(() => {
-      nextSlide();
-    }, 2500);
-  };
+  const isPC = useWiderThan(960);
+  const section = useRef<Array<HTMLDivElement | null>>([]);
 
   const handleShowBigImage = action((link: string) => {
     state.dialog = true;
@@ -68,110 +60,487 @@ export const HomepageApps = observer(() => {
     state.dialog = false;
   });
 
-  React.useEffect(() => {
-    handleResumeSlide();
+  const handleScrollTo = (i: number) => {
+    const element = section.current[i];
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
 
-    return handleStopSlide;
+  useEffect(() => {
+    appService.loadData();
+    toDataURL(
+      'https://rumsystem.net/rum-light-download',
+      {
+        margin: 0,
+        scale: 8,
+      },
+      action((error, url) => {
+        if (!error) {
+          state.qrImage = url;
+        }
+      }),
+    );
   }, []);
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
-      <div className="flex flex-none justify-center bg-black bg-opacity-70 px-5 mb:px-0">
-        <div
-          className={classNames(
-            'max-w-[1200px] grow text-14',
-            langService.en && 'font-consolas',
-          )}
-        >
-          <AppBox />
+      <div className="nav-box mb:hidden flex w-full overflow-x-auto bg-black/70">
+        <div className="flex flex-none mx-auto justify-center gap-x-6 py-6 px-6">
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(0)}
+          >
+            <img className="h-16" src={IconRumLight} alt="" />
+            <div className="text-24 font-kanit text-main font-light">
+              Rum Light
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.rumlight.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
+          </Button>
+
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(1)}
+          >
+            <img
+              className="flex-none h-16"
+              src={RumLogo}
+              srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`}
+              alt=""
+            />
+            <div className="text-24 font-kanit text-main font-light">
+              Rum App
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.rumapp.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
+          </Button>
+
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(2)}
+          >
+            <img
+              className="flex-none h-16"
+              src={PortLogoImage}
+              alt=""
+            />
+            <div className="text-24 font-kanit text-main font-light">
+              <img
+                className="flex-none w-13 my-1"
+                src={PortLogoText}
+                alt=""
+              />
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.port.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
+          </Button>
+
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(3)}
+          >
+            <img
+              className="flex-none h-16"
+              src={LibLogo}
+              alt=""
+            />
+            <div className="text-24 font-kanit text-main font-light">
+              Rum Lib
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.rumlib.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
+          </Button>
+
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(4)}
+          >
+            <QuorumLogo className="text-[64px] text-white" />
+            <div className="text-24 font-kanit text-main font-light">
+              Quorum
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.quorum.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+              <br />
+            </div>
+          </Button>
         </div>
       </div>
 
-      <div
-        className={classNames(
-          'flex mb:flex-col justify-center max-w-[1260px] w-full mt-10 mb-14 mx-auto',
-          'bg-black bg-opacity-70 leading-lang overflow-hidden',
-          langService.en && 'font-consolas',
-        )}
-      >
-        <div className="flex mb:flex-col mb:flex-none py-8 mb:pt-8 mb:pb-4 pl-12 mb:px-8 pc:min-w-[440px]">
-          <div className="">
-            <div className="font-kanit text-main text-20">
-              {lang.apps.title}
+      <SectionItem ref={(ref) => { section.current[0] = ref; }}>
+        <span key="title">{lang.apps.rumapp.title}</span>
+        <img
+          className="flex-none h-16"
+          src={RumLogo}
+          srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`}
+          alt=""
+          key="logo"
+        />
+        <span key="type">{lang.apps.rumapp.type}</span>
+        <Fragment key="subtitle">
+          {lang.apps.rumapp.subtitle.map((v, i) => (
+            <p key={i}>{v}</p>
+          ))}
+        </Fragment>
+        <Fragment key="icons">
+          {[
+            {
+              icon: <img className="h-10" src={IconWin} alt="" />,
+              text: 'Windows',
+              link: state.links.windows,
+            },
+            {
+              icon: <img className="h-10" src={IconLinux} alt="" />,
+              text: 'Linux',
+              link: state.links.linux,
+            },
+            {
+              icon: <img className="h-10" src={IconMac} alt="" />,
+              text: 'macOS',
+              link: state.links.macos,
+            },
+            // {
+            //   icon: <IconAndroid className="text-40 text-link-soft" />,
+            //   text: 'Android',
+            //   link: state.links.android,
+            // },
+            {
+              icon: <PlanetIcon className="text-44 -m-[2px] text-link-soft" />,
+              text: 'Web',
+              link: 'http://wasmapp.rumsystem.net/',
+            },
+          ].map((v, i) => (
+            <div className="flex flex-center font-kanit" key={i}>
+              <a
+                className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+                href={v.link}
+                target="_blank"
+              >
+                {v.icon}
+                <div className="mt-2 font-light text-20 text-link-soft">
+                  {v.text}
+                </div>
+              </a>
             </div>
-
-            <div
-              className={classNames(
-                'mt-2 text-gray-d1',
-                langService.en && 'font-consolas text-15',
-              )}
-            >
-              {lang.apps.content.map((v, i) => (
-                <p className="mt-4" key={i}>{v}</p>
-              ))}
-            </div>
-            <div
-              className={classNames(
-                'mt-6 text-13 text-gray-7b',
-                langService.en && 'font-consolas',
-              )}
-            >
-              {lang.apps.smallTip}
-            </div>
+          ))}
+        </Fragment>
+        <Fragment key="desc">
+          <div
+            className={classNames(
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              langService.en && 'font-consolas text-15',
+            )}
+          >
+            {lang.apps.rumlight.content.map((v, i) => (
+              <p key={i}>{v}</p>
+            ))}
           </div>
           <div
-            className="flex-col mb:flex-row flex-center mb:mt-4 px-4"
-            onMouseEnter={handleStopSlide}
-            onMouseLeave={handleResumeSlide}
+            className={classNames(
+              'mt-6 text-13 text-gray-7b',
+              langService.en && 'font-consolas',
+            )}
           >
-            {Array(IMAGES.length).fill(0).map((_, i) => (
-              <div
-                className="h-6 w-6 flex flex-center cursor-pointer pc:my-2 mb:mx-2"
-                key={i}
-                onClick={() => handleChangeImage(i)}
+            {lang.apps.rumapp.smallTip}
+          </div>
+        </Fragment>
+        <ImageSlide
+          key="image"
+          images={[
+            'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
+            'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-24_opt.png',
+            'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-52_opt.png',
+            'https://img-cdn.xue.cn/311-app_screen_3_opt.png',
+            'https://img-cdn.xue.cn/311-app_screen_4_opt.png',
+            'https://img-cdn.xue.cn/311-app_screen_5_opt.png',
+          ]}
+          onImageClick={handleShowBigImage}
+        />
+      </SectionItem>
+
+      <SectionItem ref={(ref) => { section.current[1] = ref; }}>
+        <span key="title">{lang.apps.rumlight.title}</span>
+        <img
+          className="flex-none h-16"
+          src={IconRumLight}
+          alt=""
+          key="logo"
+        />
+        <span key="type">{lang.apps.rumlight.type}</span>
+        <Fragment key="subtitle">
+          {lang.apps.rumlight.subtitle.map((v, i) => (
+            <p key={i}>{v}</p>
+          ))}
+        </Fragment>
+        <Fragment key="icons">
+          <div className="flex flex-center font-kanit">
+            <Tooltip
+              classes={{
+                tooltip: 'bg-white text-gray-70 shadow-4',
+              }}
+              title={(
+                <div className="flex-col flex-center py-4 px-3">
+                  <div>
+                    <img
+                      className="w-40 h-40"
+                      src={state.qrImage}
+                      alt=""
+                    />
+                  </div>
+                  <div className="text-24 text-center leading-relaxed font-normal mt-4">
+                    {lang.qrtip.map((v, i) => (
+                      <p key={i}>{v}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
+            >
+              <a
+                className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+                href={isPC ? undefined : '/rum-light-download'}
+                target="_blank"
               >
-                <div
-                  className={classNames(
-                    'rounded-full',
-                    state.imageIndex === i && 'h-[7px] w-[7px] bg-transparent dot-active',
-                    state.imageIndex !== i && 'h-2 w-2 bg-link-soft',
-                  )}
+                <IconTestflight className="text-40 text-link-soft" />
+                <div className="mt-2 font-light text-20 text-link-soft">
+                  IOS Testflight
+                </div>
+              </a>
+            </Tooltip>
+          </div>
+          <div className="flex flex-center font-kanit">
+            <a
+              className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+              href={state.links.androidLight}
+              target="_blank"
+              download
+            >
+              <IconAndroid className="text-44 -m-[2px] text-link-soft" />
+              <div className="mt-2 font-light text-20 text-link-soft">
+                Android
+              </div>
+            </a>
+          </div>
+        </Fragment>
+        <Fragment key="desc">
+          <div
+            className={classNames(
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              langService.en && 'font-consolas text-15',
+            )}
+          >
+            {lang.apps.rumlight.content.map((v, i) => (
+              <p key={i}>{v}</p>
+            ))}
+          </div>
+        </Fragment>
+        <Fragment key="image">
+          {isPC && (
+            <div className="flex flex-center mb:flex-col mb:mt-4 flex-none gap-x-4 relative overflow-hidden cursor-pointer pc:min-w-[600px]">
+              {mobileScreenShots.map((v, i) => (
+                <img
+                  className=""
+                  src={v.x1}
+                  srcSet={`${v.x2} 2x, ${v.x3} 3x`}
+                  alt=""
                   key={i}
                 />
+              ))}
+            </div>
+          )}
+          {!isPC && (
+            <ImageSlide
+              key="image"
+              images={mobileScreenShots.map((v) => v.x2)}
+              onImageClick={handleShowBigImage}
+            />
+          )}
+        </Fragment>
+      </SectionItem>
+
+      <SectionItem ref={(ref) => { section.current[2] = ref; }}>
+        <img
+          className="inline flex-none h-5"
+          src={PortLogoText}
+          alt=""
+          key="title"
+        />
+        <img
+          className="flex-none h-16"
+          src={PortLogoImage}
+          alt=""
+          key="logo"
+        />
+        <span key="type">{lang.apps.port.type}</span>
+        <Fragment key="subtitle">
+          {lang.apps.port.subtitle.map((v, i) => (
+            <p key={i}>{v}</p>
+          ))}
+        </Fragment>
+        <Fragment key="icons">
+          <div className="flex flex-center font-kanit">
+            <a
+              className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+              href="https://port.base.one"
+              target="_blank"
+            >
+              <PlanetIcon className="text-44 -m-[2px] text-link-soft" />
+              <div className="mt-2 font-light text-20 text-link-soft">
+                Web
               </div>
+            </a>
+          </div>
+        </Fragment>
+        <Fragment key="desc">
+          <div
+            className={classNames(
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              langService.en && 'font-consolas text-15',
+            )}
+          >
+            {lang.apps.port.content.map((v, i) => (
+              <p key={i}>{v}</p>
             ))}
+          </div>
+        </Fragment>
+
+        <ImageSlide
+          key="image"
+          images={portScreenShots}
+          onImageClick={handleShowBigImage}
+        />
+      </SectionItem>
+
+      <SectionItem ref={(ref) => { section.current[3] = ref; }}>
+        <span key="title">{lang.apps.rumlib.title}</span>
+        <img
+          className="flex-none h-16"
+          src={LibLogo}
+          alt=""
+          key="logo"
+        />
+        <span key="type">{lang.apps.rumlib.type}</span>
+        <Fragment key="subtitle">
+          {lang.apps.rumlib.subtitle.map((v, i) => (
+            <p key={i}>{v}</p>
+          ))}
+        </Fragment>
+        <Fragment key="icons">
+          {[
+            {
+              icon: <img className="h-10" src={IconWin} alt="" />,
+              text: 'Windows',
+              link: 'https://github.com/rumsystem/rum-epub/releases',
+            },
+            {
+              icon: <img className="h-10" src={IconLinux} alt="" />,
+              text: 'Linux',
+              link: 'https://github.com/rumsystem/rum-epub/releases',
+            },
+            {
+              icon: <img className="h-10" src={IconMac} alt="" />,
+              text: 'macOS',
+              link: 'https://github.com/rumsystem/rum-epub/releases',
+            },
+          ].map((v, i) => (
+            <div className="flex flex-center font-kanit" key={i}>
+              <a
+                className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+                href={v.link}
+                target="_blank"
+                download
+              >
+                {v.icon}
+                <div className="mt-2 font-light text-20 text-link-soft">
+                  {v.text}
+                </div>
+              </a>
+            </div>
+          ))}
+        </Fragment>
+        <Fragment key="desc">
+          <div
+            className={classNames(
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              langService.en && 'font-consolas text-15',
+            )}
+          >
+            {lang.apps.rumlib.content.map((v, i) => (
+              <p key={i}>{v}</p>
+            ))}
+          </div>
+        </Fragment>
+
+        <ImageSlide
+          key="image"
+          images={rumlibScreenShots}
+          onImageClick={handleShowBigImage}
+        />
+      </SectionItem>
+
+      <div
+        className={classNames(
+          'flex bg-black/70 justify-between max-w-[1260px] w-full mt-14 mx-auto px-18 py-16 mb-12',
+          'mb:flex-col mb:p-8 mb:gap-y-8',
+        )}
+        ref={(ref) => { section.current[4] = ref; }}
+      >
+        <div className="flex gap-4">
+          <QuorumLogo className="text-white text-[80px]" />
+          <div className="text-white">
+            <div className="text-24">
+              {lang.apps.quorum.title}
+            </div>
+            <div className="text-18 text-gray-d1 mt-2">
+              {lang.apps.quorum.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div
-          className="flex flex-center flex-none relative overflow-hidden cursor-pointer pc:min-w-[600px]"
-          onMouseEnter={handleStopSlide}
-          onMouseLeave={handleResumeSlide}
-        >
-          <div className="relative overflow-hidden">
-            <ImgBox
-              className="flex-none pc:h-[580px] pc:w-auto mb:w-full mb:h-auto pointer-events-none"
-              src={IMAGES[0]}
-              alt=""
-              width="772"
-              height="580"
-            />
+        <div className="flex-col items-start gap-y-5">
+          <a
+            className="flex flex-center text-link-soft text-18"
+            href="https://github.com/rumsystem/quorum"
+            target="_blank"
+            rel="noopener"
+          >
+            <img className="mr-3 w-6" src={IconGithub} alt="" />
+            Rumsystem/quorum/
+          </a>
+          <a
+            className="flex flex-center text-link-soft text-18"
+            href="https://github.com/rumsystem/quorum#run-a-rum-peer-on-server"
+            target="_blank"
+            rel="noopener"
+          >
+            <img className="mr-3 w-6" src={IconBook} alt="" />
+            {lang.apps.quorum.howtorun}
+          </a>
 
-            {IMAGES.map((v, i) => (
-              <img
-                className="absolute pc:h-[580px] pc:w-auto mb:w-full mb:h-auto duration-300 top-0"
-                style={{
-                  transform: isMobile
-                    ? `translateX(${(i - state.imageIndex) * 100}%)`
-                    : `translateY(${(i - state.imageIndex) * 100}%)`,
-                }}
-                src={v}
-                alt=""
-                key={i}
-                onClick={() => handleShowBigImage(v)}
-              />
-            ))}
-          </div>
         </div>
       </div>
 
@@ -195,3 +564,47 @@ export const HomepageApps = observer(() => {
     </div>
   );
 });
+
+interface SectionProps {
+  children?: ReactNode
+}
+
+const SectionItem = observer(forwardRef<HTMLDivElement, SectionProps>((props, ref) => {
+  const children = Array.isArray(props.children) ? props.children : [props.children];
+  const sections = ['logo', 'title', 'type', 'subtitle', 'icons', 'desc', 'image'] as const;
+  type Keys = typeof sections[number];
+  const map: Record<Keys, ReactNode> = Object.fromEntries(
+    sections.map((v) => [v, children.find((u: any) => u.key === v)]),
+  ) as any;
+  return (
+    <div
+      className="flex-col bg-black/70 justify-center max-w-[1260px] w-full mt-14 mx-auto gap-y-6 py-6"
+      ref={ref}
+    >
+      <div className="flex mb:flex-col flex-1 items-center gap-x-6 gap-y-6 px-12 mb:px-8">
+        {map.logo}
+        <div className="flex-col gap-y-2 mb:w-full">
+          <div className="text-main text-30">
+            {map.title}
+            <span className="border rounded-full text-12 text-gray-d1 px-3 py-px ml-3 align-[3px]">
+              {map.type}
+            </span>
+          </div>
+          <div className="text-18 text-gray-d1">
+            {map.subtitle}
+          </div>
+        </div>
+        <div className="flex mb:flex-wrap flex-1 gap-4 justify-end mb:justify-center">
+          {map.icons}
+        </div>
+      </div>
+
+      <div className="flex mb:flex-col px-8">
+        <div className="">
+          {map.desc}
+        </div>
+        {map.image}
+      </div>
+    </div>
+  );
+}));

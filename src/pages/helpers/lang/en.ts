@@ -11,26 +11,45 @@ export const content: ZHTWContent = {
   },
 
   appBox: {
-    title: 'Download Rum App',
-    content: [
-      { type: ['light'], text: 'Join as a ' },
-      { type: [], text: 'Node' },
-      { type: ['light'], text: ' of an ' },
-      { type: [], text: 'alternative World' },
+    light: {
+      title: [
+        { type: ['medium'], text: 'Rum Light on Lightweight Node' },
+      ],
+      desc: [
+        'A quick and easy way to experience Rum',
+        'Join the internet alternative',
+      ],
+      download: 'Download',
+    },
+
+    port: [
+      'Pioneering use NFT as access token',
+      'Decentralized, lightweight web forum',
     ],
-    previous: 'View previous versions',
+    rumapp: [
+      'Full node Rum that can create SeedNets',
+      'Full-featured for node Owners',
+    ],
+    rumlib: [
+      'Content sharing and discussion',
+      'Decentralized library',
+      '(features partially released)',
+    ],
   },
 
   index: {
-    box1: [
-      { type: ['bold', 'italic'], text: 'RumSystem' },
-      { type: ['light'], text: ': ' },
-      { type: ['light', 'small'], text: 'an open-source' },
-      { type: ['linebreak'], text: '' },
-      { type: ['light', 'small'], text: 'P2P application infrastructure to offer' },
-      { type: ['linebreak'], text: '' },
-      { type: ['bold', 'italic'], text: 'the internet alternatives' },
-    ],
+    box1: {
+      p: [
+        { type: ['bold', 'italic'], text: 'RumSystem' },
+        { type: ['light'], text: ': ' },
+        { type: ['light', 'small'], text: 'an open-source' },
+        { type: ['linebreak'], text: '' },
+        { type: ['light', 'small'], text: 'P2P application infrastructure to offer' },
+        { type: ['linebreak'], text: '' },
+        { type: ['bold', 'italic'], text: 'the internet alternatives' },
+      ],
+      start: 'Start',
+    },
     box2: {
       title: 'Decentralized',
       p: [
@@ -63,6 +82,11 @@ export const content: ZHTWContent = {
         'All official softwares, including API, SDK are open source and the code available on GitHub. Rum will provide support and funding to third-party devs after the mainnet launch. If you are interested in building decentralized apps, keep in touch with us.',
       ],
       link: 'Our GitHub & Docs',
+    },
+
+    adventure: {
+      text1: 'Adventure the possibilities, bon voyage!',
+      text2: 'More DAPPs Working With Rum >>',
     },
 
     howWorks: {
@@ -105,15 +129,75 @@ export const content: ZHTWContent = {
   },
 
   apps: {
-    title: 'What is Rum App?',
-    content: [
-      'A cross-platform client developed by the RUM team for exploring decentralized features of Rum System in an easy and familiar way. (WebApp coming soon)',
-      'Three types of SeedNet templates available now: Feed, BBS, & Private Notes. ',
-      'Upcoming Features: Cryptocurrency payments and transaction, Smart Contracts, Digital assets ownership confirmation, Crowdsourcing creation mode, etc.',
-      'In the near future, a SeedNet, combined with different permission settings, pricing plan & customizable themes, can be applied as a decentralized Twitter, forum, fan-base group, subscribable feeds, encrypted trust docs, crowd-sourcing project, NFT & digital asset trading service, self-publishing services ……',
-    ],
-    smallTip: 'RumApp is still in its early stage, versions updates could be frequent. Occasionally, you may experience problems such as unsuccessful sync or other problems. But we are working hard to improve service stability and perfect functions.',
+    rumapp: {
+      title: 'Rum App',
+      type: 'Full Node',
+      subtitle: [
+        'Full node Rum that can create SeedNets',
+        'Full-featured for node Owners',
+      ],
+      content: [
+        'A cross-platform client developed by the RUM team for exploring decentralized features of Rum System in an easy and familiar way. (WebApp coming soon)',
+        'Three types of SeedNet templates available now: Feed, BBS, & Private Notes. ',
+        'Upcoming Features: Cryptocurrency payments and transaction, Smart Contracts, Digital assets ownership confirmation, Crowdsourcing creation mode, etc.',
+        'In the near future, a SeedNet, combined with different permission settings, pricing plan & customizable themes, can be applied as a decentralized Twitter, forum, fan-base group, subscribable feeds, encrypted trust docs, crowd-sourcing project, NFT & digital asset trading service, self-publishing services ……',
+      ],
+      smallTip: 'RumApp is still in its early stage, versions updates could be frequent. Occasionally, you may experience problems such as unsuccessful sync or other problems. But we are working hard to improve service stability and perfect functions.',
+    },
+    rumlight: {
+      title: 'Rum Light Mobile App',
+      type: 'Light Node',
+      subtitle: [
+        'A quick and easy way to experience Rum',
+        'Join the internet alternative',
+      ],
+      content: [
+        'A mobile client that runs on a light node and supports major Android devices as well as iPhone (you need to download TestFlight from the App Store).',
+        'Compared with the full node client, Rum Light has all the interactive functions of Rum App, such as posting, commenting, and liking, except that you can\'t build your own SeedNet.',
+        'And it\'s lighter and faster.',
+        'A quick and easy way to experience Rum. Join the internet alternative, for more possibilities.',
+      ],
+    },
+    port: {
+      type: 'Light Node',
+      subtitle: [
+        'Pioneering use NFT as access token',
+        'Decentralized, lightweight web forum',
+      ],
+      content: [
+        'Pioneering use NFT as access token and permission management. Port is a decentralized, lightweight web forum.',
+        'Imagine creating your own forum and distributing NFT to your audience. With NFT, they can join and discuss their common topics.',
+        'The content supports Markdown format, likes and comments.',
+        'In the future, we will also support more user to user activities, and more use of NFT for the management of different permissions.',
+        'Explore the endless possibilities of Rum.',
+      ],
+    },
+    rumlib: {
+      title: 'Rum Lib',
+      type: 'Full Node',
+      subtitle: [
+        'Content sharing and discussion',
+        'Decentralized library',
+        '(features partially released)',
+      ],
+      content: [
+        'A decentralized content management library that enables content sharing and discussion using SeedNets, currently only supports Epub eBook type of management and reading. More content formats will be supported in the future.',
+        'The eBook reader already supports highlighting notes, full-screen reading, font adjustment, background color adjustment, etc. More features will be released later to enhance your reading experience.',
+        'The discussion feature is under development. Then you can discuss with your peers, and use your imagination and creativity to create and publish content together.',
+        'Explore the endless possibilities of Rum.',
+      ],
+    },
+    quorum: {
+      title: 'Quorum',
+      subtitle: ['Earn Rum by running a rum peer'],
+      howtorun: 'How to run a full node?',
+    },
   },
+
+  qrtip: [
+    'Scan Qr Code',
+    'Get Mobile APP',
+  ],
 
   why: {
     title: 'Why Rum',
@@ -196,9 +280,9 @@ export const content: ZHTWContent = {
       ],
       links: {
         api: 'API Document',
-        runPeer: 'Run a RUM peer',
-        example: 'Example',
-        runOnServer: 'Run a RUM peer on server',
+        github: 'GitHub Repository',
+        runPeer: 'ㄴ Run a RUM peer',
+        example: 'ㄴ Example',
       },
     },
     rumApp: {
@@ -216,6 +300,11 @@ export const content: ZHTWContent = {
         eslint: 'ESLint',
       },
     },
+  },
+
+  footer: {
+    guide: 'User Guide',
+    docs: 'Developer Docs',
   },
 };
 

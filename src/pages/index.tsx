@@ -1,8 +1,11 @@
-import React from 'react';
+import BasicLayout from '~/layouts';
+
 import HomepagePC from './helpers/HomepagePC';
 
 const Homepage = () => (
-  <HomepagePC />
+  <BasicLayout>
+    <HomepagePC />
+  </BasicLayout>
 );
 
 export default Homepage;

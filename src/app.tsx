@@ -2,7 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import RouterComponent from './router';
-import Layout from './layouts';
 import { ThemeRoot } from './utils/theme';
 import { initService, initServiceSSR } from './service';
 
@@ -33,9 +32,7 @@ const App = observer(() => {
     <RouterWrapper>
       <ThemeRoot>
         <LocationChange />
-        <Layout>
-          <RouterComponent />
-        </Layout>
+        <RouterComponent />
       </ThemeRoot>
     </RouterWrapper>
   );

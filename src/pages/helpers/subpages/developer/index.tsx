@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
 
-import IconNode from '~/icons/icon_node.svg';
+import LinkExternalIcon from 'boxicons/svg/regular/bx-link-external.svg?fill-icon';
+
 import IconGithub from '~/icons/icon_github.svg';
-import IconLinkServer from '~/icons/icon_link_server.svg';
 import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
@@ -51,23 +51,21 @@ export const HomepageDevelopers = observer(() => {
               {[
                 {
                   link: 'https://rumsystem.github.io/quorum-api/',
-                  image: IconGithub,
+                  image: IconLinkExample,
                   text: lang.developers.quorum.links.api,
                 },
                 {
+                  link: 'https://github.com/rumsystem/quorum',
+                  image: IconGithub,
+                  text: lang.developers.quorum.links.github,
+                },
+                {
                   link: 'https://github.com/rumsystem/quorum#run-a-rum-peer',
-                  image: IconNode,
                   text: lang.developers.quorum.links.runPeer,
                 },
                 {
                   link: 'https://github.com/rumsystem/quorum#example-a-private-decentralized-forum',
-                  image: IconLinkExample,
                   text: lang.developers.quorum.links.example,
-                },
-                {
-                  link: 'https://github.com/rumsystem/quorum#run-a-rum-peer-on-server',
-                  image: IconLinkServer,
-                  text: lang.developers.quorum.links.runOnServer,
                 },
               ].map((v, i) => (
                 <a
@@ -85,6 +83,7 @@ export const HomepageDevelopers = observer(() => {
                     alt=""
                   />
                   {v.text}
+                  {i < 2 && <LinkExternalIcon className="ml-1" />}
                 </a>
               ))}
             </div>
@@ -148,6 +147,7 @@ export const HomepageDevelopers = observer(() => {
                     alt=""
                   />
                   {v.text}
+                  <LinkExternalIcon className="ml-1" />
                 </a>
               ))}
             </div>

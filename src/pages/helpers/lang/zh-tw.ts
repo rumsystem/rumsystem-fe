@@ -9,25 +9,44 @@ export const content = {
   },
 
   appBox: {
-    title: '下載 Rum App',
-    content: [
-      { type: ['light'], text: '加入' },
-      { type: ['bold'], text: '平行互聯網世界' },
-      { type: ['light'], text: '，參與創建你的' },
-      { type: ['bold'], text: '新節點' },
+    light: {
+      title: [
+        { type: ['medium'], text: 'Rum Light ' },
+        { type: [], text: '轻节点移动客户端' },
+      ],
+      desc: [
+        '輕便快捷地體驗Rum',
+        '加入分布式平行互聯網世界',
+      ],
+      download: '立刻下載',
+    },
+
+    port: [
+      '用 NFT 實現創新型權限管理的',
+      '去中心化的輕巧私有網頁論壇',
     ],
-    previous: '查看其它歷史更新版本',
+    rumapp: [
+      '可以創建種子網絡的全節點 Rum 客戶端',
+      '節點 Owner 的強大全功能管理工具',
+    ],
+    rumlib: [
+      '用種子網絡實現文件分享和討論的',
+      '去中心圖書館（部分功能發布）',
+    ],
   },
 
   index: {
-    box1: [
-      { type: ['bold', 'italic', 'kanit'], text: 'RumSystem' },
-      { type: ['light', 'small'], text: '：' },
-      { type: ['linebreak'], text: '' },
-      { type: ['light', 'small'], text: 'P2P 開源技術底層 及 去中心網絡解決方案' },
-      { type: ['linebreak'], text: '' },
-      { type: ['bold', 'small'], text: '快速構建“平行互聯網世界”' },
-    ],
+    box1: {
+      p: [
+        { type: ['bold', 'italic', 'kanit'], text: 'RumSystem' },
+        { type: ['light', 'small'], text: '：' },
+        { type: ['linebreak'], text: '' },
+        { type: ['light', 'small'], text: 'P2P 開源技術底層 及 去中心網絡解決方案' },
+        { type: ['linebreak'], text: '' },
+        { type: ['bold', 'small'], text: '快速構建“平行互聯網世界”' },
+      ],
+      start: '開始',
+    },
     box2: {
       title: '去中心化',
       p: [
@@ -63,6 +82,11 @@ export const content = {
         'Rum 會在主鏈開發基本完成後，對第三方開發提供支持和投資。如果你對開發去中心類應用感興趣，請持續關注 RumSystem.',
       ],
       link: '訪問我們的 GitHub 及開發文檔',
+    },
+
+    adventure: {
+      text1: '啟航，去探索更多可能',
+      text2: '更多由 Rum 支持的 DAPP >>',
     },
 
     howWorks: {
@@ -104,15 +128,73 @@ export const content = {
   },
 
   apps: {
-    title: 'What is Rum App?',
-    content: [
-      '官方團隊開發的跨平台客戶端，讓用戶和第三方開發者們能以簡易和熟悉的方式體驗 Rum System 的去中心化特性。',
-      '支持所有主流 desktop OS 和 Android，瀏覽器版本正在開發中。',
-      '目前，Rum App 支持三類種子網絡模板：Feed,BBS,私密筆記。即將支持虛擬幣經濟系統、智能合約、內容確權等，讓種子網絡可以支持協作社羣或更多付費交易場景。',
-      '不久的將來，結合不同的權限設置、經濟關係設定、主題定製，一個種子網絡可以化身為去中心的 Twitter、Reddit、付費羣組、私密筆記、加密信託文檔、私密羣組社交、內容眾創平台、NFT、內容交易服務、自出版服務……',
-    ],
-    smallTip: '現在 Rum App 還處於早期體驗階段，版本和功能的迭代也非常頻繁，偶爾會存在同步不成功的問題。但我們正在努力提高服務穩定性和產品功能的完備。',
+    rumapp: {
+      title: 'Rum App',
+      type: '全節點',
+      subtitle: [
+        '可以創建種子網絡的全節點 Rum 客戶端',
+        '節點 Owner 的強大全功能管理工具',
+      ],
+      content: [
+        '官方團隊開發的跨平台客戶端，讓用戶和第三方開發者們能以簡易和熟悉的方式體驗 Rum System 的去中心化特性。',
+        '支持所有主流 desktop OS 和 Android，瀏覽器版本正在開發中。',
+        '目前，Rum App 支持三類種子網絡模板：Feed,BBS,私密筆記。即將支持虛擬幣經濟系統、智能合約、內容確權等，讓種子網絡可以支持協作社羣或更多付費交易場景。',
+        '不久的將來，結合不同的權限設置、經濟關係設定、主題定製，一個種子網絡可以化身為去中心的 Twitter、Reddit、付費羣組、私密筆記、加密信託文檔、私密羣組社交、內容眾創平台、NFT、內容交易服務、自出版服務……',
+      ],
+      smallTip: '現在 Rum App 還處於早期體驗階段，版本和功能的迭代也非常頻繁，偶爾會存在同步不成功的問題。但我們正在努力提高服務穩定性和產品功能的完備。',
+    },
+    rumlight: {
+      title: 'Rum Light 轻节点移动客户端',
+      type: '輕節點',
+      subtitle: [
+        '輕便快捷地體驗Rum',
+        '加入分布式平行互聯網世界',
+      ],
+      content: [
+        '一款在輕節點上運行的移動客戶端，支持安卓主流機型以及iPhone（需要在 App Store 下載 TestFlight）。',
+        '較於全節點客戶端，Rum Light 除不能自建種子網絡外，具備一切 Rum App 的發帖，評論，點贊等交互功能。',
+        '而且更加輕快。',
+        '輕便快捷地體驗Rum，加入分佈式平行互聯網世界，探索更多的可能性。',
+      ],
+    },
+    port: {
+      type: '輕節點',
+      subtitle: [
+        '用 NFT 實現創新型權限管理的',
+        '去中心化的輕巧私有網頁論壇',
+      ],
+      content: [
+        '在瀏覽器運行的輕節點，用 NFT 實現創新型權限管理的去中心化的輕巧私有網頁論壇。',
+        '想像，自己創建論壇，發行 NFT 給你的受眾。他們憑藉 NFT 入場發言，探討共同的話題。',
+        '內容支持 Markdown 格式，支持點贊和評論。',
+        '未來還將支持更多用戶之間的互動，更多的利用 NFT 進行不同權限的管理。',
+        '敬請期待 Rum 的無限可能性。',
+      ],
+    },
+    rumlib: {
+      title: 'Rum Lib',
+      type: '全節點',
+      subtitle: [
+        '用種子網絡實現文件分享和討論的',
+        '去中心圖書館（部分功能發布）',
+      ],
+      content: [
+        '一款全節點應用程式，用種子網絡實現內容分享和討論的去中心內容管理庫，當前僅支持 Epub 電子書類型的管理和閱讀。後續還將支持更多的內容格式。',
+        'Epub 電子書閱讀器已經支持劃線筆記，全屏閱讀，字體調整，底色調整等，後續還會發布更加豐富的功能，提升您的閱讀體驗。',
+        '討論功能開發中，與同好一起討論，發揮想像和創造力，共同創作和發佈內容，敬請期待 Rum 的無限可能性。',
+      ],
+    },
+    quorum: {
+      title: 'Quorum',
+      subtitle: ['運行節點以獲得 Rum 收益'],
+      howtorun: '怎样运行一个全节点',
+    },
   },
+
+  qrtip: [
+    '掃描二維碼',
+    '下載移動端 APP',
+  ],
 
   why: {
     title: 'Why Rum',
@@ -196,10 +278,10 @@ export const content = {
         '我們的協議、API 和 SDK 經歷了不到一年的開發，還在不斷完善中。歡迎持續關注我們的進展，提出你的需求和想法。或加入 RumNetwork 體驗網絡，成為我們的出塊節點。',
       ],
       links: {
-        api: 'API Document',
-        runPeer: 'Run a RUM peer',
-        example: 'Example',
-        runOnServer: 'Run a RUM peer on server',
+        api: 'API 文檔',
+        github: 'GitHub 倉庫',
+        runPeer: 'ㄴ Run a RUM peer',
+        example: 'ㄴ Example',
       },
     },
     rumApp: {
@@ -218,6 +300,11 @@ export const content = {
         eslint: 'ESLint',
       },
     },
+  },
+
+  footer: {
+    guide: '用戶指南',
+    docs: '開發文檔',
   },
 };
 
