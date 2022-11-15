@@ -4,9 +4,11 @@ import IconMixin from '~/icons/icon_mixin.svg?fill-icon';
 import { lang } from '~/pages/helpers/lang';
 
 export const Footer = observer(() => {
+  lang.useLang();
   const guideLink = langService.state.lang === 'en'
     ? 'https://guide-en.rumsystem.net/'
     : 'https://guide.rumsystem.net/';
+  if (!lang.ready) { return null; }
   return (
     <div className="flex mb:flex-col justify-between items-center w-full max-w-[1200px] gap-4 mx-auto py-8 text-14 mb:text-12 bg-white">
       <div className="flex gap-x-14 text-16">
