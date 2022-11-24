@@ -31,3 +31,14 @@ export const rumlibScreenShots = [
   'https://img-cdn.xue.cn/1115-rumlib-screenshot-4.jpg',
   'https://img-cdn.xue.cn/1115-rumlib-screenshot-5.jpg',
 ];
+
+export const feedScreenShots = [
+  'https://img-cdn.xue.cn/1115-port-screenshot-1.png',
+  'https://img-cdn.xue.cn/1115-port-screenshot-2.png',
+  'https://img-cdn.xue.cn/1115-port-screenshot-3.png',
+  'https://img-cdn.xue.cn/1115-port-screenshot-4.png',
+  'https://img-cdn.xue.cn/1115-port-screenshot-5.png',
+];
+
+// get screenshots from here:
+// https://zpl.io/kD36LpL
