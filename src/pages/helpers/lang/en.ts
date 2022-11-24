@@ -35,6 +35,10 @@ export const content: ZHTWContent = {
       'Decentralized library',
       '(features partially released)',
     ],
+    feed: [
+      'A birdview of Rum in a browser.',
+      'Simply login with Mixin or GitHub account.',
+    ],
   },
 
   index: {
@@ -185,6 +189,20 @@ export const content: ZHTWContent = {
         'The eBook reader already supports highlighting notes, full-screen reading, font adjustment, background color adjustment, etc. More features will be released later to enhance your reading experience.',
         'The discussion feature is under development. Then you can discuss with your peers, and use your imagination and creativity to create and publish content together.',
         'Explore the endless possibilities of Rum.',
+      ],
+    },
+    feed: {
+      title: 'Feed',
+      type: 'Light Node',
+      subtitle: [
+        'A birdview of Rum in a browser.',
+        'Simply login with Mixin or GitHub account.',
+      ],
+      content: [
+        'A light node app runs in browser.',
+        'Easy to dive in, login with commonly used SNS accouts.',
+        'Easy to use, the familiar way to post and comment.',
+        'Easy to find your spot, discover with opitimized algorithm.',
       ],
     },
     quorum: {

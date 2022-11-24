@@ -15,6 +15,7 @@ import RumLogo3x from '~/icons/logo@3x.png';
 import PortLogoText from '~/icons/logo_port_text.svg';
 import PortLogoImage from '~/icons/logo_port_img.svg';
 import LibLogo from '~/icons/logo_lib.svg';
+import FeedLogo from '~/icons/logo_feed.svg';
 import QuorumLogo from '~/icons/logo_quorum.svg?fill-icon';
 import IconAndroid from '~/icons/icon_os_android.svg?fill-icon';
 import IconTestflight from '~/icons/icon_testflight.svg?fill-icon';
@@ -29,7 +30,7 @@ import { useWiderThan } from '~/utils';
 
 import { lang } from '../../lang';
 import { ImageSlide } from './ImageSlide';
-import { mobileScreenShots, portScreenShots, rumlibScreenShots } from './screenshots';
+import { mobileScreenShots, portScreenShots, rumlibScreenShots, feedScreenShots } from './screenshots';
 
 import './index.sass';
 
@@ -170,17 +171,36 @@ export const HomepageApps = observer(() => {
               ))}
             </div>
           </Button>
-
           <Button
             className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
             variant="text"
             onClick={() => handleScrollTo(4)}
           >
+            <img
+              className="flex-none h-16 align-middle"
+              src={FeedLogo}
+              alt=""
+            />
+            <div className="text-24 font-kanit text-main font-light">
+              Feed
+            </div>
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+              {lang.apps.feed.subtitle.map((v, i) => (
+                <p key={i}>{v}</p>
+              ))}
+            </div>
+          </Button>
+
+          <Button
+            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            variant="text"
+            onClick={() => handleScrollTo(5)}
+          >
             <QuorumLogo className="text-[64px] text-white" />
             <div className="text-24 font-kanit text-main font-light">
               Quorum
             </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight align-middle">
               {lang.apps.quorum.subtitle.map((v, i) => (
                 <p key={i}>{v}</p>
               ))}
@@ -499,13 +519,59 @@ export const HomepageApps = observer(() => {
           onImageClick={handleShowBigImage}
         />
       </SectionItem>
+      <SectionItem ref={(ref) => { section.current[4] = ref; }}>
+        <span key="title">{lang.apps.feed.title}</span>
+        <img
+          className="flex-none h-16"
+          src={FeedLogo}
+          alt=""
+          key="logo"
+        />
+        <span key="type">{lang.apps.feed.type}</span>
+        <Fragment key="subtitle">
+          {lang.apps.feed.subtitle.map((v, i) => (
+            <p key={i}>{v}</p>
+          ))}
+        </Fragment>
+        <Fragment key="icons">
+          <div className="flex flex-center font-kanit">
+            <a
+              className="flex-col flex-center hover:hover-orange px-4 !no-underline"
+              href="https://feed.base.one"
+              target="_blank"
+            >
+              <PlanetIcon className="text-44 -m-[2px] text-link-soft" />
+              <div className="mt-2 font-light text-20 text-link-soft">
+                Web
+              </div>
+            </a>
+          </div>
+        </Fragment>
+        <Fragment key="desc">
+          <div
+            className={classNames(
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              langService.en && 'font-consolas text-15',
+            )}
+          >
+            {lang.apps.feed.content.map((v, i) => (
+              <p key={i}>{v}</p>
+            ))}
+          </div>
+        </Fragment>
 
+        <ImageSlide
+          key="image"
+          images={feedScreenShots}
+          onImageClick={handleShowBigImage}
+        />
+      </SectionItem>
       <div
         className={classNames(
           'flex bg-black/70 justify-between max-w-[1260px] w-full mt-14 mx-auto px-18 py-16 mb-12',
           'mb:flex-col mb:p-8 mb:gap-y-8',
         )}
-        ref={(ref) => { section.current[4] = ref; }}
+        ref={(ref) => { section.current[5] = ref; }}
       >
         <div className="flex gap-4">
           <QuorumLogo className="text-white text-[80px]" />
