@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
@@ -6,8 +6,8 @@ import { ImgBox } from '~/components';
 import { useLessThan } from '~/utils';
 
 interface ImageSlideProps {
-  images: Array<string>
-  onImageClick?: (url: string) => unknown
+  images: Array<string> | Array<{ x1: string, x2?: string, x3?: string }>
+  onImageClick?: (img: HTMLImageElement) => unknown
 }
 
 export const ImageSlide = observer((props: ImageSlideProps) => {
@@ -42,6 +42,19 @@ export const ImageSlide = observer((props: ImageSlideProps) => {
   const handleChangeImage = action((index: number) => {
     state.imageIndex = index;
   });
+
+  const images = useMemo(() => {
+    if (!props.images.length) { return []; }
+    return props.images.map((v) => {
+      const item = typeof v === 'string'
+        ? { src: v, srcSet: '' }
+        : {
+          src: v.x1,
+          srcSet: [[v.x2, '2x'], [v.x3, '3x']].filter((v) => v[0]).map((v) => v.join(' ')).join(', '),
+        };
+      return item;
+    });
+  }, [props.images]);
 
   useEffect(() => () => {
     window.clearTimeout(state.timerId);
@@ -79,13 +92,14 @@ export const ImageSlide = observer((props: ImageSlideProps) => {
       <div className="relative overflow-hidden">
         <ImgBox
           className="flex-none pc:w-[770px] pc:h-auto mb:w-full mb:h-auto pointer-events-none"
-          src={props.images[0]}
+          src={images[0].src}
+          srcSet={images[0].srcSet}
           alt=""
           width="772"
           height="580"
         />
 
-        {props.images.map((v, i) => (
+        {images.map((v, i) => (
           <img
             className="absolute pc:w-[770px] pc:h-auto mb:w-full mb:h-auto duration-300 top-0"
             style={{
@@ -93,10 +107,11 @@ export const ImageSlide = observer((props: ImageSlideProps) => {
                 ? `translateX(${(i - state.imageIndex) * 100}%)`
                 : `translateY(${(i - state.imageIndex) * 100}%)`,
             }}
-            src={v}
+            src={v.src}
+            srcSet={v.srcSet}
             alt=""
             key={i}
-            onClick={() => props.onImageClick?.(v)}
+            onClick={(e) => props.onImageClick?.(e.currentTarget)}
           />
         ))}
       </div>

@@ -40,7 +40,7 @@ export const HomepageApps = observer(() => {
     imageIndex: 0,
     timerId: 0,
     dialog: false,
-    bigImageLink: '',
+    bigImage: null as null | HTMLImageElement,
     qrImage: '',
     get links() {
       return appService.state.links;
@@ -52,9 +52,10 @@ export const HomepageApps = observer(() => {
   const isPC = useWiderThan(960);
   const section = useRef<Array<HTMLDivElement | null>>([]);
 
-  const handleShowBigImage = action((link: string) => {
+  const handleShowBigImage = action((img: HTMLImageElement) => {
     state.dialog = true;
-    state.bigImageLink = link;
+    state.bigImage = img.cloneNode() as HTMLImageElement;
+    state.bigImage.className = 'w-[100vw] max-w-[900px]';
   });
 
   const handleCloseBigImage = action(() => {
@@ -624,7 +625,7 @@ export const HomepageApps = observer(() => {
             <Close />
           </div>
 
-          <img className="w-[100vw] max-w-[900px]" src={state.bigImageLink} alt="" />
+          <BigImageContainer img={state.bigImage} />
         </div>
       </Dialog>
     </div>
@@ -674,3 +675,22 @@ const SectionItem = observer(forwardRef<HTMLDivElement, SectionProps>((props, re
     </div>
   );
 }));
+
+
+const BigImageContainer = (props: { img: null | HTMLImageElement }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (props.img) {
+      ref.current?.append(props.img);
+    } else {
+      ref.current?.childNodes.forEach((v) => {
+        ref.current?.removeChild(v);
+      });
+    }
+  }, [props.img]);
+
+  return (
+    <div ref={ref} />
+  );
+};
