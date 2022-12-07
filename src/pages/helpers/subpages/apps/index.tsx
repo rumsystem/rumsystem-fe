@@ -1,9 +1,9 @@
-import { forwardRef, Fragment, ReactNode, useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { toDataURL } from 'qrcode';
-import { Close } from '@mui/icons-material';
+import { ChevronLeft, ChevronRight, Close } from '@mui/icons-material';
 import { Button, Dialog, Tooltip } from '@mui/material';
 
 import PlanetIcon from 'boxicons/svg/solid/bxs-planet.svg?fill-icon';
@@ -25,12 +25,15 @@ import IconWin from '~/icons/icon_os_win.svg';
 import IconGithub from '~/icons/icon_github.svg';
 import IconBook from '~/icons/icon_book.svg';
 
+import { Scrollable } from '~/components';
 import { appService, langService, titleService } from '~/service';
 import { useWiderThan } from '~/utils';
 
 import { lang } from '../../lang';
-import { ImageSlide } from './ImageSlide';
 import { mobileScreenShots, portScreenShots, rumlibScreenShots, feedScreenShots } from './screenshots';
+import { ImageSlide } from './ImageSlide';
+import { SectionItem } from './SectionItem';
+import { BigImageContainer } from './BigImageContainer';
 
 import './index.sass';
 
@@ -42,6 +45,8 @@ export const HomepageApps = observer(() => {
     dialog: false,
     bigImage: null as null | HTMLImageElement,
     qrImage: '',
+
+    showNavBoxSideButton: false,
     get links() {
       return appService.state.links;
     },
@@ -51,6 +56,7 @@ export const HomepageApps = observer(() => {
   }));
   const isPC = useWiderThan(960);
   const section = useRef<Array<HTMLDivElement | null>>([]);
+  const navScrollBox = useRef<HTMLDivElement>(null);
 
   const handleShowBigImage = action((img: HTMLImageElement) => {
     state.dialog = true;
@@ -86,129 +92,128 @@ export const HomepageApps = observer(() => {
         }
       }),
     );
+    const calcNavBoxButton = action(() => {
+      const box = navScrollBox.current;
+      if (!box) {
+        return;
+      }
+      state.showNavBoxSideButton = box.scrollWidth > box.clientWidth;
+    });
+    calcNavBoxButton();
+    window.addEventListener('resize', calcNavBoxButton);
+    return () => {
+      window.removeEventListener('resize', calcNavBoxButton);
+    };
   }, []);
 
   return (
     <div className="main-box flex-col justify-center items-stretch">
-      <div className="nav-box mb:hidden flex w-full overflow-x-auto bg-black/70">
-        <div className="flex flex-none mx-auto justify-center gap-x-6 py-6 px-6">
+      <div className="nav-box relative mb:hidden flex w-full bg-black/70">
+        {state.showNavBoxSideButton && (<>
           <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
+            className="absolute left-0 top-0 bottom-0 z-10 rounded-none min-w-0 px-1"
             variant="text"
-            onClick={() => handleScrollTo(0)}
+            onClick={() => {
+              const box = navScrollBox.current;
+              if (!box) { return; }
+              box.scrollTo({ left: 0, behavior: 'smooth' });
+            }}
           >
-            <img className="h-16" src={IconRumLight} alt="" />
-            <div className="text-24 font-kanit text-main font-light">
-              Rum Light
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-              {lang.apps.rumlight.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-            </div>
+            <ChevronLeft className="text-40 text-white/70" />
           </Button>
+          <Button
+            className="absolute right-0 top-0 bottom-0 z-10 rounded-none min-w-0 px-1"
+            variant="text"
+            onClick={() => {
+              const box = navScrollBox.current;
+              if (!box) { return; }
+              box.scrollTo({ left: box.scrollWidth, behavior: 'smooth' });
+            }}
+          >
+            <ChevronRight className="text-40 text-white/70" />
+          </Button>
+        </>)}
+        <Scrollable
+          className="w-full"
+          direction="horizontal"
+          scrollBoxRef={navScrollBox}
+          size="large"
+          wrapperClassName="mx-auto"
+          light
+        >
+          <div className="flex flex-none mx-auto justify-center gap-x-6 py-6 px-6">
+            {[
+              (<>
+                <img className="h-16" src={IconRumLight} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Rum Light
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.rumlight.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <img className="flex-none h-16" src={RumLogo} srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Rum App
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.rumapp.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <img className="flex-none h-16" src={PortLogoImage} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  <img className="flex-none w-13 my-[10px]" src={PortLogoText} alt="" />
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.port.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <img className="flex-none h-16" src={LibLogo} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Rum Lib
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.rumlib.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <img className="flex-none h-16 align-middle" src={FeedLogo} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Feed
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.feed.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <QuorumLogo className="text-[64px] text-white" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Quorum
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight align-middle">
+                  {lang.apps.quorum.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                  <br />
+                </div>
+              </>),
+            ].map((v, i) => (
+              <Button
+                className={classNames(
+                  'flex-col flex-none items-center justify-start gap-y-3 border border-solid border-gray-70',
+                  'py-5 px-4 rounded-none normal-case min-w-[240px]',
+                )}
+                variant="text"
+                onClick={() => handleScrollTo(i)}
+                key={i}
+              >
+                {v}
+              </Button>
+            ))}
+          </div>
+        </Scrollable>
 
-          <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
-            variant="text"
-            onClick={() => handleScrollTo(1)}
-          >
-            <img
-              className="flex-none h-16"
-              src={RumLogo}
-              srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`}
-              alt=""
-            />
-            <div className="text-24 font-kanit text-main font-light">
-              Rum App
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-              {lang.apps.rumapp.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-            </div>
-          </Button>
-
-          <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
-            variant="text"
-            onClick={() => handleScrollTo(2)}
-          >
-            <img
-              className="flex-none h-16"
-              src={PortLogoImage}
-              alt=""
-            />
-            <div className="text-24 font-kanit text-main font-light">
-              <img
-                className="flex-none w-13 my-1"
-                src={PortLogoText}
-                alt=""
-              />
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-              {lang.apps.port.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-            </div>
-          </Button>
-
-          <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
-            variant="text"
-            onClick={() => handleScrollTo(3)}
-          >
-            <img
-              className="flex-none h-16"
-              src={LibLogo}
-              alt=""
-            />
-            <div className="text-24 font-kanit text-main font-light">
-              Rum Lib
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-              {lang.apps.rumlib.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-            </div>
-          </Button>
-          <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
-            variant="text"
-            onClick={() => handleScrollTo(4)}
-          >
-            <img
-              className="flex-none h-16 align-middle"
-              src={FeedLogo}
-              alt=""
-            />
-            <div className="text-24 font-kanit text-main font-light">
-              Feed
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-              {lang.apps.feed.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-            </div>
-          </Button>
-
-          <Button
-            className="flex-col items-center justify-between gap-y-3 border border-solid border-gray-70 py-5 px-2 min-w-[270px] rounded-none normal-case"
-            variant="text"
-            onClick={() => handleScrollTo(5)}
-          >
-            <QuorumLogo className="text-[64px] text-white" />
-            <div className="text-24 font-kanit text-main font-light">
-              Quorum
-            </div>
-            <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight align-middle">
-              {lang.apps.quorum.subtitle.map((v, i) => (
-                <p key={i}>{v}</p>
-              ))}
-              <br />
-            </div>
-          </Button>
-        </div>
       </div>
 
       <SectionItem ref={(ref) => { section.current[0] = ref; }}>
@@ -520,6 +525,7 @@ export const HomepageApps = observer(() => {
           onImageClick={handleShowBigImage}
         />
       </SectionItem>
+
       <SectionItem ref={(ref) => { section.current[4] = ref; }}>
         <span key="title">{lang.apps.feed.title}</span>
         <img
@@ -567,6 +573,7 @@ export const HomepageApps = observer(() => {
           onImageClick={handleShowBigImage}
         />
       </SectionItem>
+
       <div
         className={classNames(
           'flex bg-black/70 justify-between max-w-[1260px] w-full mt-14 mx-auto px-18 py-16 mb-12',
@@ -631,66 +638,3 @@ export const HomepageApps = observer(() => {
     </div>
   );
 });
-
-interface SectionProps {
-  children?: ReactNode
-}
-
-const SectionItem = observer(forwardRef<HTMLDivElement, SectionProps>((props, ref) => {
-  const children = Array.isArray(props.children) ? props.children : [props.children];
-  const sections = ['logo', 'title', 'type', 'subtitle', 'icons', 'desc', 'image'] as const;
-  type Keys = typeof sections[number];
-  const map: Record<Keys, ReactNode> = Object.fromEntries(
-    sections.map((v) => [v, children.find((u: any) => u.key === v)]),
-  ) as any;
-  return (
-    <div
-      className="flex-col bg-black/70 justify-center max-w-[1260px] w-full mt-14 mx-auto gap-y-6 py-6"
-      ref={ref}
-    >
-      <div className="flex mb:flex-col flex-1 items-center gap-x-6 gap-y-6 px-12 mb:px-8">
-        {map.logo}
-        <div className="flex-col gap-y-2 mb:w-full">
-          <div className="text-main text-30">
-            {map.title}
-            <span className="border rounded-full text-12 text-gray-d1 px-3 py-px ml-3 align-[3px]">
-              {map.type}
-            </span>
-          </div>
-          <div className="text-18 text-gray-d1">
-            {map.subtitle}
-          </div>
-        </div>
-        <div className="flex mb:flex-wrap flex-1 gap-4 justify-end mb:justify-center">
-          {map.icons}
-        </div>
-      </div>
-
-      <div className="flex mb:flex-col px-8">
-        <div className="">
-          {map.desc}
-        </div>
-        {map.image}
-      </div>
-    </div>
-  );
-}));
-
-
-const BigImageContainer = (props: { img: null | HTMLImageElement }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (props.img) {
-      ref.current?.append(props.img);
-    } else {
-      ref.current?.childNodes.forEach((v) => {
-        ref.current?.removeChild(v);
-      });
-    }
-  }, [props.img]);
-
-  return (
-    <div ref={ref} />
-  );
-};
