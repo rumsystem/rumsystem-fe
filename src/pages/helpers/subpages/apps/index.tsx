@@ -94,12 +94,10 @@ export const HomepageApps = observer(() => {
     );
     const calcNavBoxButton = action(() => {
       const box = navScrollBox.current;
-      if (!box) {
-        return;
-      }
+      if (!box) { return; }
       state.showNavBoxSideButton = box.scrollWidth > box.clientWidth;
     });
-    calcNavBoxButton();
+    setTimeout(calcNavBoxButton, 100);
     window.addEventListener('resize', calcNavBoxButton);
     return () => {
       window.removeEventListener('resize', calcNavBoxButton);
@@ -144,21 +142,21 @@ export const HomepageApps = observer(() => {
           <div className="flex flex-none mx-auto justify-center gap-x-6 py-6 px-6">
             {[
               (<>
-                <img className="h-16" src={IconRumLight} alt="" />
-                <div className="text-24 font-kanit text-main font-light">
-                  Rum Light
-                </div>
-                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
-                  {lang.apps.rumlight.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
-                </div>
-              </>),
-              (<>
                 <img className="flex-none h-16" src={RumLogo} srcSet={`${RumLogo2x} 2x, ${RumLogo3x} 3x,`} alt="" />
                 <div className="text-24 font-kanit text-main font-light">
                   Rum App
                 </div>
                 <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
                   {lang.apps.rumapp.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
+                </div>
+              </>),
+              (<>
+                <img className="h-16" src={IconRumLight} alt="" />
+                <div className="text-24 font-kanit text-main font-light">
+                  Rum Light
+                </div>
+                <div className="text-14 font-consolas text-gray-d1 text-center tracking-tight">
+                  {lang.apps.rumlight.subtitle.map((v, i) => (<p key={i}>{v}</p>))}
                 </div>
               </>),
               (<>
