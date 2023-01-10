@@ -85,7 +85,8 @@ export const content: ZHTWContent = {
       p: [
         'All official softwares, including API, SDK are open source and the code available on GitHub. Rum will provide support and funding to third-party devs after the mainnet launch. If you are interested in building decentralized apps, keep in touch with us.',
       ],
-      link: 'Our GitHub & Docs',
+      link: 'Our GitHub & ',
+      linkDocs: 'Docs',
     },
 
     adventure: {
@@ -104,7 +105,7 @@ export const content: ZHTWContent = {
           { type: [], text: ': Open source P2P network application developed by the Rum team. Third-party developers can design their own service, apps, templates, themes, extensions by using Quorum or retool decentralized alternatives from existing products.' },
         ],
         [
-          { type: ['bold'], text: '- RumApp' },
+          { type: ['bold'], text: '- Rum App' },
           { type: [], text: ': cross-platform clients developed by the Rum team for demo and testing the potential of Quorum and API.' },
         ],
         [
@@ -146,7 +147,7 @@ export const content: ZHTWContent = {
         'Upcoming Features: Cryptocurrency payments and transaction, Smart Contracts, Digital assets ownership confirmation, Crowdsourcing creation mode, etc.',
         'In the near future, a SeedNet, combined with different permission settings, pricing plan & customizable themes, can be applied as a decentralized Twitter, forum, fan-base group, subscribable feeds, encrypted trust docs, crowd-sourcing project, NFT & digital asset trading service, self-publishing services ……',
       ],
-      smallTip: 'RumApp is still in its early stage, versions updates could be frequent. Occasionally, you may experience problems such as unsuccessful sync or other problems. But we are working hard to improve service stability and perfect functions.',
+      smallTip: 'Rum App is still in its early stage, versions updates could be frequent. Occasionally, you may experience problems such as unsuccessful sync or other problems. But we are working hard to improve service stability and perfect functions.',
     },
     rumlight: {
       title: 'Rum Light Mobile App',
@@ -287,6 +288,38 @@ export const content: ZHTWContent = {
   },
 
   developers: {
+    docs: {
+      intro: {
+        left: 'Open Source',
+        right: 'You are welcomed to participate in the development of Quorum or to build your own DAPPs using the Rum SDK . Together we make Rum ecosystem prosper.',
+      },
+      sections: [
+        {
+          title: 'Development Docs',
+          desc: 'We keep developing and improving the Quorum chain, as the documentation will be kept up to date in an effort for developers\' benefit.',
+        },
+        {
+          title: 'Github',
+          desc: 'You can find all of our official code  open-sourced on GitHub, and we look forward to your participation and contributions.',
+        },
+        {
+          title: 'Rum SDK',
+          desc: 'In addition to the official Rum SDK, there are community-contributed SDKs in various languages to help you develop your own DAPPs.',
+        },
+        {
+          title: 'Rum Dev Club',
+          desc: 'A forum built on Port where developers are welcomed to ask questions, make suggestions and discuss.',
+        },
+        {
+          title: 'API Docs',
+          desc: 'Allow interact on the web page. For developers getting a deeper understanding of the API given by Quorum,',
+        },
+        {
+          title: 'QuoRum Developers\' Group',
+          desc: 'Welcome to our discussion group on Mixin App.',
+        },
+      ],
+    },
     quorum: {
       title: 'QuoRum',
       desc: [
@@ -294,7 +327,7 @@ export const content: ZHTWContent = {
         'If you are interested in building decentralized apps or retooling an alternative version of existing products, QuoRum is your most convenient choice. You can use any of the development languages, no need for blockchain-related development experience. ',
         '"Quorum" refers to the minimum number of members of a deliberative assembly. In the distributed systems, Quorum-based voting can be used as a replica control method. It\'s a metaphor for the consensus algorithm in the blockchain. ( However, Rum consensus is not a quorum-based technique, we just love the metaphor. )',
         'Quorum will provide blockchain-based methods to solve the problem of weak consensus and eventual consistency in distributed systems.',
-        'Our protocols, APIs and SDKs have been in development for less than a year and are still being improved. Keep following and tell us your needs and queries. Or join the RumNetwork as a node.',
+        'Our protocols, APIs and SDKs have been in continuously development and are still being improved. Keep following and tell us your needs and queries. Or join the RumNetwork as a node.',
       ],
       links: {
         api: 'API Document',
@@ -304,11 +337,11 @@ export const content: ZHTWContent = {
       },
     },
     rumApp: {
-      title: 'RumApp',
+      title: 'Rum App',
       desc: [
-        'RumApp is a cross-platform client developed by the Rum team for testing our SDK and API in combination with real-world demand scenarios as well as providing demo and inspiration to third-party developers who are interested in decentralized Apps development based on RumSystem. ',
-        'In RumApp, a seed network can be used as a social group, a private tweet square, a feed subscription, a forum, a fanbase club or a single-person private doc tool …… through a combination of different templates, themes, layouts, permissions and pricing plan settings. Each SeedNet can be rendered into a unique application (interface).',
-        'You can develop various interfaces according to your design based on this framework, also design and sell templates, themes, or plugins in RumApp to explore the infinite possibilities of decentralized P2P applications. ',
+        'Rum App is a cross-platform client developed by the Rum team for testing our SDK and API in combination with real-world demand scenarios as well as providing demo and inspiration to third-party developers who are interested in decentralized Apps development based on RumSystem. ',
+        'In Rum App, a seed network can be used as a social group, a private tweet square, a feed subscription, a forum, a fanbase club or a single-person private doc tool …… through a combination of different templates, themes, layouts, permissions and pricing plan settings. Each SeedNet can be rendered into a unique application (interface).',
+        'You can develop various interfaces according to your design based on this framework, also design and sell templates, themes, or plugins in Rum App to explore the infinite possibilities of decentralized P2P applications. ',
         'Cryptocurrency transactions, smart contracts, digital assets ownership confirmation will be supported soon to enable SeedNet applicable for more  collaborative pricing or trading scenarios.',
       ],
       links: {

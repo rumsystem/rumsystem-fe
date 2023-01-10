@@ -18,9 +18,9 @@ export const mobileScreenShots = [
 
 export const portScreenShots = [
   {
-    x1: 'https://img-cdn.xue.cn/1125-port-screenshot-1.jpg',
-    x2: 'https://img-cdn.xue.cn/1125-port-screenshot-1@2x.jpg',
-    x3: 'https://img-cdn.xue.cn/1125-port-screenshot-1@3x.jpg',
+    x1: 'https://img-cdn.xue.cn/110-1125-port-screenshot-1@2x.jpg',
+    x2: 'https://img-cdn.xue.cn/110-1125-port-screenshot-1@2x.jpg',
+    x3: 'https://img-cdn.xue.cn/110-1125-port-screenshot-1@2x.jpg',
   },
   {
     x1: 'https://img-cdn.xue.cn/1125-port-screenshot-2.jpg',

@@ -8,7 +8,7 @@ import { Close } from '@mui/icons-material';
 import { langService, titleService } from '~/service';
 import { ImgBox } from '~/components/ImgBox';
 // import IconCoin from '~/icons/icon_coin.svg';
-import IconNode from '~/icons/icon_node.svg';
+// import IconNode from '~/icons/icon_node.svg';
 import IconGithub from '~/icons/icon_github.svg';
 
 import { AppBox } from '../../AppBox';
@@ -103,12 +103,12 @@ export const HomepageIndex = observer(() => {
                     )}
                   >
                     {lang.index.box2.p.map((v, i) => (
-                      <p className="mt-4 mb-1" key={i}>{v}</p>
+                      <p className="mt-3 mb-1" key={i}>{v}</p>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end mt-3">
+              {/* <div className="flex justify-end mt-3">
                 <a
                   className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
                   href="https://github.com/rumsystem/quorum#run-a-rum-peer"
@@ -117,7 +117,7 @@ export const HomepageIndex = observer(() => {
                   <img className="mr-3 group-hover:hover-orange" src={IconNode} alt="" />
                   {lang.index.box2.link}
                 </a>
-              </div>
+              </div> */}
             </div>
 
             <div className="border border-gray-83 px-8 py-6">
@@ -132,7 +132,7 @@ export const HomepageIndex = observer(() => {
                 )}
               >
                 {lang.index.box3.p.map((v, i) => (
-                  <p className="mt-4 mb-1" key={i}>{v}</p>
+                  <p className="mt-3 mb-1" key={i}>{v}</p>
                 ))}
               </div>
             </div>
@@ -150,7 +150,7 @@ export const HomepageIndex = observer(() => {
                   )}
                 >
                   {lang.index.box4.p.map((v, i) => (
-                    <p className="mt-4 mb-1" key={i}>{v}</p>
+                    <p className="mt-3 mb-1" key={i}>{v}</p>
                   ))}
                 </div>
               </div>
@@ -171,7 +171,7 @@ export const HomepageIndex = observer(() => {
                     )}
                   >
                     {lang.index.box5.p.map((v, i) => (
-                      <p className="mt-4 mb-1" key={i}>{v}</p>
+                      <p className="mt-3 mb-1" key={i}>{v}</p>
                     ))}
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export const HomepageIndex = observer(() => {
                 )}
               >
                 {lang.index.box6.p.map((v, i) => (
-                  <p className="mt-4 mb-1" key={i}>{v}</p>
+                  <p className="mt-3 mb-1" key={i}>{v}</p>
                 ))}
               </div>
 
@@ -210,6 +210,13 @@ export const HomepageIndex = observer(() => {
                 >
                   <img className="mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
                   {lang.index.box6.link}
+                </a>
+                <a
+                  className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
+                  href="https://guide.rumsystem.net/"
+                  target="_blank"
+                >
+                  {lang.index.box6.linkDocs}
                 </a>
               </div>
             </div>

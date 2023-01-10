@@ -48,10 +48,13 @@ const setTheme = () => {
   const item = langFontMap.find((v) => v[0].test(lang));
   const rules = [];
   rules.push(`html{--rum-line-height:${themeMap[lang].lineHeight};}`);
+  rules.push(`.font-default{--rum-line-height:${themeMap[lang].lineHeight};}`);
   if (item) {
     rules.push(`html{font-family:${item[1]};}`);
+    rules.push(`.font-default{font-family:${item[1]} !important;}`);
   } else {
     rules.push(`html{font-family:${langFontMap[0][1]};}`);
+    rules.push(`.font-default{font-family:${langFontMap[0][1]} !important;}`);
   }
   appendTag();
   if (process.env.SSR) {

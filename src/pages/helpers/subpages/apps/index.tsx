@@ -278,7 +278,7 @@ export const HomepageApps = observer(() => {
               langService.en && 'font-consolas text-15',
             )}
           >
-            {lang.apps.rumlight.content.map((v, i) => (
+            {lang.apps.rumapp.content.map((v, i) => (
               <p key={i}>{v}</p>
             ))}
           </div>
@@ -371,7 +371,7 @@ export const HomepageApps = observer(() => {
         <Fragment key="desc">
           <div
             className={classNames(
-              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0',
+              'flex-col mt-2 text-gray-d1 gap-y-4 mb:mt-0 pr-6',
               langService.en && 'font-consolas text-15',
             )}
           >

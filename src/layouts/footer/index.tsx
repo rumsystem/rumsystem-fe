@@ -52,7 +52,7 @@ export const Footer = observer(() => {
           </a>
         </div>
         <div>
-          RumSystem © 2021 ~ 2022, All rights reserved.
+          RumSystem © 2021 ~ 2023, All rights reserved.
         </div>
       </div>
     </div>
