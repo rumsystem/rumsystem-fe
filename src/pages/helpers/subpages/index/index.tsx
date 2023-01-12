@@ -48,7 +48,7 @@ export const HomepageIndex = observer(() => {
           )}
         >
           <div className="grid gap-x-[10px] gap-y-[10px] grid-cols-2 text-white mb:grid-cols-1">
-            <div className="flex-col flex-center gap-y-5 border border-gray-83 p-10 mb:p-4">
+            <div className="flex-col flex-center gap-y-5 border border-gray-83 px-10 py-6 mb:p-4">
               <div className="text-main text-23 leading-snug">
                 {lang.index.box1.p.map((v, i) => (
                   <React.Fragment key={i}>

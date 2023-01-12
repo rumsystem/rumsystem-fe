@@ -288,37 +288,40 @@ export const content = {
   developers: {
     docs: {
       intro: {
-        left: '开放 · 开源',
-        right: '欢迎开发者参与 Quorum 的开发，以及利用 Rum SDK 来建立自己的 DAPP，共同完善 Rum 的生态。',
+        left: '開放 · 開源',
+        right: '歡迎開發者參與 Quorum 的開發，以及利用 Rum SDK 來建立自己的 DAPP，共同完善 Rum 的生態。',
       },
       sections: [
         {
-          title: '开发文档',
-          desc: '我们一直在开发完善 Quorum 的主链，文档也会保持更新和完善，努力让开发者更好地跟进和参与。',
+          title: '開發文檔',
+          desc: '我們一直在開發完善 Quorum 的主鏈，文檔也會保持更新和完善，努力讓開發者更好地跟進和參與。',
         },
         {
           title: 'Github',
-          desc: '你可以在 GitHub 上找到我們官方所有軟件的開源代碼，期待你的参与和贡献。',
+          desc: '你可以在 GitHub 上找到我們官方所有軟件的開源代碼，期待你的參與和貢獻。',
         },
         {
           title: 'Rum SDK',
-          desc: '除了官方的 Rum SDK，还有各种语言的社区贡献的 SDK，帮助你开发自己的 DAPP。',
+          desc: '除了官方的 Rum SDK，還有各種語言的社區貢獻的 SDK，幫助你開發自己的 DAPP。',
         },
         {
           title: 'Rum Dev Club',
-          desc: '搭建在 Port 上的论坛，欢迎开发者前来提问，提出建议和讨论。',
+          desc: '搭建在 Port 上的論壇，歡迎開發者前來提問，提出建議和討論。',
         },
         {
-          title: 'API 文档',
-          desc: '可以在网页上进行简单的互动，更加全面了解 Quorum 给出的 API，并进行深度定制化的开发。',
+          title: 'API 文檔',
+          desc: '可以在網頁上進行簡單的互動，更加全麵了解 Quorum 給出的 API，並進行深度定製化的開發。',
         },
         {
-          title: 'QuoRum 开发者交流群',
-          desc: '建立在 Mixin 上的开发者交流群，欢迎参与我们的讨论。',
+          title: 'QuoRum 開發者交流群',
+          desc: '建立在 Mixin 上的開發者交流群，歡迎參與我們的討論。',
         },
       ],
     },
-
+    qrtip: [
+      'Mixin 掃描二維碼',
+      '加入群組',
+    ],
     quorum: {
       title: 'QuoRum',
       desc: [

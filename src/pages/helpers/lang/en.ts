@@ -320,6 +320,10 @@ export const content: ZHTWContent = {
         },
       ],
     },
+    qrtip: [
+      'Scan QR code',
+      'with Mixin',
+    ],
     quorum: {
       title: 'QuoRum',
       desc: [

@@ -1,6 +1,6 @@
-import React from 'react';
+import { useEffect } from 'react';
 import classNames from 'classnames';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import LinkExternalIcon from 'boxicons/svg/regular/bx-link-external.svg?fill-icon';
 import QrIcon from 'boxicons/svg/regular/bx-qr.svg?fill-icon';
@@ -10,16 +10,37 @@ import IconLinkExample from '~/icons/icon_link_example.svg';
 import IconLinkLangauge from '~/icons/icon_link_language.svg';
 import IconLinkDocs from '~/icons/icon_link_docs.svg';
 import IconEslint from '~/icons/icon_eslint.svg';
+import QuorumLogo from '~/icons/logo_quorum.svg?fill-icon';
 import { langService, titleService } from '~/service';
 
 import { lang } from '../../lang';
 import IconQuorum from './icons/Illustration_QuoRum.svg';
 import IconRumApp from './icons/Illustration_RumApp.svg';
 import { ChevronRight } from '@mui/icons-material';
-import { Button } from '@mui/material';
+import { Button, Tooltip } from '@mui/material';
+import { toDataURL } from 'qrcode';
+import { action } from 'mobx';
 
 export const HomepageDevelopers = observer(() => {
+  const state = useLocalObservable(() => ({
+    mixinGroupQR: '',
+  }));
   titleService.useSetTitle('Developers');
+
+  useEffect(() => {
+    toDataURL(
+      'https://mixin.one/codes/ccfe695c-fff0-46ff-b1d1-54069c9a04ff',
+      {
+        margin: 0,
+        scale: 8,
+      },
+      action((error, url) => {
+        if (!error) {
+          state.mixinGroupQR = url;
+        }
+      }),
+    );
+  }, []);
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-24">
@@ -36,7 +57,7 @@ export const HomepageDevelopers = observer(() => {
           <div className="grid grid-cols-2 mb:grid-cols-1 gap-4 mt-16 mb:mt-10">
             {lang.developers.docs.sections.map((v, i) => (
               <a
-                className="!no-underline"
+                className="!no-underline flex"
                 href={[
                   'https://docs.rumsystem.net/',
                   'https://github.com/rumsystem/',
@@ -51,7 +72,7 @@ export const HomepageDevelopers = observer(() => {
               >
                 <Button
                   className={classNames(
-                    'flex items-center pb-4 pt-3 px-6 border border-white/40 h-full',
+                    'flex items-center flex-1 pb-4 pt-3 px-6 border border-white/40 h-full',
                     'font-light normal-case rounded-none font-default text-start',
                   )}
                   variant="outlined"
@@ -60,7 +81,35 @@ export const HomepageDevelopers = observer(() => {
                     <div className="text-link-soft text-18">
                       {v.title}
                       {i === 5 && (
-                        <QrIcon className="inline ml-1 text-24 text-white" />
+                        <Tooltip
+                          classes={{
+                            tooltip: 'bg-white text-gray-70 shadow-4',
+                          }}
+                          title={(
+                            <div className="flex-col flex-center py-1">
+                              <div className="relative">
+                                <img
+                                  className="w-40 h-40"
+                                  src={state.mixinGroupQR}
+                                  alt=""
+                                />
+                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1">
+                                  <QuorumLogo className="text-32 text-black" />
+
+                                </div>
+                              </div>
+                              <div className="text-16 text-center leading-relaxed font-normal mt-2">
+                                {lang.developers.qrtip.map((v, i) => (
+                                  <p key={i}>{v}</p>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        >
+                          <span>
+                            <QrIcon className="inline ml-1 text-24 text-white" />
+                          </span>
+                        </Tooltip>
                       )}
                     </div>
                     <div className="flex items-center mt-1 flex-1 pl-10 text-14 text-gray-b0">
