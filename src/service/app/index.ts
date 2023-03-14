@@ -97,7 +97,7 @@ const state = observable({
     rumlib: null as null | GithubRelease,
   },
   get links() {
-    const base = 'https://static-assets.xue.cn/rum-testing/';
+    const base = 'https://static-assets.pek3b.qingstor.com/rum-testing/';
     const macosFile = this.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
     return {
       windows: this.metadata.windows?.path
@@ -187,8 +187,8 @@ const loadData = () => {
         loadWindows(),
         loadLinux(),
         loadMacOS(),
-        loadAndroid(),
-        loadAndroidLight(),
+        false && loadAndroid(),
+        false && loadAndroidLight(),
         loadRumLib(),
       ]);
     },

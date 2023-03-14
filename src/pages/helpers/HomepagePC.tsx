@@ -29,7 +29,7 @@ const HomepageContent = () => {
   React.useEffect(() => {
     // preload app image
     const img = new Image();
-    img.src = 'https://img-cdn.xue.cn/311-app_screen_1_opt.png';
+    img.src = 'https://xue-images.pek3b.qingstor.com/311-app_screen_1_opt.png';
   }, []);
 
   return (<>

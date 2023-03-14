@@ -294,12 +294,12 @@ export const HomepageApps = observer(() => {
         <ImageSlide
           key="image"
           images={[
-            'https://img-cdn.xue.cn/311-app_screen_1_opt.png',
-            'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-24_opt.png',
-            'https://img-cdn.xue.cn/420-image_2022-04-19_19-20-52_opt.png',
-            'https://img-cdn.xue.cn/311-app_screen_3_opt.png',
-            'https://img-cdn.xue.cn/311-app_screen_4_opt.png',
-            'https://img-cdn.xue.cn/311-app_screen_5_opt.png',
+            'https://xue-images.pek3b.qingstor.com/311-app_screen_1_opt.png',
+            'https://xue-images.pek3b.qingstor.com/420-image_2022-04-19_19-20-24_opt.png',
+            'https://xue-images.pek3b.qingstor.com/420-image_2022-04-19_19-20-52_opt.png',
+            'https://xue-images.pek3b.qingstor.com/311-app_screen_3_opt.png',
+            'https://xue-images.pek3b.qingstor.com/311-app_screen_4_opt.png',
+            'https://xue-images.pek3b.qingstor.com/311-app_screen_5_opt.png',
           ]}
           onImageClick={handleShowBigImage}
         />

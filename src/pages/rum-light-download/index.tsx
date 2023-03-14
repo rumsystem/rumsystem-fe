@@ -16,7 +16,7 @@ const RumLightDownloadPage = observer(() => {
     appService.loadData();
   }, []);
 
-  const androidLink = appService.state.metadata.android?.file ?? '';
+  const androidLink = appService.state.metadata.androidLight?.file ?? '';
   if (!lang.ready) { return null; }
   return (
     <div className="flex-col flex-center gap-5 min-h-[100vh] pt-10 pb-24">

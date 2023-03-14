@@ -38,7 +38,7 @@ export const AppBox = observer((props: Props) => {
     qrImage: '',
     showRumAppDownload: false,
     get links() {
-      const base = 'https://static-assets.xue.cn/rum-testing/';
+      const base = 'https://static-assets.pek3b.qingstor.com/rum-testing/';
       const macosFile = appService.state.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
       return {
         windows: appService.state.metadata.windows?.path
@@ -50,7 +50,7 @@ export const AppBox = observer((props: Props) => {
         macos: macosFile
           ? `${base}${macosFile.url}`
           : '',
-        android: appService.state.metadata.android?.file ?? '',
+        android: appService.state.metadata.androidLight?.file ?? '',
       };
     },
     get versions() {
@@ -58,7 +58,7 @@ export const AppBox = observer((props: Props) => {
         windows: appService.state.metadata.windows?.version ?? '',
         linux: appService.state.metadata.linux?.version ?? '',
         macos: appService.state.metadata.macos?.version ?? '',
-        android: appService.state.metadata.android?.version_name ?? '',
+        android: appService.state.metadata.androidLight?.version_name ?? '',
         rumlib: appService.state.metadata.rumlib?.tag_name?.slice(1) ?? '',
       };
     },
