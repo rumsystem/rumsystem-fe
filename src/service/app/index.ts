@@ -158,16 +158,22 @@ const loadMacOS = cachePromiseHof(async () => {
 });
 const loadAndroid = cachePromiseHof(async () => {
   if (state.metadata.android) { return; }
-  const data = await fetchYml<RumAndroidMetadata>('https://xue.cn/hub/api/app_managements?platform=android&channel=rum');
+  const data = await fetchYml<RumAndroidMetadata>('https://xue.base.one/hub/api/app_managements?platform=android&channel=rum');
   runInAction(() => {
-    if (data) { state.metadata.android = data; }
+    if (data) {
+      data.file = data.file.replace('static-assets.xue.cn', 'static-assets.pek3b.qingstor.com');
+      state.metadata.android = data;
+    }
   });
 });
 const loadAndroidLight = cachePromiseHof(async () => {
   if (state.metadata.androidLight) { return; }
-  const data = await fetchYml<RumAndroidMetadata>('https://xue.cn/hub/api/app_managements?platform=android&channel=rum_light');
+  const data = await fetchYml<RumAndroidMetadata>('https://xue.base.one/hub/api/app_managements?platform=android&channel=rum_light');
   runInAction(() => {
-    if (data) { state.metadata.androidLight = data; }
+    if (data) {
+      data.file = data.file.replace('static-assets.xue.cn', 'static-assets.pek3b.qingstor.com');
+      state.metadata.androidLight = data;
+    }
   });
 });
 const loadRumLib = cachePromiseHof(async () => {
@@ -187,8 +193,8 @@ const loadData = () => {
         loadWindows(),
         loadLinux(),
         loadMacOS(),
-        false && loadAndroid(),
-        false && loadAndroidLight(),
+        loadAndroid(),
+        loadAndroidLight(),
         loadRumLib(),
       ]);
     },
