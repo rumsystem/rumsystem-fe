@@ -135,23 +135,25 @@ const fetchYml = async <T>(url: string) => {
   return null;
 };
 
+const rumAppAssetsBase = 'https://storage.googleapis.com/static.press.one/rum-app';
+
 const loadWindows = cachePromiseHof(async () => {
   if (state.metadata.windows) { return; }
-  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest.yml?t=${Date.now()}`);
+  const data = await fetchYml<RumAppMetadata>(`${rumAppAssetsBase}/latest.yml?t=${Date.now()}`);
   runInAction(() => {
     if (data) { state.metadata.windows = data; }
   });
 });
 const loadLinux = cachePromiseHof(async () => {
   if (state.metadata.linux) { return; }
-  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest-linux.yml?t=${Date.now()}`);
+  const data = await fetchYml<RumAppMetadata>(`${rumAppAssetsBase}/latest-linux.yml?t=${Date.now()}`);
   runInAction(() => {
     if (data) { state.metadata.linux = data; }
   });
 });
 const loadMacOS = cachePromiseHof(async () => {
   if (state.metadata.macos) { return; }
-  const data = await fetchYml<RumAppMetadata>(`https://static-assets.pek3b.qingstor.com/rum-testing/latest-mac.yml?t=${Date.now()}`);
+  const data = await fetchYml<RumAppMetadata>(`${rumAppAssetsBase}/latest-mac.yml?t=${Date.now()}`);
   runInAction(() => {
     if (data) { state.metadata.macos = data; }
   });
