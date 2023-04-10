@@ -1,4 +1,5 @@
 export * from './useScreenSize';
+export * from './constant';
 
 export const isMobile = () => window.innerWidth < 960;
 

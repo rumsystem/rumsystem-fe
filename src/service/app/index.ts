@@ -1,6 +1,6 @@
 import { observable, runInAction } from 'mobx';
 import { load } from 'js-yaml';
-import { cachePromiseHof, runLoading } from '~/utils';
+import { cachePromiseHof, RUM_APP_BASE, runLoading } from '~/utils';
 
 export interface RumAppMetadata {
   version: string
@@ -97,17 +97,16 @@ const state = observable({
     rumlib: null as null | GithubRelease,
   },
   get links() {
-    const base = 'https://static-assets.pek3b.qingstor.com/rum-testing/';
     const macosFile = this.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
     return {
       windows: this.metadata.windows?.path
-        ? `${base}${this.metadata.windows?.path}`
+        ? `${RUM_APP_BASE}${this.metadata.windows?.path}`
         : '',
       linux: this.metadata.linux?.path
-        ? `${base}${this.metadata.linux?.path}`
+        ? `${RUM_APP_BASE}${this.metadata.linux?.path}`
         : '',
       macos: macosFile
-        ? `${base}${macosFile.url}`
+        ? `${RUM_APP_BASE}${macosFile.url}`
         : '',
       android: this.metadata.android?.file ?? '',
       androidLight: this.metadata.androidLight?.file ?? '',

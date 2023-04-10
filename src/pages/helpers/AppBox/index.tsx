@@ -22,7 +22,7 @@ import IconMac from '~/icons/icon_os_mac.svg';
 import IconWin from '~/icons/icon_os_win.svg';
 import IconRumLight from '~/icons/icon_rum_light.svg';
 
-import { useWiderThan } from '~/utils';
+import { RUM_APP_BASE, useWiderThan } from '~/utils';
 import { langService, appService } from '~/service';
 
 import { lang } from '../lang';
@@ -38,17 +38,16 @@ export const AppBox = observer((props: Props) => {
     qrImage: '',
     showRumAppDownload: false,
     get links() {
-      const base = 'https://static-assets.pek3b.qingstor.com/rum-testing/';
       const macosFile = appService.state.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
       return {
         windows: appService.state.metadata.windows?.path
-          ? `${base}${appService.state.metadata.windows?.path}`
+          ? `${RUM_APP_BASE}${appService.state.metadata.windows?.path}`
           : '',
         linux: appService.state.metadata.linux?.path
-          ? `${base}${appService.state.metadata.linux?.path}`
+          ? `${RUM_APP_BASE}${appService.state.metadata.linux?.path}`
           : '',
         macos: macosFile
-          ? `${base}${macosFile.url}`
+          ? `${RUM_APP_BASE}${macosFile.url}`
           : '',
         android: appService.state.metadata.androidLight?.file ?? '',
       };
