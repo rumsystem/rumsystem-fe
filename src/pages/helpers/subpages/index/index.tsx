@@ -2,23 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 import { action } from 'mobx';
 import { observer, useLocalObservable } from 'mobx-react-lite';
-import { Button, Dialog } from '@mui/material';
+import { Dialog } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 import { langService, titleService } from '~/service';
 import { ImgBox } from '~/components/ImgBox';
-// import IconCoin from '~/icons/icon_coin.svg';
-// import IconNode from '~/icons/icon_node.svg';
-import IconGithub from '~/icons/icon_github.svg';
 
-import { AppBox } from '../../AppBox';
 import { lang } from '../../lang';
-import IconDecentralized from './icons/icon_decentralized.svg';
-import IconPrivacy from './icons/icon_privacy.svg';
-import IconToken from './icons/icon_token.svg';
 import ArchDiagram from './icons/arch_diagram.svg';
-import { Link } from 'react-router-dom';
-
 
 export const HomepageIndex = observer(() => {
   titleService.useSetTitle('Homepage');
@@ -26,17 +17,9 @@ export const HomepageIndex = observer(() => {
     open: false,
   }));
 
-  const handleOpenDialog = action(() => {
-    state.open = true;
-  });
-
   const handleCloseDialog = action(() => {
     state.open = false;
   });
-
-  const guideLink = langService.state.lang === 'en'
-    ? 'https://guide-en.rumsystem.net/'
-    : 'https://guide.rumsystem.net/';
 
   return (
     <div className="main-box flex justify-center">
@@ -48,49 +31,8 @@ export const HomepageIndex = observer(() => {
           )}
         >
           <div className="grid gap-x-[10px] gap-y-[10px] grid-cols-2 text-white mb:grid-cols-1">
-            <div className="flex-col flex-center gap-y-5 border border-gray-83 px-10 py-6 mb:p-4">
-              <div className="text-main text-23 leading-snug">
-                {lang.index.box1.p.map((v, i) => (
-                  <React.Fragment key={i}>
-                    {v.type.includes('linebreak') && (
-                      <br />
-                    )}
-                    {!v.type.includes('linebreak') && (
-                      <span
-                        className={classNames(
-                          v.type.includes('kanit') && 'font-kanit',
-                          v.type.includes('light') && 'font-extralight',
-                          v.type.includes('italic') && 'italic',
-                          v.type.includes('small') && 'text-17',
-                        )}
-                      >
-                        {v.text}
-                      </span>
-                    )}
-                  </React.Fragment>
-                ))}
-              </div>
-              <div>
-                <a
-                  className="!no-underline"
-                  href={guideLink}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <Button
-                    className="rounded-full px-7 py-[2px] text-18 normal-case"
-                    color="rum"
-                    variant="outlined"
-                  >
-                    {lang.index.box1.start}
-                  </Button>
-                </a>
-              </div>
-            </div>
-
             <div className="border border-gray-83 px-8 py-6">
               <div className="flex mb:flex-col flex-center">
-                <ImgBox className="flex-none mb:mb-4 pc:mr-6" src={IconDecentralized} width={70} height={87} alt="" />
                 <div className="grow">
                   <div className="text-20">
                     {lang.index.box2.title}
@@ -108,16 +50,6 @@ export const HomepageIndex = observer(() => {
                   </div>
                 </div>
               </div>
-              {/* <div className="flex justify-end mt-3">
-                <a
-                  className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
-                  href="https://github.com/rumsystem/quorum#run-a-rum-peer"
-                  target="_blank"
-                >
-                  <img className="mr-3 group-hover:hover-orange" src={IconNode} alt="" />
-                  {lang.index.box2.link}
-                </a>
-              </div> */}
             </div>
 
             <div className="border border-gray-83 px-8 py-6">
@@ -154,36 +86,6 @@ export const HomepageIndex = observer(() => {
                   ))}
                 </div>
               </div>
-              <ImgBox className="flex-none mb:order-1 mb:mb-4 pc:ml-6" src={IconPrivacy} alt="" width={43} height={81} />
-            </div>
-
-            <div className="border border-gray-83 px-8 py-6">
-              <div className="flex mb:flex-col flex-center">
-                <div className="grow mb:order-2">
-                  <div className="text-20 mb:mb-4">
-                    {lang.index.box5.title}
-                  </div>
-
-                  <div
-                    className={classNames(
-                      'text-gray-d1 mt-2 text-14',
-                      langService.en && 'font-consolas',
-                    )}
-                  >
-                    {lang.index.box5.p.map((v, i) => (
-                      <p className="mt-3 mb-1" key={i}>{v}</p>
-                    ))}
-                  </div>
-                </div>
-                <ImgBox className="flex-none mb:order-1 mb:mb-4 pc:ml-6" src={IconToken} alt="" width={65} height={68} />
-
-              </div>
-              {/* <div className="flex justify-start mt-3">
-                <a className="flex items-center text-link-soft hover:text-main text-18 font-light tracking-wide" href="">
-                  <img className="mr-3" src={IconCoin} alt="" />
-                  {lang.index.box5.link}
-                </a>
-              </div> */}
             </div>
 
             <div className="border border-gray-83 px-8 py-6">
@@ -201,41 +103,8 @@ export const HomepageIndex = observer(() => {
                   <p className="mt-3 mb-1" key={i}>{v}</p>
                 ))}
               </div>
-
-              <div className="flex justify-end mt-3">
-                <a
-                  className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
-                  href="https://github.com/rumsystem"
-                  target="_blank"
-                >
-                  <img className="mr-3 group-hover:hover-orange" src={IconGithub} alt="" />
-                  {lang.index.box6.link}
-                </a>
-                <a
-                  className="flex items-center group text-link-soft hover:text-main text-18 font-light tracking-wide"
-                  href="https://guide.rumsystem.net/"
-                  target="_blank"
-                >
-                  {lang.index.box6.linkDocs}
-                </a>
-              </div>
             </div>
-
           </div>
-
-          <div className="flex-col items-center mt-14 tracking-wide">
-            <div className="text-24 text-white">
-              {lang.index.adventure.text1}
-            </div>
-            <Link
-              className="text-18 text-link-soft font-light mt-3"
-              to="/apps"
-            >
-              {lang.index.adventure.text2}
-            </Link>
-          </div>
-
-          <AppBox className="mt-14 mb:mt-10 border border-gray-70" />
 
           <div className="flex mb:flex-col mb:flex-center max-w-[820px] mx-auto mt-10">
             <div className="text-24 text-main font-kanit flex-none uppercase leading-normal mb:text-center pc:mr-12 pc:mt-8">
@@ -266,13 +135,6 @@ export const HomepageIndex = observer(() => {
 
           <div className="flex-col flex-center mt-14">
             <ImgBox src={ArchDiagram} alt="" width={640} height={540} />
-
-            <span
-              className="mb:hidden text-link-soft font-light text-14 mt-1 cursor-pointer hover:text-main"
-              onClick={handleOpenDialog}
-            >
-              {lang.index.howWorks.viewLarger}
-            </span>
           </div>
 
           <div

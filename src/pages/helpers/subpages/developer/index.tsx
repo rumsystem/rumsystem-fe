@@ -1,50 +1,16 @@
-import { useEffect } from 'react';
 import classNames from 'classnames';
-import { observer, useLocalObservable } from 'mobx-react-lite';
-
-import LinkExternalIcon from 'boxicons/svg/regular/bx-link-external.svg?fill-icon';
-import QrIcon from 'boxicons/svg/regular/bx-qr.svg?fill-icon';
-
-import IconGithub from '~/icons/icon_github.svg';
-import IconLinkExample from '~/icons/icon_link_example.svg';
-import IconLinkLangauge from '~/icons/icon_link_language.svg';
-import IconLinkDocs from '~/icons/icon_link_docs.svg';
-import IconEslint from '~/icons/icon_eslint.svg';
-import QuorumLogo from '~/icons/logo_quorum.svg?fill-icon';
-import { langService, titleService } from '~/service';
-
+import { observer } from 'mobx-react-lite';
+import { titleService } from '~/service';
 import { lang } from '../../lang';
-import IconQuorum from './icons/Illustration_QuoRum.svg';
-import IconRumApp from './icons/Illustration_RumApp.svg';
 import { ChevronRight } from '@mui/icons-material';
-import { Button, Tooltip } from '@mui/material';
-import { toDataURL } from 'qrcode';
-import { action } from 'mobx';
+import { Button } from '@mui/material';
 
 export const HomepageDevelopers = observer(() => {
-  const state = useLocalObservable(() => ({
-    mixinGroupQR: '',
-  }));
   titleService.useSetTitle('Developers');
-
-  useEffect(() => {
-    toDataURL(
-      'https://mixin.one/codes/ccfe695c-fff0-46ff-b1d1-54069c9a04ff',
-      {
-        margin: 0,
-        scale: 8,
-      },
-      action((error, url) => {
-        if (!error) {
-          state.mixinGroupQR = url;
-        }
-      }),
-    );
-  }, []);
 
   return (
     <div className="main-box flex-col justify-center items-stretch pb-24">
-      <div className="w-full bg-black/70 mx-auto">
+      <div className="w-full bg-black/70 mx-auto min-h-screen">
         <div className="w-full max-w-[1050px] px-5 py-7 mx-auto">
           <div className="flex gap-y-4 mb:flex-col justify-around items-center mt-10 mb:mt-4">
             <div className="text-main text-24">
@@ -61,10 +27,6 @@ export const HomepageDevelopers = observer(() => {
                 href={[
                   'https://docs.rumsystem.net/',
                   'https://github.com/rumsystem/',
-                  'https://docs.rumsystem.net/#sdk',
-                  'https://port.base.one/rumdevclub',
-                  'https://docs.rumsystem.net/rest-api/',
-                  'https://mixin.one/codes/ccfe695c-fff0-46ff-b1d1-54069c9a04ff',
                 ][i]}
                 target="_blank"
                 rel="noopener"
@@ -80,39 +42,8 @@ export const HomepageDevelopers = observer(() => {
                   <div className="flex-1 flex-col h-full">
                     <div className="text-link-soft text-18">
                       {v.title}
-                      {i === 5 && (
-                        <Tooltip
-                          classes={{
-                            tooltip: 'bg-white text-gray-70 shadow-4',
-                          }}
-                          title={(
-                            <div className="flex-col flex-center py-1">
-                              <div className="relative">
-                                <img
-                                  className="w-40 h-40"
-                                  src={state.mixinGroupQR}
-                                  alt=""
-                                />
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1">
-                                  <QuorumLogo className="text-32 text-black" />
-
-                                </div>
-                              </div>
-                              <div className="text-16 text-center leading-relaxed font-normal mt-2">
-                                {lang.developers.qrtip.map((v, i) => (
-                                  <p key={i}>{v}</p>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        >
-                          <span>
-                            <QrIcon className="inline ml-1 text-24 text-white" />
-                          </span>
-                        </Tooltip>
-                      )}
                     </div>
-                    <div className="flex items-center mt-1 flex-1 pl-10 text-14 text-gray-b0">
+                    <div className="flex items-center mt-1 flex-1 text-14 text-gray-b0">
                       {v.desc}
                     </div>
                   </div>
@@ -122,140 +53,6 @@ export const HomepageDevelopers = observer(() => {
                 </Button>
               </a>
             ))}
-          </div>
-        </div>
-      </div>
-      <div className="w-full max-w-[1200px] bg-black/70 px-5 mx-auto mt-12">
-        <div
-          className={classNames(
-            'flex mb:flex-col items-stretch w-full max-w-[1050px] mx-auto py-15',
-            langService.en && 'font-kanit',
-            langService.zh && 'font-tw-kanit',
-          )}
-        >
-          <div className="grow pc:w-0 border border-gray-83 pt-8 pb-16 px-10 mb:px-6 pc:mr-5">
-            <div className="text-23 text-main italic traicking-wide text-center">
-              {lang.developers.quorum.title}
-            </div>
-            <div
-              className={classNames(
-                'text-gray-d1 leading-lang mt-7',
-                langService.en && 'font-consolas text-15',
-              )}
-            >
-              {lang.developers.quorum.desc.map((v, i) => (
-                <p className="mt-4" key={i}>
-                  {v}
-                </p>
-              ))}
-            </div>
-            <div className="h-16 relative">
-              <img className="absolute right-0 xs:-right-1 top-4" src={IconQuorum} alt="" />
-            </div>
-            <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
-              {[
-                {
-                  link: 'https://rumsystem.github.io/quorum-api/',
-                  image: IconLinkExample,
-                  text: lang.developers.quorum.links.api,
-                },
-                {
-                  link: 'https://github.com/rumsystem/quorum',
-                  image: IconGithub,
-                  text: lang.developers.quorum.links.github,
-                },
-                {
-                  link: 'https://github.com/rumsystem/quorum#run-a-rum-peer',
-                  text: lang.developers.quorum.links.runPeer,
-                },
-                {
-                  link: 'https://github.com/rumsystem/quorum#example-a-private-decentralized-forum',
-                  text: lang.developers.quorum.links.example,
-                },
-              ].map((v, i) => (
-                <a
-                  className={classNames(
-                    'inline-flex flex-center group text-link-soft hover:text-main',
-                    i !== 0 && 'mt-5',
-                  )}
-                  href={v.link}
-                  target="_blank"
-                  key={i}
-                >
-                  <img
-                    className="w-[18px] flex-none mr-3 group-hover:hover-orange"
-                    src={v.image}
-                    alt=""
-                  />
-                  {v.text}
-                  {i < 2 && <LinkExternalIcon className="ml-1" />}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="grow pc:w-0 border border-gray-83 pt-8 pb-16 px-10 mb:px-6 mb:mt-8">
-            <div className="text-23 text-main italic traicking-wide text-center">
-              {lang.developers.rumApp.title}
-            </div>
-            <div
-              className={classNames(
-                'text-gray-d1 leading-lang mt-7',
-                langService.en && 'font-consolas text-15',
-              )}
-            >
-
-              {lang.developers.rumApp.desc.map((v, i) => (
-                <p className="mt-4" key={i}>
-                  {v}
-                </p>
-              ))}
-            </div>
-            <div className="h-16 relative">
-              <img className="absolute top-4 right-0 xs:-right-1" src={IconRumApp} alt="" />
-            </div>
-            <div className="flex-col items-start font-kanit font-light text-18 relative z-10">
-              {[
-                {
-                  link: 'https://github.com/rumsystem/rum-app',
-                  image: IconGithub,
-                  text: lang.developers.rumApp.links.start,
-                },
-                {
-                  link: 'https://docs.prsdev.club/#/rum-app/',
-                  image: IconLinkDocs,
-                  text: lang.developers.rumApp.links.docs,
-                },
-                {
-                  link: 'https://github.com/rumsystem/rum-app/blob/main/src/utils/lang/cn.ts',
-                  image: IconLinkLangauge,
-                  text: lang.developers.rumApp.links.i18n,
-                },
-                {
-                  link: 'https://github.com/rumsystem/rum-app/blob/main/docs/lint.md',
-                  image: IconEslint,
-                  text: lang.developers.rumApp.links.eslint,
-                },
-              ].map((v, i) => (
-                <a
-                  className={classNames(
-                    'inline-flex flex-center group text-link-soft hover:text-main',
-                    i !== 0 && 'mt-5',
-                  )}
-                  href={v.link}
-                  target="_blank"
-                  key={i}
-                >
-                  <img
-                    className="w-[18px] flex-none mr-3 group-hover:hover-orange"
-                    src={v.image}
-                    alt=""
-                  />
-                  {v.text}
-                  <LinkExternalIcon className="ml-1" />
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </div>
