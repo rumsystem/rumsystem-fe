@@ -11,6 +11,8 @@ import IconGithub from '~/icons/icon_github.svg';
 
 import { appService, titleService } from '~/service';
 
+import { lang } from '../../lang';
+
 import './index.sass';
 
 export const HomepageApps = observer(() => {
@@ -45,11 +47,11 @@ export const HomepageApps = observer(() => {
               <img src="https://storage.googleapis.com/static.press.one/rum/rum-app-logo.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Rum App</div>
-                <div className="mt-2 text-white/60 text-[12px]">Fullnode App</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.fullNodeApp}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Desktop fullnode app. Easy to run a fullnode.
+              {lang.apps.rumAppDesc}
             </div>
             <div className="mt-4 flex items-center">
               <Tooltip
@@ -93,11 +95,11 @@ export const HomepageApps = observer(() => {
               <img src="https://feed.base.one/logo192.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Feed</div>
-                <div className="mt-2 text-white/60 text-[12px]">Light App</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.lightNodeApp}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Flexible and decentralized micro blog built on Quorum.
+              {lang.apps.feedDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
@@ -116,11 +118,11 @@ export const HomepageApps = observer(() => {
               <img src="https://cnft.base.one/logo192.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">CNFT Club</div>
-                <div className="mt-2 text-white/60 text-[12px]">Light App</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.lightNodeApp}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              An NFT club built on Quorum and Mixin network.
+              {lang.apps.cnftDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
@@ -139,11 +141,11 @@ export const HomepageApps = observer(() => {
               <img src={PortLogoImage} className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Port</div>
-                <div className="mt-2 text-white/60 text-[12px]">Light App</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.lightNodeApp}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Decentralized forums.
+              {lang.apps.portDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
@@ -162,11 +164,11 @@ export const HomepageApps = observer(() => {
               <img src="https://gui.node.rumsystem.net/dashboard.fullnode.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Fullnode GUI</div>
-                <div className="mt-2 text-white/60 text-[12px]">Tool</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.tool}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Pure, Secure, Fast GUI for quorum fullnode.
+              {lang.apps.guiDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
@@ -185,11 +187,11 @@ export const HomepageApps = observer(() => {
               <img src="https://storage.googleapis.com/static.press.one/rum/rum-open-node.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Open Node</div>
-                <div className="mt-2 text-white/60 text-[12px]">Tool</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.tool}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Rapidly get a quorum group by on click.
+              {lang.apps.openNodeDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
@@ -208,11 +210,11 @@ export const HomepageApps = observer(() => {
               <img src="https://storage.googleapis.com/static.press.one/rum/library.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Library</div>
-                <div className="mt-2 text-white/60 text-[12px]">Fullnode App</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.fullNodeApp}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              Library app built on Quorum.
+              {lang.apps.libraryDesc}
             </div>
             <div className="mt-4 flex items-center">
               <Tooltip

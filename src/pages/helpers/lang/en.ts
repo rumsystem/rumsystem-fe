@@ -134,6 +134,17 @@ export const content: ZHTWContent = {
   },
 
   apps: {
+    fullNodeApp: 'Full Node App',
+    lightNodeApp: 'Light Node App',
+    tool: 'Tool',
+    rumAppDesc: 'Fullnode desktop app. Easy to run a fullnode.',
+    feedDesc: 'Flexible and decentralized micro blog built on Quorum.',
+    cnftDesc: 'An NFT club built on Quorum and Mixin network.',
+    portDesc: 'Decentralized forums.',
+    guiDesc: 'Pure, Secure, Fast GUI for quorum fullnode.',
+    openNodeDesc: 'Use open node to develop quickly.',
+    libraryDesc: 'Library app built on Quorum.',
+
     rumapp: {
       title: 'Rum App',
       type: 'Full Node',
@@ -295,7 +306,7 @@ export const content: ZHTWContent = {
       },
       sections: [
         {
-          title: 'Development Docs',
+          title: 'Docs',
           desc: 'We keep developing and improving the Quorum chain, as the documentation will be kept up to date in an effort for developers\' benefit.',
         },
         {
