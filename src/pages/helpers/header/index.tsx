@@ -3,10 +3,9 @@ import { action } from 'mobx';
 import classNames from 'classnames';
 import { observer, useLocalObservable } from 'mobx-react-lite';
 import { Link, matchPath, useLocation, useNavigate } from 'react-router-dom';
-import { Language, Check, Menu as MenuIcon, Download } from '@mui/icons-material';
+import { Language, Check, Menu as MenuIcon } from '@mui/icons-material';
 import { Menu, MenuItem, Drawer, List, ListItem, Divider, Box } from '@mui/material';
 
-import IconDownload from '~/icons/icon_download.svg';
 import RumLogo from '~/icons/logo_rumsystem.svg';
 import { langService, AllLanguages, langName } from '~/service';
 
@@ -92,14 +91,6 @@ export const HomepageHeader = observer(() => {
           langService.en && 'font-kanit',
         )}
       >
-        <Link
-          className="flex flex-center cursor-pointer mr-16"
-          to="/apps"
-        >
-          <img className="mr-2" src={IconDownload} alt="" />
-          {lang.header.download}
-        </Link>
-
         <div
           className="flex flex-center cursor-pointer"
           ref={menuAnchorEl}
@@ -183,17 +174,6 @@ export const HomepageHeader = observer(() => {
                   </ListItem>
                 ))}
                 <Divider className="my-2" />
-                <ListItem
-                  className={classNames(
-                    'justify-end px-6 py-4',
-                    langService.en && 'font-kanit',
-                  )}
-                  button
-                  onClick={() => navigate('/apps')}
-                >
-                  <Download className="mr-[6px] text-22" />
-                  {lang.header.download}
-                </ListItem>
                 <ListItem
                   className={classNames(
                     'justify-end px-5',

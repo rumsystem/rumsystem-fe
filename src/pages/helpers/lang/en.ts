@@ -302,22 +302,6 @@ export const content: ZHTWContent = {
           title: 'Github',
           desc: 'You can find all of our official code  open-sourced on GitHub, and we look forward to your participation and contributions.',
         },
-        {
-          title: 'Rum SDK',
-          desc: 'In addition to the official Rum SDK, there are community-contributed SDKs in various languages to help you develop your own DAPPs.',
-        },
-        {
-          title: 'Rum Dev Club',
-          desc: 'A forum built on Port where developers are welcomed to ask questions, make suggestions and discuss.',
-        },
-        {
-          title: 'API Docs',
-          desc: 'Allow interact on the web page. For developers getting a deeper understanding of the API given by Quorum,',
-        },
-        {
-          title: 'QuoRum Developers\' Group',
-          desc: 'Welcome to our discussion group on Mixin App.',
-        },
       ],
     },
     qrtip: [
