@@ -16,7 +16,7 @@ export const langName: Record<AllLanguages, string> = {
 export type AllLanguages = typeof allLang[number][0];
 type LangData<T> = Partial<Record<AllLanguages, (() => Promise<{ content: T }>) | { content: T }>>;
 
-const FALLBACK_LANG: AllLanguages = 'zh-tw';
+const FALLBACK_LANG: AllLanguages = 'en';
 
 const state = observable({
   lang: FALLBACK_LANG as AllLanguages,
@@ -39,7 +39,7 @@ const createLangLoader = <T extends unknown>(langData: LangData<T>) => {
   });
 
   const loadLang = async () => {
-    // fallback to zh-tw
+    // fallback to en
     const langToLoad = state.lang in langData
       ? state.lang
       : FALLBACK_LANG;
@@ -147,9 +147,7 @@ const saveLang = () => {
 };
 
 const init = action(() => {
-  const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages
-    ?? allLang.find((v) => v[1].test(navigator.language))
-    ?? FALLBACK_LANG;
+  const lang = localStorage.getItem(LANG_STORAGE_KEY) as AllLanguages ?? FALLBACK_LANG;
   const selectedLang = allLang.find((v) => v[1].test(lang))?.[0] ?? FALLBACK_LANG;
   switchLang(selectedLang);
   return () => 1;
