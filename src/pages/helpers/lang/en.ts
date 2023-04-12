@@ -144,6 +144,7 @@ export const content: ZHTWContent = {
     guiDesc: 'Pure, Secure, Fast GUI for quorum fullnode.',
     openNodeDesc: 'Use open node to develop quickly.',
     libraryDesc: 'Library app built on Quorum.',
+    nftClubDesc: 'NFT club from all EVM compatible chain.',
 
     rumapp: {
       title: 'Rum App',

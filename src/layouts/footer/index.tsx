@@ -10,7 +10,7 @@ export const Footer = observer(() => {
       <div className="flex gap-x-14 text-16">
         <a
           className="text-[#67696d]"
-          href="https://docs.rumsystem.net/"
+          href="https://docs.rumsystem.net/docs/en/"
           target="_blank"
           rel="noopener"
         >

@@ -25,7 +25,7 @@ export const HomepageDevelopers = observer(() => {
               <a
                 className="!no-underline flex"
                 href={[
-                  'https://docs.rumsystem.net/',
+                  'https://docs.rumsystem.net/docs/en/',
                   'https://github.com/rumsystem/',
                 ][i]}
                 target="_blank"
