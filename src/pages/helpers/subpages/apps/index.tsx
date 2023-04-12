@@ -8,6 +8,7 @@ import IconLinux from '~/icons/icon_os_linux.svg';
 import IconMac from '~/icons/icon_os_mac.svg';
 import IconWin from '~/icons/icon_os_win.svg';
 import IconGithub from '~/icons/icon_github.svg';
+import IconLogoLib from '~/icons/logo_lib.svg';
 
 import { appService, titleService } from '~/service';
 
@@ -126,7 +127,7 @@ export const HomepageApps = observer(() => {
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
-                <a href='http://feed.base.one' target='_blank' className="text-sky-300 text-12">
+                <a href='http://cnft.base.one' target='_blank' className="text-sky-300 text-12">
                   <AiOutlineLink className="text-14" />
                 </a>
               </div>
@@ -207,7 +208,7 @@ export const HomepageApps = observer(() => {
 
           <div className="rounded-3xl border border-white/60 h-[194px] w-[280px] mb:w-[80vw] box-border p-6 text-white/90 bg-black bg-opacity-80">
             <div className="flex items-start leading-none tracking-wider">
-              <img src="https://storage.googleapis.com/static.press.one/rum/library.png" className="w-10 h-10 rounded-full" />
+              <img src={IconLogoLib} className="w-8 mx-1" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Library</div>
                 <div className="mt-2 text-white/60 text-[12px]">{lang.apps.fullNodeApp}</div>
