@@ -140,6 +140,7 @@ export const content = {
     rumAppDesc: '全節點桌面客戶端，非常方便地運行一個全節點。',
     feedDesc: '基於 Quorum 構建的靈活且去中心化的微博。',
     cnftDesc: '一個建立在 Quorum 和 Mixin 網絡上的 NFT 俱樂部。',
+    beeDesc: '影視類的 Web3 社交媒體產品',
     portDesc: '去中心化論壇。',
     guiDesc: '純粹、安全、快速的全節點可視化界面。',
     openNodeDesc: '使用公共的節點快速開發應用。',

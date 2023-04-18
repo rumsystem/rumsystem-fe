@@ -139,6 +139,26 @@ export const HomepageApps = observer(() => {
 
           <div className="rounded-3xl border border-white/60 h-[194px] w-[280px] mb:w-[80vw] box-border p-6 text-white/90 bg-black bg-opacity-80">
             <div className="flex items-start leading-none tracking-wider">
+              <img src="https://storage.googleapis.com/static.press.one/rum/b-movie-logo.svg" className="w-10 h-10 rounded-full" />
+              <div className="ml-4">
+                <div className="text-[20px] font-bold">b.movie</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.lightNodeApp}</div>
+              </div>
+            </div>
+            <div className="mt-4 text-white/80 min-h-[55px]">
+              {lang.apps.beeDesc}
+            </div>
+            <div className="mt-4 flex items-center">
+              <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
+                <a href='https://b.movie' target='_blank' className="text-sky-300 text-12">
+                  <AiOutlineLink className="text-14" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/60 h-[194px] w-[280px] mb:w-[80vw] box-border p-6 text-white/90 bg-black bg-opacity-80">
+            <div className="flex items-start leading-none tracking-wider">
               <img src={PortLogoImage} className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Port</div>
