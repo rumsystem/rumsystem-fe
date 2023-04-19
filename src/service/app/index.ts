@@ -92,9 +92,8 @@ const state = observable({
     windows: null as null | RumAppMetadata,
     linux: null as null | RumAppMetadata,
     macos: null as null | RumAppMetadata,
-    android: null as null | RumAndroidMetadata,
-    androidLight: null as null | RumAndroidMetadata,
-    rumlib: null as null | GithubRelease,
+    rumLib: null as null | GithubRelease,
+    rumFeedAndroid: {} as any,
   },
   get links() {
     const macosFile = this.metadata.macos?.files.find((v) => v.url.endsWith('.dmg'));
@@ -108,8 +107,10 @@ const state = observable({
       macos: macosFile
         ? `${RUM_APP_BASE}${macosFile.url}`
         : '',
-      android: this.metadata.android?.file ?? '',
-      androidLight: this.metadata.androidLight?.file ?? '',
+      rumLibWindows: this.metadata.rumLib?.assets.find((asset) => asset.name.includes('exe'))?.browser_download_url,
+      rumLibMac: this.metadata.rumLib?.assets.find((asset) => asset.name.includes('dmg'))?.browser_download_url,
+      rumLibLinux: this.metadata.rumLib?.assets.find((asset) => asset.name.includes('linux'))?.browser_download_url,
+      rumFeedAndroid: this.metadata.rumFeedAndroid.url,
     };
   },
   get versions() {
@@ -117,9 +118,8 @@ const state = observable({
       windows: this.metadata.windows?.version ?? '',
       linux: this.metadata.linux?.version ?? '',
       macos: this.metadata.macos?.version ?? '',
-      android: this.metadata.android?.version_name ?? '',
-      androidLight: this.metadata.androidLight?.version_name ?? '',
-      rumlib: this.metadata.rumlib?.tag_name?.slice(1) ?? '',
+      rumLib: this.metadata.rumLib?.tag_name?.slice(1) ?? '',
+      rumFeedAndroid: this.metadata.rumFeedAndroid.version || '',
     };
   },
 });
@@ -157,31 +157,18 @@ const loadMacOS = cachePromiseHof(async () => {
     if (data) { state.metadata.macos = data; }
   });
 });
-const loadAndroid = cachePromiseHof(async () => {
-  if (state.metadata.android) { return; }
-  const data = await fetchYml<RumAndroidMetadata>('https://xue.prsdev.club/hub/api/app_managements?platform=android&channel=rum');
-  runInAction(() => {
-    if (data) {
-      data.file = data.file.replace('static-assets.xue.cn', 'static-assets.pek3b.qingstor.com');
-      state.metadata.android = data;
-    }
-  });
-});
-const loadAndroidLight = cachePromiseHof(async () => {
-  if (state.metadata.androidLight) { return; }
-  const data = await fetchYml<RumAndroidMetadata>('https://xue.prsdev.club/hub/api/app_managements?platform=android&channel=rum_light');
-  runInAction(() => {
-    if (data) {
-      data.file = data.file.replace('static-assets.xue.cn', 'static-assets.pek3b.qingstor.com');
-      state.metadata.androidLight = data;
-    }
-  });
-});
 const loadRumLib = cachePromiseHof(async () => {
-  if (state.metadata.rumlib) { return; }
+  if (state.metadata.rumLib) { return; }
   const data: GithubRelease = await (await fetch('https://api.github.com/repos/rumsystem/rum-epub/releases/latest')).json();
   runInAction(() => {
-    if (data) { state.metadata.rumlib = data; }
+    if (data) { state.metadata.rumLib = data; }
+  });
+});
+const loadRumFeedApp = cachePromiseHof(async () => {
+  if (state.metadata.macos) { return; }
+  const data = await (await fetch('https://storage.googleapis.com/static.press.one/feed/app/latest.json')).json();
+  runInAction(() => {
+    if (data) { state.metadata.rumFeedAndroid = data.android || {}; }
   });
 });
 
@@ -194,9 +181,8 @@ const loadData = () => {
         loadWindows(),
         loadLinux(),
         loadMacOS(),
-        loadAndroid(),
-        loadAndroidLight(),
         loadRumLib(),
+        loadRumFeedApp(),
       ]);
     },
   );

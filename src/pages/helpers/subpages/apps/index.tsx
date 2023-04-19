@@ -9,6 +9,7 @@ import IconMac from '~/icons/icon_os_mac.svg';
 import IconWin from '~/icons/icon_os_win.svg';
 import IconGithub from '~/icons/icon_github.svg';
 import IconLogoLib from '~/icons/logo_lib.svg';
+import IconAndroid from '~/icons/icon_os_android.svg';
 
 import { appService, titleService } from '~/service';
 
@@ -108,6 +109,9 @@ export const HomepageApps = observer(() => {
                   <AiOutlineLink className="text-14" />
                 </a>
               </div>
+              <a href={state.links.rumFeedAndroid} title={state.versions.rumFeedAndroid} target='_blank' className="text-sky-300">
+                <img className="h-5 mr-4" src={IconAndroid} alt="" />
+              </a>
               <a href="https://github.com/okdaodine/rum-feed" target='_blank'>
                 <img className="h-5 mr-4" src={IconGithub} alt="" />
               </a>
@@ -244,7 +248,7 @@ export const HomepageApps = observer(() => {
                 placement="bottom"
                 title='Windows'
               >
-                <a href="https://github.com/rumsystem/rum-epub/releases" target='_blank'>
+                <a href={state.links.rumLibWindows} target='_blank'>
                   <img className="h-[18px] mr-4" src={IconWin} alt="" />
                 </a>
               </Tooltip>
@@ -254,7 +258,7 @@ export const HomepageApps = observer(() => {
                 placement="bottom"
                 title='Mac'
               >
-                <a href="https://github.com/rumsystem/rum-epub/releases" target='_blank'>
+                <a href={state.links.rumLibMac} target='_blank'>
                   <img className="h-5 mr-4" src={IconMac} alt="" />
                 </a>
               </Tooltip>
@@ -264,7 +268,7 @@ export const HomepageApps = observer(() => {
                 placement="bottom"
                 title='Linux'
               >
-                <a href="https://github.com/rumsystem/rum-epub/releases" target='_blank'>
+                <a href={state.links.rumLibLinux} target='_blank'>
                   <img className="h-5 mr-4" src={IconLinux} alt="" />
                 </a>
               </Tooltip>
