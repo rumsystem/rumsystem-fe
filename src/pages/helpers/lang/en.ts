@@ -140,12 +140,13 @@ export const content: ZHTWContent = {
     rumAppDesc: 'Fullnode desktop app. Easy to run a fullnode.',
     feedDesc: 'Flexible and decentralized micro blog built on Quorum.',
     cnftDesc: 'An NFT club built on Quorum and Mixin network.',
-    beeDesc: 'A web3 social media product for movie. Powered by Quorum',
+    beeDesc: 'A web3 social media product for movie. Powered by Quorum.',
     portDesc: 'Decentralized forums.',
     guiDesc: 'Pure, Secure, Fast GUI for quorum fullnode.',
     openNodeDesc: 'Use open node to develop quickly.',
     libraryDesc: 'Library app built on Quorum.',
     nftClubDesc: 'NFT club from all EVM compatible chain.',
+    rumToolsDesc: 'A collection of tools for Quorum developers.',
 
     rumapp: {
       title: 'Rum App',
