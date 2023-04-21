@@ -146,7 +146,7 @@ export const content = {
     openNodeDesc: '使用公共的節點快速開發應用。',
     libraryDesc: '圖書館的全節點客戶端。',
     nftClubDesc: 'NFT 俱樂部，支持所有 ETH 兼容鏈',
-    rumToolsDesc: '',
+    rumToolsDesc: 'Quorum 開發者的工具集合',
 
     rumapp: {
       title: 'Rum App',

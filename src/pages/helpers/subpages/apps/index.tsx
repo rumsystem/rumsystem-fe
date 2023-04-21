@@ -287,15 +287,15 @@ export const HomepageApps = observer(() => {
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
-              {lang.apps.nftClubDesc}
+              {lang.apps.rumToolsDesc}
             </div>
             <div className="mt-4 flex items-center">
               <div className="flex items-center justify-center w-5 h-5 rounded-full border border-sky-300 leading-none mr-4">
-                <a href='http://club.base.one' target='_blank' className="text-sky-300 text-12">
+                <a href='https://tools.rumsystem.net' target='_blank' className="text-sky-300 text-12">
                   <AiOutlineLink className="text-14" />
                 </a>
               </div>
-              <a href="https://github.com/okdaodine/rum-nft-club" target='_blank'>
+              <a href="https://github.com/okdaodine/rum-tools" target='_blank'>
                 <img className="h-5 mr-4" src={IconGithub} alt="" />
               </a>
             </div>
