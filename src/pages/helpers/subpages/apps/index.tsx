@@ -283,7 +283,7 @@ export const HomepageApps = observer(() => {
               <img src="https://tools.rumsystem.net/logo.png" className="w-10 h-10 rounded-full" />
               <div className="ml-4">
                 <div className="text-[20px] font-bold">Rum Tools</div>
-                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.lightNodeApp}</div>
+                <div className="mt-2 text-white/60 text-[12px]">{lang.apps.tool}</div>
               </div>
             </div>
             <div className="mt-4 text-white/80 min-h-[55px]">
