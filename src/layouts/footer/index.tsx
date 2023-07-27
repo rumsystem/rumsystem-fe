@@ -7,7 +7,7 @@ export const Footer = observer(() => {
   if (!lang.ready) { return null; }
   return (
     <div className="flex mb:flex-col justify-between items-center w-full max-w-[1200px] gap-4 mx-auto py-8 text-14 mb:text-12 bg-white">
-      <div className="flex gap-x-14 text-16">
+      <div className="flex gap-x-10 md:gap-x-14 text-14 md:text-16">
         <a
           className="text-[#67696d]"
           href="https://docs.rumsystem.net/docs/en/"
@@ -23,6 +23,14 @@ export const Footer = observer(() => {
           rel="noopener"
         >
           GitHub
+        </a>
+        <a
+          className="text-[#67696d]"
+          href="https://app.pando.im/swap/asset?id=4f2ec12c-22f4-3a9e-b757-c84b6415ea8f"
+          target="_blank"
+          rel="noopener"
+        >
+          Buy $RUM
         </a>
       </div>
 
